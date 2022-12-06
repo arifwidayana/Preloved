@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.arifwidayana.preloved'
-    compileSdk 32
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.arifwidayana.preloved"
-        minSdk 23
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId = AndroidConfig.applicationId
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

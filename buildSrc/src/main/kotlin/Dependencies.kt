@@ -1,0 +1,66 @@
+object AndroidConfig {
+    const val minSdk = 23
+    const val targetSdk = 33
+    const val compileSdk = 33
+    const val versionCode = 1
+    const val versionName = "1.0.0"
+    const val applicationId = "com.arifwidayana.preloved"
+}
+
+object Library {
+    object Versions {
+        const val coreKtx = "1.8.0"
+        const val appCompat = "1.5.1"
+        const val googleMaterial = "1.6.1"
+        const val constraint = "2.1.4"
+        const val junit = "4.13.2"
+        const val androidTestJunit = "1.1.3"
+        const val androidTestEspresso = "3.4.0"
+        const val lifecycle = "2.5.1"
+        const val coroutine = "1.6.4"
+        const val fragmentNavigation = "2.5.2"
+        const val gson = "2.9.0"
+        const val retrofit = "2.9.0"
+        const val chucker = "3.5.2"
+        const val hilt = "2.44"
+        const val koin = "3.2.2"
+        const val dataStore = "1.0.0"
+        const val room = "2.4.3"
+        const val glide = "4.13.2"
+        const val coil = "2.2.2"
+        const val swiperRefresh = "1.1.0"
+        const val mock = "1.13.2"
+    }
+
+    const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    const val junit4 = "junit:junit:${Versions.junit}"
+    const val androidJunit = "androidx.test.ext:junit:${Versions.androidTestJunit}"
+    const val androidEspressoCore = "androidx.test.espresso:espresso-core:${Versions.androidTestEspresso}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.fragmentNavigation}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.fragmentNavigation}"
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
+    const val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
+    const val datastore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
+    const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperRefresh}"
+    const val mock = "io.mockk:mockk:${Versions.mock}"
+}
