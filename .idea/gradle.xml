@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/splash" />
+            <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/shared" />
             <option value="$PROJECT_DIR$/style" />
           </set>
