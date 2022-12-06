@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Preloved"
 include ':app'
+include ':core'
+include ':style'
+include ':shared'
+include ':feature:splash'
