@@ -9,16 +9,16 @@ object AndroidConfig {
 
 object Library {
     object Versions {
-        const val coreKtx = "1.8.0"
+        const val coreKtx = "1.9.0"
         const val appCompat = "1.5.1"
-        const val googleMaterial = "1.6.1"
+        const val googleMaterial = "1.7.0"
         const val constraint = "2.1.4"
         const val junit = "4.13.2"
-        const val androidTestJunit = "1.1.3"
-        const val androidTestEspresso = "3.4.0"
+        const val androidTestJunit = "1.1.4"
+        const val androidTestEspresso = "3.5.0"
         const val lifecycle = "2.5.1"
         const val coroutine = "1.6.4"
-        const val fragmentNavigation = "2.5.2"
+        const val fragmentNavigation = "2.5.3"
         const val gson = "2.9.0"
         const val retrofit = "2.9.0"
         const val chucker = "3.5.2"
@@ -29,7 +29,7 @@ object Library {
         const val glide = "4.13.2"
         const val coil = "2.2.2"
         const val swiperRefresh = "1.1.0"
-        const val mock = "1.13.2"
+        const val mock = "1.13.3"
     }
 
     const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
