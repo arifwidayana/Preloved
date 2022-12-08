@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Preloved"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name="com.arifwidayana.navigation.MainActivity"
             android:exported="true">
