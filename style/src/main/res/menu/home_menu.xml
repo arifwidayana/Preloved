@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/notificationFragment"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/notification" />
+    <item
+        android:id="@+id/sellFragment"
+        android:icon="@drawable/ic_post_add"
+        android:title="@string/sell" />
+    <item
+        android:id="@+id/saleFragment"
+        android:icon="@drawable/ic_sale"
+        android:title="@string/sale" />
+    <item
+        android:id="@+id/accountFragment"
+        android:icon="@drawable/ic_account"
+        android:title="@string/account" />
+</menu>
