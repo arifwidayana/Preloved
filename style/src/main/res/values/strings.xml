@@ -114,4 +114,8 @@
     <string name="your_bid_forwaded">Your bid will be forwarded to the Seller. If the Seller agrees to your offer, the Seller will contact you.</string>
     <string name="your_bid_text">Your Bid</string>
     <string name="wishlist_product">Wishlist Product</string>
+
+    #Error Exception
+    <string name="message_error_no_internet">Something is wrong with internet connection\nMake sure you have an Internet Connection and try again.</string>
+    <string name="message_error_unknown">Something is wrong when fetch data\nPlease try again</string>
 </resources>
