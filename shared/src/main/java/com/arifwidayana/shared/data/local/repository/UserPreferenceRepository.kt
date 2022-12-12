@@ -15,7 +15,7 @@ interface UserPreferenceRepository {
 
 class UserPreferenceRepositoryImpl(
     private val userPreferenceDatasource: UserPreferenceDatasource
-): UserPreferenceRepository, Repository() {
+) : UserPreferenceRepository, Repository() {
     override suspend fun getUserToken(): Flow<DataResource<String>> = flow {
         emit(proceed { userPreferenceDatasource.getUserToken().first() })
     }

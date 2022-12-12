@@ -8,7 +8,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 abstract class BaseRepository {
-    abstract fun <T> getErrorMessageFromApi(response : T) : String
+    abstract fun <T> getErrorMessageFromApi(response: T): String
 
     suspend fun <T> safeNetworkCall(apiCall: suspend () -> T): DataResource<T> {
         return try {

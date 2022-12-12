@@ -1,8 +1,8 @@
 package com.arifwidayana.navigation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.arifwidayana.navigation.databinding.ActivityMainBinding
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             val navController = findNavController(R.id.fragmentContainerView)
             bottomNavigationView.setupWithNavController(navController)
-            navController.addOnDestinationChangedListener{ _, destination, _ ->
-                when(destination.id){
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                when (destination.id) {
                     0 -> {
                         bottomNavigationView.visibility = View.VISIBLE
                     }

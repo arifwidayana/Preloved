@@ -13,10 +13,10 @@ import kotlinx.coroutines.flow.flow
 class SetUserTokenUseCase(
     private val userPreferenceRepository: UserPreferenceRepository,
     coroutineDispatcher: CoroutineDispatcher
-): BaseUseCase<UserTokenRequest, String>(coroutineDispatcher) {
+) : BaseUseCase<UserTokenRequest, String>(coroutineDispatcher) {
     override suspend fun execute(param: UserTokenRequest?): Flow<ViewResource<String>> = flow {
         param?.let {
-            when(userPreferenceRepository.setUserToken(it.token).first()) {
+            when (userPreferenceRepository.setUserToken(it.token).first()) {
                 is DataResource.Success -> { emit(ViewResource.Success(it.token)) }
                 is DataResource.Error -> { emit(ViewResource.Error(IllegalStateException("Failed to save token"))) }
             }

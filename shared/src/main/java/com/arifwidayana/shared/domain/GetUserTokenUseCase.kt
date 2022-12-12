@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 class GetUserTokenUseCase(
     private val userPreferenceRepository: UserPreferenceRepository,
     coroutineDispatcher: CoroutineDispatcher
-): BaseUseCase<Nothing, String>(coroutineDispatcher) {
+) : BaseUseCase<Nothing, String>(coroutineDispatcher) {
     override suspend fun execute(param: Nothing?): Flow<ViewResource<String>> = flow {
         userPreferenceRepository.getUserToken().collect {
             it.suspendSource(

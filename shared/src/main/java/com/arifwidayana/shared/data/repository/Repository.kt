@@ -7,7 +7,7 @@ import com.google.gson.JsonParseException
 import okhttp3.ResponseBody
 import org.koin.java.KoinJavaComponent
 
-open class Repository: BaseRepository() {
+open class Repository : BaseRepository() {
     private val gson: Gson by KoinJavaComponent.inject(Gson::class.java)
 
     override fun <T> getErrorMessageFromApi(response: T): String {

@@ -20,7 +20,8 @@ class UserPreferenceFactory(
     fun create(): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create(
             corruptionHandler = ReplaceFileCorruptionHandler(
-                produceNewData = { emptyPreferences() }),
+                produceNewData = { emptyPreferences() }
+            ),
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { context.preferencesDataStoreFile(USER_PREFERENCE) }
         )

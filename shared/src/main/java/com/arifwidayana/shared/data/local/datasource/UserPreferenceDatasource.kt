@@ -15,7 +15,7 @@ interface UserPreferenceDatasource {
 
 class UserPreferenceDatasourceImpl(
     private val dataStore: DataStore<Preferences>
-): UserPreferenceDatasource {
+) : UserPreferenceDatasource {
     override suspend fun getUserToken(): Flow<String> = flow {
         dataStore.data.map {
             it.toPreferences()[UserPreferenceKey.userToken].orEmpty()

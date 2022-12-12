@@ -15,9 +15,9 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import java.lang.Exception
 
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val bindingFactory: (LayoutInflater) -> VB
-): BaseView, Fragment() {
+) : BaseView, Fragment() {
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
     protected abstract val viewModel: VM
@@ -68,7 +68,7 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(
     override fun showContentEmpty(isVisible: Boolean) { }
 
     override fun showMessageToast(isEnabled: Boolean, message: String?, exception: Exception?) {
-        when{
+        when {
             isEnabled -> {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
@@ -76,7 +76,7 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(
     }
 
     override fun showMessageSnackBar(isEnabled: Boolean, message: String?, exception: Exception?) {
-        when{
+        when {
             isEnabled -> {
                 Snackbar.make(binding.root, message.toString(), Toast.LENGTH_SHORT).show()
             }

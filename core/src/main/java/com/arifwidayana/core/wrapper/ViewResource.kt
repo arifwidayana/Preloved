@@ -5,7 +5,7 @@ import java.lang.Exception
 sealed class ViewResource<T>(
     val payload: T? = null,
     val message: String? = null,
-    val exception: Exception? = null,
+    val exception: Exception? = null
 ) {
     class Success<T>(data: T) : ViewResource<T>(data)
     class Error<T>(exception: Exception?, data: T? = null) : ViewResource<T>(data, exception = exception)

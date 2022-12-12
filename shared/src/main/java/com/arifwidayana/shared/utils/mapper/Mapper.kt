@@ -1,12 +1,12 @@
 package com.arifwidayana.shared.utils.mapper
 
-interface Mapper<DTO,ViewParam>
+interface Mapper<DTO, ViewParam>
 
-interface ViewParamMapper<DTO, ViewParam> : Mapper<DTO,ViewParam> {
+interface ViewParamMapper<DTO, ViewParam> : Mapper<DTO, ViewParam> {
     fun toViewParam(dataObject: DTO?): ViewParam
 }
 
-interface DataObjectMapper<DTO, ViewParam> : Mapper<DTO,ViewParam> {
+interface DataObjectMapper<DTO, ViewParam> : Mapper<DTO, ViewParam> {
     fun toDataObject(viewParam: ViewParam?): DTO
 }
 

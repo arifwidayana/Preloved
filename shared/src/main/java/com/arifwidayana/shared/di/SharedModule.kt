@@ -16,7 +16,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-object SharedModule: BaseModule {
+object SharedModule : BaseModule {
     override fun getModules(): List<Module> =
         listOf(local, network, datasource, repository, useCase, common)
 

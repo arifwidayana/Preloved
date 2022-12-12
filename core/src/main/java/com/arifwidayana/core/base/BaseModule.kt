@@ -6,7 +6,7 @@ interface BaseModule {
     fun getModules(): List<Module>
 }
 
-interface FeatureModule: BaseModule {
+interface FeatureModule : BaseModule {
     val dataSources: Module
     val repositories: Module
     val useCases: Module
