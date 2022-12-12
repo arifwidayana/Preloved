@@ -1,6 +1,7 @@
 package com.arifwidayana.core.base
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -40,18 +40,6 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(
     abstract fun initView()
     abstract fun observeData()
 
-    @SuppressLint("DiscouragedApi")
-    override fun navPopUp(idFragment: String?, inclusive: Boolean): NavOptions {
-        return NavOptions.Builder().setPopUpTo(
-            destinationId = resources.getIdentifier(
-                idFragment,
-                "id",
-                requireContext().packageName
-            ),
-            inclusive = inclusive
-        ).build()
-    }
-
     override fun moveNav() {
         findNavController().popBackStack()
     }
@@ -60,8 +48,19 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(
         findNavController().navigate(navUp)
     }
 
-    override fun moveNav(direction: NavDirections) {
-        findNavController().navigate(direction)
+    @SuppressLint("DiscouragedApi")
+    override fun moveNav(deepLink: String?, idFragmentPopUp: String?, inclusive: Boolean) {
+        findNavController().navigate(
+            deepLink = Uri.parse(deepLink),
+            navOptions = NavOptions.Builder().setPopUpTo(
+                destinationId = resources.getIdentifier(
+                    idFragmentPopUp,
+                    "id",
+                    requireContext().packageName
+                ),
+                inclusive = inclusive
+            ).build()
+        )
     }
 
     override fun showLoading(isVisible: Boolean) { }
