@@ -1,19 +1,25 @@
 package com.arifwidayana.splash.presentation.ui
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.arifwidayana.splash.R
+import android.os.Handler
+import android.os.Looper
+import androidx.lifecycle.ViewModel
+import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.shared.utils.Navigation.HOMEPAGE_PARSE
+import com.arifwidayana.shared.utils.Navigation.SPLASH
+import com.arifwidayana.splash.databinding.FragmentSplashBinding
+import org.koin.android.ext.android.inject
 
-class SplashFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash, container, false)
+class SplashFragment : BaseFragment<FragmentSplashBinding, ViewModel>(
+    FragmentSplashBinding::inflate
+) {
+    override val viewModel: ViewModel by inject()
+    override fun initView() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            moveNav(
+                deepLink = HOMEPAGE_PARSE,
+                idFragmentPopUp = SPLASH
+            )
+        }, 5000)
     }
+    override fun observeData() { }
 }
