@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -44,4 +45,5 @@ dependencies {
     androidTestImplementation(Library.androidEspressoCore)
 
     implementation(project(":shared"))
+    api(project(":feature:splash"))
 }
