@@ -37,15 +37,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Check lint
-        run: ./gradlew lintDemoDebug
-
-      - name: Build all build type and flavor permutations
-        run: ./gradlew assemble
-
-      - name: Run local tests
-        run: ./gradlew testDemoDebug testProdDebug
-
       - name: Upload build outputs (APKs)
         uses: actions/upload-artifact@v3
         with:
