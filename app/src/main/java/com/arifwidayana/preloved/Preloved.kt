@@ -1,6 +1,7 @@
 package com.arifwidayana.preloved
 
 import android.app.Application
+import com.arifwidayana.home.di.HomeModule
 import com.arifwidayana.shared.di.SharedModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -13,7 +14,8 @@ class Preloved : Application() {
             androidLogger()
             androidContext(this@Preloved)
             modules(
-                SharedModule.getModules()
+                SharedModule.getModules() +
+                    HomeModule.getModules()
             )
         }
     }
