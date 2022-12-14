@@ -42,7 +42,7 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
-            buildConfigField("String", "BASE_URL", "\"https://staging-api.momby.id/\"")
+            buildConfigField("String", "BASE_URL", "\"https://market-final-project.herokuapp.com/\"")
         }
     }
 }
