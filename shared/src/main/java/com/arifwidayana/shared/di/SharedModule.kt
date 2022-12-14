@@ -17,9 +17,6 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 object SharedModule : BaseModule {
-    override fun getModules(): List<Module> =
-        listOf(local, network, datasource, repository, useCase, common)
-
     private val local = module {
         single { UserPreferenceFactory(androidContext()).create() }
     }
@@ -45,4 +42,7 @@ object SharedModule : BaseModule {
     private val common = module {
         single { Gson() }
     }
+
+    override fun getModules(): List<Module> =
+        listOf(local, network, datasource, repository, useCase, common)
 }
