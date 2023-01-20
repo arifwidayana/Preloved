@@ -10,7 +10,7 @@ object AndroidConfig {
 object Library {
     object Versions {
         const val coreKtx = "1.9.0"
-        const val appCompat = "1.5.1"
+        const val appCompat = "1.6.0"
         const val googleMaterial = "1.7.0"
         const val constraint = "2.1.4"
         const val junit = "4.13.2"
