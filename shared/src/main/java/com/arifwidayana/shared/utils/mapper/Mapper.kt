@@ -29,3 +29,21 @@ class ListMapper<DTO, ViewParam>(private val mapper: Mapper<DTO, ViewParam>) {
         }
     }
 }
+
+class ArrayListMapper<DTO, ViewParam>(private val mapper: Mapper<DTO, ViewParam>) {
+    fun toDataObjects(viewParams: ArrayList<ViewParam>?): ArrayList<DTO> {
+        if (mapper !is DataObjectMapper) throw IllegalStateException("Needs mapper DataObjectMapper.kt")
+        if (viewParams.isNullOrEmpty()) return arrayListOf()
+        return viewParams.map {
+            mapper.toDataObject(it)
+        } as ArrayList<DTO>
+    }
+
+    fun toViewParams(dataObjects: ArrayList<DTO>?): ArrayList<ViewParam> {
+        if (mapper !is ViewParamMapper) throw IllegalStateException("Needs mapper ViewParamMapper.kt")
+        if (dataObjects.isNullOrEmpty()) return arrayListOf()
+        return dataObjects.map {
+            mapper.toViewParam(it)
+        } as ArrayList<ViewParam>
+    }
+}
