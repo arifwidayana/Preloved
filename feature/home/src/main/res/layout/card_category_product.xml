@@ -1,66 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardCornerRadius="10dp">
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/siv_image_item"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_height="232dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            tools:src="@tools:sample/avatars" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/siv_image_item"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:src="@tools:sample/avatars"/>
+        <TextView
+            android:id="@+id/tv_name_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/content"
+            app:layout_constraintTop_toBottomOf="@id/siv_image_item"
+            tools:text="Short Dress Uniqlo" />
 
-            <TextView
-                android:id="@+id/tv_name_item"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Short Dress Uniqlo"
-                android:textColor="@color/black"
-                android:textSize="@dimen/content"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/siv_image_item" />
+        <TextView
+            android:id="@+id/tv_category_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sub_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_item"
+            tools:text="Pakaian" />
 
-            <TextView
-                android:id="@+id/tv_category_item"
-                android:layout_width="match_parent"
-                android:layout_height="21dp"
-                android:text="Pakaian"
-                android:textColor="#999999"
-                android:textSize="@dimen/sub_content"
-                android:fontFamily="@font/poppins_regular"
-                app:layout_constraintTop_toBottomOf="@id/tv_name_item"/>
+        <TextView
+            android:id="@+id/tv_price_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/content"
+            app:layout_constraintTop_toBottomOf="@id/tv_category_item"
+            tools:text="Rp.120.000" />
 
-            <TextView
-                android:id="@+id/tv_price_item"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="Rp.120.000"
-                android:textColor="@color/black"
-                android:textSize="@dimen/content"
-                android:fontFamily="@font/poppins_medium"
-                app:layout_constraintTop_toBottomOf="@id/tv_category_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
