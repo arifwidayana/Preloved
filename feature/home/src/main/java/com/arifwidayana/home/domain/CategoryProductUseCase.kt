@@ -3,7 +3,7 @@ package com.arifwidayana.home.domain
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.home.data.network.repository.HomeRepository
-import com.arifwidayana.shared.data.network.model.mapper.CategoryProductMapper
+import com.arifwidayana.shared.data.network.model.mapper.home.CategoryListProductMapper
 import com.arifwidayana.shared.data.network.model.response.home.category.CategoryParamResponse
 import com.arifwidayana.shared.utils.ext.suspendSource
 import kotlinx.coroutines.CoroutineDispatcher
@@ -19,7 +19,7 @@ class CategoryProductUseCase(
         homeRepository.categoryProduct().collect {
             it.suspendSource(
                 doOnSuccess = { source ->
-                    emit(ViewResource.Success(CategoryProductMapper.toViewParam(source.payload?.toList())))
+                    emit(ViewResource.Success(CategoryListProductMapper.toViewParam(source.payload?.toList())))
                 },
                 doOnError = { error ->
                     emit(ViewResource.Error(error.exception))
