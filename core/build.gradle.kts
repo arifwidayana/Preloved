@@ -91,6 +91,7 @@ dependencies {
     api(Library.googleMaterial)
     api(Library.constraintLayout)
     api(Library.swipeRefreshLayout)
+    api(Library.shimmer)
 
     testApi(Library.junit4)
     androidTestApi(Library.androidJunit)
@@ -118,6 +119,9 @@ dependencies {
     // Koin
     api(Library.koin)
 
+    // Paging3
+    api(Library.pagingRuntime)
+
     // Glide
     api(Library.glide)
     kapt(Library.glideCompiler)
@@ -137,6 +141,6 @@ dependencies {
     // Mock Test
     api(Library.mock)
 
-    // styling module
+    // Styling Module
     api(project(":style"))
 }
