@@ -83,6 +83,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                         )
                         Log.d("TAG", "onTabSelectedTrue: ${tab?.id}")
                     } else {
+                        viewModel.showProduct(
+                            categoryId = tab.id
+                        )
                         Log.d("TAG", "onTabSelectedFalse: ${tab.id}")
                     }
                 }
