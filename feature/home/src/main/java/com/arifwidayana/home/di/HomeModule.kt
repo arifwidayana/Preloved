@@ -7,7 +7,7 @@ import com.arifwidayana.home.data.network.repository.HomeRepository
 import com.arifwidayana.home.data.network.repository.HomeRepositoryImpl
 import com.arifwidayana.home.data.network.service.HomeService
 import com.arifwidayana.home.domain.CategoryProductUseCase
-import com.arifwidayana.home.domain.HomeUseCase
+import com.arifwidayana.home.domain.ProductUseCase
 import com.arifwidayana.home.presentation.ui.home.HomeViewModel
 import com.arifwidayana.shared.data.network.NetworkClient
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +18,7 @@ import org.koin.dsl.module
 object HomeModule : FeatureModule {
     override val dataSources: Module = module {
         single<HomeDatasource> { HomeDatasourceImpl(get()) }
+//        single { PagingDatasource(get(), get()) }
     }
 
     override val repositories: Module = module {
@@ -25,8 +26,8 @@ object HomeModule : FeatureModule {
     }
 
     override val useCases: Module = module {
-        single { HomeUseCase(get(), Dispatchers.IO) }
         single { CategoryProductUseCase(get(), Dispatchers.IO) }
+        single { ProductUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
