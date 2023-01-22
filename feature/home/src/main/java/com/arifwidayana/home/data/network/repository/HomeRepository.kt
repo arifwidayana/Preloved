@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-typealias CategoryDataResource = DataResource<CategoryResponse>
-typealias ProductDataResource = DataResource<PagingData<BuyerProductResponse.BuyerProductResponseItem>>
+typealias CategoryDataResource = DataResource<List<CategoryResponse>>
+typealias ProductDataResource = DataResource<PagingData<BuyerProductResponse>>
 
 interface HomeRepository {
     suspend fun categoryProduct(): Flow<CategoryDataResource>

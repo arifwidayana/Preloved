@@ -11,18 +11,18 @@ import retrofit2.http.Query
 
 interface HomeService {
     @GET(BuildConfig.END_POINT_SELLER_CATEGORY)
-    suspend fun categoryProduct(): CategoryResponse
+    suspend fun categoryProduct(): List<CategoryResponse>
 
     @GET(BuildConfig.END_POINT_BUYER_PRODUCT)
     suspend fun showProduct(
         @Query(PAGE) page: Int,
         @Query(PER_PAGE) perPage: Int,
         @Query(CATEGORY_ID) categoryId: Int
-    ): List<BuyerProductResponse.BuyerProductResponseItem>
+    ): List<BuyerProductResponse>
 
     @GET(BuildConfig.END_POINT_BUYER_PRODUCT)
     suspend fun showAllProduct(
         @Query(PAGE) page: Int,
         @Query(PER_PAGE) perPage: Int
-    ): List<BuyerProductResponse.BuyerProductResponseItem>
+    ): List<BuyerProductResponse>
 }

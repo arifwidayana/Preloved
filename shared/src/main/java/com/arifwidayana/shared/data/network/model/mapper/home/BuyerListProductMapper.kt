@@ -7,10 +7,10 @@ import com.arifwidayana.shared.utils.mapper.ListMapper
 import com.arifwidayana.shared.utils.mapper.PagingDataMapper
 import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 
-typealias BuyerProductMap = BuyerProductResponse.BuyerProductResponseItem
-typealias BuyerProductParamMap = BuyerProductParamResponse.BuyerProductResponseItem
-typealias BuyerProductCategoryMap = BuyerProductResponse.BuyerProductResponseItem.Category
-typealias BuyerProductCategoryParamMap = BuyerProductParamResponse.BuyerProductResponseItem.Category
+typealias BuyerProductMap = BuyerProductResponse
+typealias BuyerProductParamMap = BuyerProductParamResponse
+typealias BuyerProductCategoryMap = BuyerProductResponse.Category
+typealias BuyerProductCategoryParamMap = BuyerProductParamResponse.Category
 
 object BuyerProductPagingMapper : ViewParamMapper<PagingData<BuyerProductMap>, PagingData<BuyerProductParamMap>> {
     override fun toViewParam(dataObject: PagingData<BuyerProductMap>?): PagingData<BuyerProductParamMap> =
@@ -22,7 +22,7 @@ object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMa
         BuyerProductParamMap(
             id = dataObject?.id ?: 0,
             name = dataObject?.name.orEmpty(),
-            description = dataObject?.description.orEmpty(),
+            description = dataObject?.description ?: "No Descriptions",
             basePrice = dataObject?.basePrice ?: 0,
             imageUrl = dataObject?.imageUrl.orEmpty(),
             imageName = dataObject?.imageName.orEmpty(),

@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-typealias BuyerProductDataResource = PagingData<BuyerProductParamResponse.BuyerProductResponseItem>
+typealias BuyerProductDataResource = PagingData<BuyerProductParamResponse>
 
 class ProductUseCase(
     private val homeRepository: HomeRepository,

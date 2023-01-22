@@ -7,8 +7,8 @@ import com.arifwidayana.shared.data.network.model.response.home.product.BuyerPro
 import kotlinx.coroutines.flow.StateFlow
 
 interface HomeContract {
-    val categoryProductResult: StateFlow<ViewResource<List<CategoryParamResponse.CategoryParamResponseItem>>>
-    val showProductResult: StateFlow<ViewResource<PagingData<BuyerProductParamResponse.BuyerProductResponseItem>>>
+    val categoryProductResult: StateFlow<ViewResource<List<CategoryParamResponse>>>
+    val showProductResult: StateFlow<ViewResource<PagingData<BuyerProductParamResponse>>>
     fun categoryProduct()
     fun showProduct(categoryId: Int)
 }

@@ -11,18 +11,18 @@ import com.arifwidayana.shared.utils.Constant.NETWORK_PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
 
 interface HomeDatasource {
-    suspend fun categoryProduct(): CategoryResponse
-    suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse.BuyerProductResponseItem>>
+    suspend fun categoryProduct(): List<CategoryResponse>
+    suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse>>
 }
 
 class HomeDatasourceImpl(
     private val homeService: HomeService
 ) : HomeDatasource {
-    override suspend fun categoryProduct(): CategoryResponse {
+    override suspend fun categoryProduct(): List<CategoryResponse> {
         return homeService.categoryProduct()
     }
 
-    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse.BuyerProductResponseItem>> {
+    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse>> {
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,

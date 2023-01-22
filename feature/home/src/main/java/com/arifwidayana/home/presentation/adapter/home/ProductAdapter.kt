@@ -13,7 +13,7 @@ import com.arifwidayana.shared.utils.Constant.SOLD
 import com.arifwidayana.shared.utils.ext.convertCurrency
 import com.arifwidayana.style.R
 
-typealias BuyerProductParam = BuyerProductParamResponse.BuyerProductResponseItem
+typealias BuyerProductParam = BuyerProductParamResponse
 
 class ProductAdapter(
     private val onClick: (Int) -> Unit

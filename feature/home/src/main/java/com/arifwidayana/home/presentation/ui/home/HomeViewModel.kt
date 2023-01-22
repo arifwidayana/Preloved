@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-typealias CategoryDataResponse = List<CategoryParamResponse.CategoryParamResponseItem>
-typealias BuyerProductParamDataResponse = PagingData<BuyerProductParamResponse.BuyerProductResponseItem>
+typealias CategoryDataResponse = List<CategoryParamResponse>
+typealias BuyerProductParamDataResponse = PagingData<BuyerProductParamResponse>
 
 class HomeViewModel(
     private val categoryProductUseCase: CategoryProductUseCase,

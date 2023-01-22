@@ -10,7 +10,7 @@ import com.arifwidayana.shared.utils.Constant.DEFAULT_INDEX_PER_PAGE
 import retrofit2.HttpException
 import java.io.IOException
 
-typealias BuyerProduct = BuyerProductResponse.BuyerProductResponseItem
+typealias BuyerProduct = BuyerProductResponse
 
 class PagingDatasource(
     private val homeService: HomeService,
