@@ -1,4 +1,6 @@
+import org.jetbrains.kotlin.konan.properties.Properties
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+import java.io.FileInputStream
 
 plugins {
     id("com.android.library")
@@ -6,6 +8,11 @@ plugins {
     id("kotlin-kapt")
     id("org.jlleitschuh.gradle.ktlint")
 }
+
+val corePropertiesFile = rootProject.file("core.properties")
+val coreProperties = Properties()
+
+coreProperties.load(FileInputStream(corePropertiesFile))
 
 android {
     namespace = "com.arifwidayana.core"
@@ -42,7 +49,13 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
-            buildConfigField("String", "BASE_URL", "\"https://market-final-project.herokuapp.com/\"")
+            buildConfigField("String", "BASE_URL", coreProperties["BASE_URL"].toString())
+            buildConfigField("String", "END_POINT_LOGIN", coreProperties["END_POINT_LOGIN"].toString())
+            buildConfigField("String", "END_POINT_REGISTER", coreProperties["END_POINT_REGISTER"].toString())
+            buildConfigField("String", "END_POINT_SELLER_CATEGORY", coreProperties["END_POINT_SELLER_CATEGORY"].toString())
+            buildConfigField("String", "END_POINT_SELLER_BANNER", coreProperties["END_POINT_SELLER_BANNER"].toString())
+            buildConfigField("String", "END_POINT_BUYER_PRODUCT", coreProperties["END_POINT_BUYER_PRODUCT"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_PRODUCT", coreProperties["END_POINT_DETAIL_BUYER_PRODUCT"].toString())
         }
     }
 }
@@ -79,6 +92,7 @@ dependencies {
     api(Library.googleMaterial)
     api(Library.constraintLayout)
     api(Library.swipeRefreshLayout)
+    api(Library.shimmer)
 
     testApi(Library.junit4)
     androidTestApi(Library.androidJunit)
@@ -106,6 +120,9 @@ dependencies {
     // Koin
     api(Library.koin)
 
+    // Paging3
+    api(Library.pagingRuntime)
+
     // Glide
     api(Library.glide)
     kapt(Library.glideCompiler)
@@ -125,6 +142,6 @@ dependencies {
     // Mock Test
     api(Library.mock)
 
-    // styling module
+    // Styling Module
     api(project(":style"))
 }

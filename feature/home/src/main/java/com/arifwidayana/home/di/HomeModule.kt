@@ -6,8 +6,9 @@ import com.arifwidayana.home.data.network.datasource.HomeDatasourceImpl
 import com.arifwidayana.home.data.network.repository.HomeRepository
 import com.arifwidayana.home.data.network.repository.HomeRepositoryImpl
 import com.arifwidayana.home.data.network.service.HomeService
+import com.arifwidayana.home.domain.BannerUseCase
 import com.arifwidayana.home.domain.CategoryProductUseCase
-import com.arifwidayana.home.domain.HomeUseCase
+import com.arifwidayana.home.domain.ProductUseCase
 import com.arifwidayana.home.presentation.ui.home.HomeViewModel
 import com.arifwidayana.shared.data.network.NetworkClient
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +26,9 @@ object HomeModule : FeatureModule {
     }
 
     override val useCases: Module = module {
-        single { HomeUseCase(get(), Dispatchers.IO) }
+        single { BannerUseCase(get(), Dispatchers.IO) }
         single { CategoryProductUseCase(get(), Dispatchers.IO) }
+        single { ProductUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
