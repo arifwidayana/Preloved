@@ -35,4 +35,3 @@ data class BuyerProductResponse(
         val name: String?
     )
 }
-

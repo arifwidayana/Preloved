@@ -12,25 +12,25 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-typealias BuyerProductDataResource = PagingData<BuyerProductParamResponse>
+typealias ProductDataResource = PagingData<BuyerProductParamResponse>
 
 class ProductUseCase(
     private val homeRepository: HomeRepository,
     coroutineDispatcher: CoroutineDispatcher
-) : BaseUseCase<CategoryParamRequest, BuyerProductDataResource>(
+) : BaseUseCase<CategoryParamRequest, ProductDataResource>(
     coroutineDispatcher
 ) {
-    override suspend fun execute(param: CategoryParamRequest?): Flow<ViewResource<BuyerProductDataResource>> =
+    override suspend fun execute(param: CategoryParamRequest?): Flow<ViewResource<ProductDataResource>> =
         flow {
             emit(ViewResource.Loading())
-            param?.let {
-                homeRepository.showProduct(it).collect { response ->
-                    response.suspendSource(
-                        doOnSuccess = { result ->
-                            emit(ViewResource.Success(BuyerProductPagingMapper.toViewParam(result.payload)))
+            param?.let { request ->
+                homeRepository.showProduct(request).collect { source ->
+                    source.suspendSource(
+                        doOnSuccess = {
+                            emit(ViewResource.Success(BuyerProductPagingMapper.toViewParam(it.payload)))
                         },
-                        doOnError = { error ->
-                            emit(ViewResource.Error(error.exception))
+                        doOnError = {
+                            emit(ViewResource.Error(it.exception))
                         }
                     )
                 }
