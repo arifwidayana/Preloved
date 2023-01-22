@@ -4,12 +4,10 @@ import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.home.databinding.FragmentHomeBinding
+import com.arifwidayana.home.presentation.adapter.home.BannerAdapter
 import com.arifwidayana.home.presentation.adapter.home.ProductAdapter
-import com.arifwidayana.shared.data.network.model.response.home.category.CategoryParamResponse
-import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
 import org.koin.android.ext.android.inject
@@ -57,10 +55,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                     )
                 }
             }
+            launchWhenStarted {
+                viewModel.bannerProductResult.collect {
+                    it.source(
+                        doOnSuccess = { result ->
+                            setStateBanner(result.payload)
+                        },
+                        doOnError = { error ->
+                            Log.d("BANNER", error.exception.toString())
+                        }
+                    )
+                }
+            }
         }
     }
 
-    private fun tabLayout(data: List<CategoryParamResponse>?) {
+    private fun setStateBanner(data: BannerParamDataResponse?) {
+        binding.apply {
+            val adapter = BannerAdapter()
+            adapter.submitList(data)
+            vpBanner.adapter = adapter
+        }
+    }
+
+    private fun tabLayout(data: CategoryParamDataResponse?) {
         binding.apply {
             tlCategoryItem.addTab(tlCategoryItem.newTab().setText("All").setId(0))
             data?.forEach { res ->
@@ -72,11 +90,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         }
     }
 
-    private fun setStateProduct(data: PagingData<BuyerProductParamResponse>?) {
+    private fun setStateProduct(data: BuyerProductParamDataResponse?) {
         binding.apply {
-            val adapter = ProductAdapter {
-                it
-            }
+            val adapter = ProductAdapter { }
             adapter.loadStateFlow.asLiveData().observe(viewLifecycleOwner) {
                 when (it.source.refresh) {
                     is LoadState.Loading -> {
