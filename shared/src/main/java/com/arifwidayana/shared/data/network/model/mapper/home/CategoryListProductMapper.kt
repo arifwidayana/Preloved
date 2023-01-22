@@ -5,8 +5,8 @@ import com.arifwidayana.shared.data.network.model.response.home.category.Categor
 import com.arifwidayana.shared.utils.mapper.ListMapper
 import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 
-typealias CategoryMap = CategoryResponse.CategoryResponseItem
-typealias CategoryParamMap = CategoryParamResponse.CategoryParamResponseItem
+typealias CategoryMap = CategoryResponse
+typealias CategoryParamMap = CategoryParamResponse
 
 object CategoryListProductMapper : ViewParamMapper<List<CategoryMap>, List<CategoryParamMap>> {
     override fun toViewParam(dataObject: List<CategoryMap>?): List<CategoryParamMap> =

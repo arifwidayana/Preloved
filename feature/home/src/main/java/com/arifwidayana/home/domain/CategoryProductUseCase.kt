@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.flow
 class CategoryProductUseCase(
     private val homeRepository: HomeRepository,
     coroutineDispatcher: CoroutineDispatcher
-) : BaseUseCase<Nothing, List<CategoryParamResponse.CategoryParamResponseItem>>(coroutineDispatcher) {
-    override suspend fun execute(param: Nothing?): Flow<ViewResource<List<CategoryParamResponse.CategoryParamResponseItem>>> = flow {
+) : BaseUseCase<Nothing, List<CategoryParamResponse>>(coroutineDispatcher) {
+    override suspend fun execute(param: Nothing?): Flow<ViewResource<List<CategoryParamResponse>>> = flow {
         emit(ViewResource.Loading())
         homeRepository.categoryProduct().collect {
             it.suspendSource(
