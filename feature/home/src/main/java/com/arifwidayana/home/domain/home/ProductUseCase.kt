@@ -1,10 +1,10 @@
-package com.arifwidayana.home.domain
+package com.arifwidayana.home.domain.home
 
 import androidx.paging.PagingData
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.home.data.network.repository.HomeRepository
-import com.arifwidayana.shared.data.network.model.mapper.home.BuyerProductPagingMapper
+import com.arifwidayana.shared.data.network.model.mapper.home.BuyerProductMapper
 import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.ext.suspendSource
@@ -24,13 +24,13 @@ class ProductUseCase(
         flow {
             emit(ViewResource.Loading())
             param?.let { request ->
-                homeRepository.showProduct(request).collect { source ->
-                    source.suspendSource(
-                        doOnSuccess = {
-                            emit(ViewResource.Success(BuyerProductPagingMapper.toViewParam(it.payload)))
+                homeRepository.showProduct(request).collect {
+                    it.suspendSource(
+                        doOnSuccess = { source ->
+                            emit(ViewResource.Success(BuyerProductMapper.toViewParam(source.payload)))
                         },
-                        doOnError = {
-                            emit(ViewResource.Error(it.exception))
+                        doOnError = { error ->
+                            emit(ViewResource.Error(error.exception))
                         }
                     )
                 }
