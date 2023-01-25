@@ -8,7 +8,7 @@ import java.util.Date
 @Entity(tableName = "search_history")
 data class SearchHistoryEntity(
     @PrimaryKey
-    val searchName: String?,
+    val searchHistoryName: String?,
     @ColumnInfo(name = "created_at")
     val createdAt: Date?,
     @ColumnInfo(name = "updated_at")
