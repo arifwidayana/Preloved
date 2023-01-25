@@ -3,9 +3,9 @@ package com.arifwidayana.home.presentation.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.home.domain.BannerUseCase
-import com.arifwidayana.home.domain.CategoryProductUseCase
-import com.arifwidayana.home.domain.ProductUseCase
+import com.arifwidayana.home.domain.home.BannerUseCase
+import com.arifwidayana.home.domain.home.CategoryProductUseCase
+import com.arifwidayana.home.domain.home.ProductUseCase
 import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
