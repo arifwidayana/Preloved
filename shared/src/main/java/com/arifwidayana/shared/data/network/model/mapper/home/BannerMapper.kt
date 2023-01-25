@@ -8,12 +8,12 @@ import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 typealias BannerMap = BannerResponse
 typealias BannerParamMap = BannerParamResponse
 
-object BannerListMapper : ViewParamMapper<List<BannerMap>, List<BannerParamMap>> {
+object BannerMapper : ViewParamMapper<List<BannerMap>, List<BannerParamMap>> {
     override fun toViewParam(dataObject: List<BannerMap>?): List<BannerParamMap> =
-        ListMapper(BannerMapper).toViewParams(dataObject)
+        ListMapper(BannerListMapper).toViewParams(dataObject)
 }
 
-object BannerMapper : ViewParamMapper<BannerMap, BannerParamMap> {
+object BannerListMapper : ViewParamMapper<BannerMap, BannerParamMap> {
     override fun toViewParam(dataObject: BannerMap?): BannerParamMap =
         BannerParamMap(
             id = dataObject?.id ?: 0,

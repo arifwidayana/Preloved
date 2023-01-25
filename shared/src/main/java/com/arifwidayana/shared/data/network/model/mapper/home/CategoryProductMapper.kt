@@ -8,12 +8,12 @@ import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 typealias CategoryMap = CategoryResponse
 typealias CategoryParamMap = CategoryParamResponse
 
-object CategoryListProductMapper : ViewParamMapper<List<CategoryMap>, List<CategoryParamMap>> {
+object CategoryProductMapper : ViewParamMapper<List<CategoryMap>, List<CategoryParamMap>> {
     override fun toViewParam(dataObject: List<CategoryMap>?): List<CategoryParamMap> =
-        ListMapper(CategoryProductMapper).toViewParams(dataObject)
+        ListMapper(CategoryListProductMapper).toViewParams(dataObject)
 }
 
-object CategoryProductMapper : ViewParamMapper<CategoryMap, CategoryParamMap> {
+object CategoryListProductMapper : ViewParamMapper<CategoryMap, CategoryParamMap> {
     override fun toViewParam(dataObject: CategoryMap?): CategoryParamMap =
         CategoryParamMap(
             id = dataObject?.id ?: 0,

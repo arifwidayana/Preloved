@@ -12,12 +12,12 @@ typealias BuyerProductParamMap = BuyerProductParamResponse
 typealias BuyerProductCategoryMap = BuyerProductResponse.Category
 typealias BuyerProductCategoryParamMap = BuyerProductParamResponse.Category
 
-object BuyerProductPagingMapper : ViewParamMapper<PagingData<BuyerProductMap>, PagingData<BuyerProductParamMap>> {
+object BuyerProductMapper : ViewParamMapper<PagingData<BuyerProductMap>, PagingData<BuyerProductParamMap>> {
     override fun toViewParam(dataObject: PagingData<BuyerProductMap>?): PagingData<BuyerProductParamMap> =
-        PagingDataMapper(BuyerProductMapper).toViewParams(dataObject)
+        PagingDataMapper(BuyerProductPagingMapper).toViewParams(dataObject)
 }
 
-object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMap> {
+object BuyerProductPagingMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMap> {
     override fun toViewParam(dataObject: BuyerProductMap?): BuyerProductParamMap =
         BuyerProductParamMap(
             id = dataObject?.id ?: 0,
