@@ -1,8 +1,7 @@
-package com.arifwidayana.shared.data.local.repository
+package com.arifwidayana.shared.data.repository
 
 import com.arifwidayana.core.wrapper.DataResource
 import com.arifwidayana.shared.data.local.datasource.UserPreferenceDatasource
-import com.arifwidayana.shared.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow

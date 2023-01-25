@@ -3,8 +3,8 @@ package com.arifwidayana.shared.domain
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.DataResource
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.shared.data.local.model.UserTokenRequest
-import com.arifwidayana.shared.data.local.repository.UserPreferenceRepository
+import com.arifwidayana.shared.data.local.model.request.UserTokenRequest
+import com.arifwidayana.shared.data.repository.UserPreferenceRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first

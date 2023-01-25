@@ -4,8 +4,8 @@ import com.arifwidayana.core.base.BaseModule
 import com.arifwidayana.shared.data.local.datasource.UserPreferenceDatasource
 import com.arifwidayana.shared.data.local.datasource.UserPreferenceDatasourceImpl
 import com.arifwidayana.shared.data.local.datasource.UserPreferenceFactory
-import com.arifwidayana.shared.data.local.repository.UserPreferenceRepository
-import com.arifwidayana.shared.data.local.repository.UserPreferenceRepositoryImpl
+import com.arifwidayana.shared.data.repository.UserPreferenceRepository
+import com.arifwidayana.shared.data.repository.UserPreferenceRepositoryImpl
 import com.arifwidayana.shared.data.network.NetworkClient
 import com.arifwidayana.shared.domain.GetUserTokenUseCase
 import com.arifwidayana.shared.domain.SetUserTokenUseCase
