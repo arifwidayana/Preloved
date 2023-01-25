@@ -6,10 +6,12 @@ import com.arifwidayana.home.data.network.datasource.HomeDatasourceImpl
 import com.arifwidayana.home.data.network.repository.HomeRepository
 import com.arifwidayana.home.data.network.repository.HomeRepositoryImpl
 import com.arifwidayana.home.data.network.service.HomeService
-import com.arifwidayana.home.domain.BannerUseCase
-import com.arifwidayana.home.domain.CategoryProductUseCase
-import com.arifwidayana.home.domain.ProductUseCase
+import com.arifwidayana.home.domain.home.BannerUseCase
+import com.arifwidayana.home.domain.home.CategoryProductUseCase
+import com.arifwidayana.home.domain.home.ProductUseCase
+import com.arifwidayana.home.domain.search.PostSearchHistoryUseCase
 import com.arifwidayana.home.presentation.ui.home.HomeViewModel
+import com.arifwidayana.home.presentation.ui.search.SearchViewModel
 import com.arifwidayana.shared.data.network.NetworkClient
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -29,6 +31,7 @@ object HomeModule : FeatureModule {
         single { BannerUseCase(get(), Dispatchers.IO) }
         single { CategoryProductUseCase(get(), Dispatchers.IO) }
         single { ProductUseCase(get(), Dispatchers.IO) }
+        single { PostSearchHistoryUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
@@ -37,6 +40,7 @@ object HomeModule : FeatureModule {
 
     override val viewModels: Module = module {
         viewModelOf(::HomeViewModel)
+        viewModelOf(::SearchViewModel)
     }
 
     override fun getModules(): List<Module> =
