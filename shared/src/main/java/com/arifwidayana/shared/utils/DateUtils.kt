@@ -3,7 +3,11 @@ package com.arifwidayana.shared.utils
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Build
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 object DateUtils {
@@ -46,6 +50,28 @@ object DateUtils {
                 true
             )
             timePickerDialog.show()
+        }
+    }
+
+    fun dateConvertToString(data: LocalDateTime): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val defaultPattern = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSSSSSSS")
+            val convertPattern = DateTimeFormatter.ofPattern("dd-MM-uuuu'T'HH:mm:ss")
+            LocalDateTime
+                .parse(data.toString(), defaultPattern)
+                .format(convertPattern)
+            data.format(convertPattern)
+        } else {
+            ""
+        }
+    }
+
+    fun getLocalDateTime(): Date {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val instant = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()
+            Date.from(instant)
+        } else {
+            Calendar.getInstance().time
         }
     }
 }
