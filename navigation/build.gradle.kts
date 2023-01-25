@@ -76,4 +76,8 @@ dependencies {
     implementation(project(":shared"))
     api(project(":feature:splash"))
     api(project(":feature:home"))
+    api(project(":feature:notification"))
+    api(project(":feature:sale"))
+    api(project(":feature:sell"))
+    api(project(":feature:account"))
 }
