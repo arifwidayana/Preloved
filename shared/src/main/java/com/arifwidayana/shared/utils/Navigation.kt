@@ -4,7 +4,9 @@ object Navigation {
     // Id Navigation Fragment
     const val SPLASH = "splashFragment"
     const val HOMEPAGE = "homeFragment"
+    const val ACCOUNT = "accountFragment"
 
-    // Uri Parsing
-    const val HOMEPAGE_PARSE = "Preloved://homeFragment"
+    // Uri Deeplink
+    const val HOMEPAGE_URI = "Preloved://homeFragment"
+    const val ACCOUNT_URI = "Preloved://accountFragment"
 }

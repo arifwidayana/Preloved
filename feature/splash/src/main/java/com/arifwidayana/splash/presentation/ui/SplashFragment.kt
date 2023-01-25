@@ -4,7 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.ViewModel
 import com.arifwidayana.core.base.BaseFragment
-import com.arifwidayana.shared.utils.Navigation.HOMEPAGE_PARSE
+import com.arifwidayana.shared.utils.Navigation.HOMEPAGE_URI
 import com.arifwidayana.shared.utils.Navigation.SPLASH
 import com.arifwidayana.splash.databinding.FragmentSplashBinding
 import org.koin.android.ext.android.inject
@@ -16,7 +16,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, ViewModel>(
     override fun initView() {
         Handler(Looper.getMainLooper()).postDelayed({
             moveNav(
-                deepLink = HOMEPAGE_PARSE,
+                deepLink = HOMEPAGE_URI,
                 idFragmentPopUp = SPLASH
             )
         }, 5000)
