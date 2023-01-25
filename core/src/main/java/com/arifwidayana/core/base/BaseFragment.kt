@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -48,24 +50,36 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
         findNavController().navigate(navUp)
     }
 
-    @SuppressLint("DiscouragedApi")
-    override fun moveNav(deepLink: String?, idFragmentPopUp: String?, inclusive: Boolean) {
+    override fun moveNav(deepLink: String?) {
         findNavController().navigate(
-            deepLink = Uri.parse(deepLink),
-            navOptions = NavOptions.Builder().setPopUpTo(
-                destinationId = resources.getIdentifier(
-                    idFragmentPopUp,
-                    "id",
-                    requireContext().packageName
-                ),
-                inclusive = inclusive
-            ).build()
+            deepLink = Uri.parse(deepLink)
         )
     }
 
-    override fun showLoading(isVisible: Boolean) { }
-    override fun showContent(isVisible: Boolean) { }
-    override fun showContentEmpty(isVisible: Boolean) { }
+    @SuppressLint("DiscouragedApi")
+    override fun moveNav(deepLink: String, idFragmentPopUp: String?, inclusive: Boolean) {
+        findNavController().navigate(
+            request = NavDeepLinkRequest.Builder
+                .fromUri(deepLink.toUri())
+                .build(),
+            navOptions = NavOptions.Builder()
+                .setRestoreState(true)
+                .setLaunchSingleTop(true)
+                .setPopUpTo(
+                    destinationId = resources.getIdentifier(
+                        idFragmentPopUp,
+                        "id",
+                        requireContext().packageName
+                    ),
+                    inclusive = inclusive,
+                    saveState = true
+                ).build()
+        )
+    }
+
+    override fun showLoading(isVisible: Boolean) {}
+    override fun showContent(isVisible: Boolean) {}
+    override fun showContentEmpty(isVisible: Boolean) {}
 
     override fun showMessageToast(isEnabled: Boolean, message: String?, exception: Exception?) {
         when {

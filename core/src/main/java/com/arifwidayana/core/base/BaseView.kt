@@ -5,7 +5,8 @@ import java.lang.Exception
 interface BaseView {
     fun moveNav()
     fun moveNav(navUp: Int)
-    fun moveNav(deepLink: String?, idFragmentPopUp: String?, inclusive: Boolean = true)
+    fun moveNav(deepLink: String?)
+    fun moveNav(deepLink: String, idFragmentPopUp: String?, inclusive: Boolean = true)
     fun showLoading(isVisible: Boolean)
     fun showContent(isVisible: Boolean)
     fun showContentEmpty(isVisible: Boolean)
