@@ -8,4 +8,5 @@
         android:name="com.arifwidayana.splash.presentation.ui.SplashFragment"
         android:label="SplashFragment" />
     <include app:graph="@navigation/home_nav" />
+    <include app:graph="@navigation/account_nav" />
 </navigation>
