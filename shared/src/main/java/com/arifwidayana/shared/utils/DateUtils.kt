@@ -53,25 +53,41 @@ object DateUtils {
         }
     }
 
-    fun dateConvertToString(data: LocalDateTime): String {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val defaultPattern = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSSSSSSS")
-            val convertPattern = DateTimeFormatter.ofPattern("dd-MM-uuuu'T'HH:mm:ss")
-            LocalDateTime
-                .parse(data.toString(), defaultPattern)
-                .format(convertPattern)
-            data.format(convertPattern)
-        } else {
-            ""
-        }
-    }
+//    fun dateConvertToString(data: LocalDateTime): String {
+//        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            DateTimeFormatter.ofPattern("dd-MM-uuuu'T'HH:mm:ss")
+//            val defaultPattern = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSSSSSSS")
+//            val convertPattern = DateTimeFormatter.ofPattern("dd-MM-uuuu'T'HH:mm:ss")
+//            LocalDateTime
+//                .parse(data.toString(), defaultPattern)
+//                .format(convertPattern)
+//            data.format(convertPattern)
+//        } else {
+//            ""
+//        }
+//    }
 
-    fun getLocalDateTime(): Date {
+//    fun getLocalDateTime(): String {
+//        val simpleDateFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+//        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+//            val instant = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()
+//            dateTimeFormatter.format(Date.from(instant))
+//        } else {
+//            simpleDateFormatter.format(Calendar.getInstance().time)
+//        }
+//    }
+
+    fun getLocalDateTime(): String {
+        val timeZone = TimeZone.getDefault()
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val instant = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()
-            Date.from(instant)
+            val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val localDateTime = LocalDateTime.now(ZoneId.of(timeZone.id))
+            localDateTime.format(dateTimeFormatter)
         } else {
-            Calendar.getInstance().time
+            val simpleDateFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            simpleDateFormatter.timeZone = timeZone
+            simpleDateFormatter.format(Calendar.getInstance().time)
         }
     }
 }
