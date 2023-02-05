@@ -4,13 +4,12 @@ import androidx.room.Room
 import com.arifwidayana.core.base.BaseModule
 import com.arifwidayana.shared.data.local.PrelovedDatabase
 import com.arifwidayana.shared.data.local.datasource.*
-import com.arifwidayana.shared.data.repository.UserPreferenceRepository
-import com.arifwidayana.shared.data.repository.UserPreferenceRepositoryImpl
 import com.arifwidayana.shared.data.network.NetworkClient
 import com.arifwidayana.shared.data.repository.SearchHistoryRepository
 import com.arifwidayana.shared.data.repository.SearchHistoryRepositoryImpl
-import com.arifwidayana.shared.domain.GetUserTokenUseCase
-import com.arifwidayana.shared.domain.SetUserTokenUseCase
+import com.arifwidayana.shared.data.repository.UserPreferenceRepository
+import com.arifwidayana.shared.data.repository.UserPreferenceRepositoryImpl
+import com.arifwidayana.shared.domain.*
 import com.arifwidayana.shared.utils.Constant.DB_NAME
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
@@ -24,10 +23,10 @@ object SharedModule : BaseModule {
         single { UserPreferenceFactory(androidContext()).create() }
         single {
             Room.databaseBuilder(
-                get(),
+                androidContext(),
                 PrelovedDatabase::class.java,
                 DB_NAME
-            ).build()
+            ).fallbackToDestructiveMigration().build()
         }
         single { get<PrelovedDatabase>().searchHistoryDao() }
     }

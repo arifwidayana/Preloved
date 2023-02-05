@@ -25,7 +25,7 @@ object Library {
         const val hilt = "2.44"
         const val koin = "3.2.2"
         const val dataStore = "1.0.0"
-        const val room = "2.4.3"
+        const val room = "2.5.0"
         const val paging = "3.1.1"
         const val shimmer = "0.5.0"
         const val glide = "4.13.2"
