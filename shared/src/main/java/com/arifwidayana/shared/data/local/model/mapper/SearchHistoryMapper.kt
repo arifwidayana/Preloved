@@ -9,12 +9,12 @@ import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 typealias SearchHistoryMap = SearchHistoryEntity
 typealias SearchHistoryParamMap = SearchHistoryParamEntity
 
-object SearchHistoryMapper: ViewParamMapper<List<SearchHistoryMap>, List<SearchHistoryParamMap>> {
+object SearchHistoryMapper : ViewParamMapper<List<SearchHistoryMap>, List<SearchHistoryParamMap>> {
     override fun toViewParam(dataObject: List<SearchHistoryMap>?): List<SearchHistoryParamMap> =
         ListMapper(SearchListHistoryMapper).toViewParams(dataObject)
 }
 
-object SearchListHistoryMapper: ViewParamMapper<SearchHistoryMap, SearchHistoryParamMap> {
+object SearchListHistoryMapper : ViewParamMapper<SearchHistoryMap, SearchHistoryParamMap> {
     override fun toViewParam(dataObject: SearchHistoryMap?): SearchHistoryParamMap =
         SearchHistoryParamMap(
             searchHistoryName = dataObject?.searchHistoryName ?: "No history",

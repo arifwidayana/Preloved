@@ -22,7 +22,7 @@ class SearchHistoryRepositoryImpl(
     }
 
     override suspend fun getSearchHistory(): Flow<DataResource<List<SearchHistoryEntity>>> = flow {
-        emit(proceed { searchHistoryDatasource.getSearchHistory() })
+        emit(proceed { searchHistoryDatasource.getSearchHistory().first() })
     }
 
     override suspend fun getFindHistory(searchHistoryRequest: SearchHistoryRequest): Flow<DataResource<List<SearchHistoryEntity>>> = flow {

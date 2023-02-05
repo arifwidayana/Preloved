@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 
 interface SearchHistoryDatasource {
     suspend fun postSearchHistory(searchHistoryRequest: SearchHistoryRequest)
-    suspend fun getSearchHistory(): List<SearchHistoryEntity>
+    suspend fun getSearchHistory(): Flow<List<SearchHistoryEntity>>
     suspend fun getFindHistory(searchHistoryRequest: SearchHistoryRequest): Flow<List<SearchHistoryEntity>>
 }
 
@@ -36,8 +36,8 @@ class SearchHistoryDatasourceImpl(
         }
     }
 
-    override suspend fun getSearchHistory(): List<SearchHistoryEntity> {
-        return searchDao.getSearchHistory()
+    override suspend fun getSearchHistory(): Flow<List<SearchHistoryEntity>> = flow {
+        searchDao.getSearchHistory()
     }
 
     override suspend fun getFindHistory(searchHistoryRequest: SearchHistoryRequest): Flow<List<SearchHistoryEntity>> = flow {
