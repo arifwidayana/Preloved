@@ -9,17 +9,17 @@ import com.arifwidayana.shared.data.network.model.response.home.category.Categor
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductResponse
 import com.arifwidayana.shared.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 typealias BannerDataResource = DataResource<List<BannerResponse>>
 typealias CategoryDataResource = DataResource<List<CategoryResponse>>
-typealias ProductDataResource = DataResource<PagingData<BuyerProductResponse>>
+typealias ProductDataResource = PagingData<BuyerProductResponse>
 
 interface HomeRepository {
     suspend fun showBanner(): Flow<BannerDataResource>
     suspend fun categoryProduct(): Flow<CategoryDataResource>
     suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource>
+//    suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource>
 }
 
 class HomeRepositoryImpl(
@@ -33,7 +33,11 @@ class HomeRepositoryImpl(
         emit(safeNetworkCall { homeDatasource.categoryProduct() })
     }
 
-    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource> = flow {
-        emit(safeNetworkCall { homeDatasource.showProduct(categoryParamRequest).first() })
+    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource> {
+        return homeDatasource.showProduct(categoryParamRequest)
     }
+
+//    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource> = flow {
+//        emit(safeNetworkCall { homeDatasource.showProduct(categoryParamRequest).first() })
+//    }
 }

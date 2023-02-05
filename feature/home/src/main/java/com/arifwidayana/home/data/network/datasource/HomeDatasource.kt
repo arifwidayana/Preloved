@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.Flow
 interface HomeDatasource {
     suspend fun showBanner(): List<BannerResponse>
     suspend fun categoryProduct(): List<CategoryResponse>
+
+//    suspend fun showProduct(productParamRequest: ProductParamRequest): List<BuyerProductResponse>
     suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse>>
 }
 
@@ -27,6 +29,21 @@ class HomeDatasourceImpl(
     override suspend fun categoryProduct(): List<CategoryResponse> {
         return homeService.categoryProduct()
     }
+
+//    override suspend fun showProduct(productParamRequest: ProductParamRequest): List<BuyerProductResponse> {
+//        return if (productParamRequest.categoryId != 0) {
+//            homeService.showProduct(
+//                page = productParamRequest.page,
+//                perPage = productParamRequest.perPage,
+//                categoryId = productParamRequest.categoryId
+//            )
+//        } else {
+//            homeService.showAllProduct(
+//                page = productParamRequest.page,
+//                perPage = productParamRequest.perPage
+//            )
+//        }
+//    }
 
     override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<PagingData<BuyerProductResponse>> {
         return Pager(

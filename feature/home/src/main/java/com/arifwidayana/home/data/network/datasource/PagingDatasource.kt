@@ -16,6 +16,7 @@ class PagingDatasource(
     private val homeService: HomeService,
     private val categoryParamRequest: CategoryParamRequest
 ) : PagingSource<Int, BuyerProduct>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BuyerProduct> {
         return try {
             val pageIndex = params.key ?: DEFAULT_INDEX_PAGE
@@ -42,6 +43,29 @@ class PagingDatasource(
             return LoadResult.Error(exception)
         }
     }
+
+//    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BuyerProduct> {
+//        return try {
+//            val pageIndex = params.key ?: DEFAULT_INDEX_PAGE
+//            Log.d("TAG", "load: TRIGGER")
+//            val response = homeRepository.showProduct(
+//                ProductParamRequest(
+//                    page = pageIndex,
+//                    perPage = DEFAULT_INDEX_PER_PAGE,
+//                    categoryId = categoryParamRequest.categoryId
+//                )
+//            )
+//            LoadResult.Page(
+//                data = response,
+//                prevKey = if (pageIndex == DEFAULT_INDEX_PAGE) null else pageIndex - 1,
+//                nextKey = if (response.isEmpty()) null else pageIndex + 1
+//            )
+//        } catch (exception: IOException) {
+//            return LoadResult.Error(exception)
+//        } catch (exception: HttpException) {
+//            return LoadResult.Error(exception)
+//        }
+//    }
 
     override fun getRefreshKey(state: PagingState<Int, BuyerProduct>): Int? {
         return state.anchorPosition?.let { anchorPosition ->

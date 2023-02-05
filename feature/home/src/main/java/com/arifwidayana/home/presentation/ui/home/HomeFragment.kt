@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.home.R
 import com.arifwidayana.home.databinding.FragmentHomeBinding
 import com.arifwidayana.home.presentation.adapter.home.BannerAdapter
 import com.arifwidayana.home.presentation.adapter.home.ProductAdapter
@@ -19,6 +20,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     override fun initView() {
         onView()
+        onClick()
+    }
+
+    private fun onClick() {
+        binding.apply {
+            svSearchItem.setOnClickListener {
+                moveNav(R.id.action_homeFragment_to_searchFragment)
+            }
+        }
     }
 
     private fun onView() {
@@ -45,15 +55,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             }
             launchWhenStarted {
                 viewModel.showProductResult.collect {
-                    it.source(
-                        doOnSuccess = { result ->
-                            setStateProduct(result.payload)
-                        },
-                        doOnError = { error ->
-                            Log.d("CATEGORYPRODUCT", error.exception.toString())
-                        }
-                    )
+                    setStateProduct(it)
                 }
+//                viewModel.showProductResult.collect {
+//                    it.source(
+//                        doOnSuccess = { result ->
+//                            setStateProduct(result.payload)
+//                        },
+//                        doOnError = { error ->
+//                            Log.d("CATEGORYPRODUCT", error.exception.toString())
+//                        }
+//                    )
+//                }
             }
             launchWhenStarted {
                 viewModel.bannerProductResult.collect {
@@ -93,6 +106,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun setStateProduct(data: BuyerProductParamDataResponse?) {
         binding.apply {
             val adapter = ProductAdapter { }
+            data?.let {
+                adapter.submitData(lifecycle, it)
+            }
             adapter.loadStateFlow.asLiveData().observe(viewLifecycleOwner) {
                 when (it.source.refresh) {
                     is LoadState.Loading -> {
@@ -102,9 +118,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                     is LoadState.NotLoading -> {
                     }
                 }
-            }
-            data?.let {
-                adapter.submitData(lifecycle, it)
             }
             rvListProduct.adapter = adapter
         }

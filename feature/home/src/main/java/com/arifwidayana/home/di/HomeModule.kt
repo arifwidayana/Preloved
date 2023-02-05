@@ -9,6 +9,8 @@ import com.arifwidayana.home.data.network.service.HomeService
 import com.arifwidayana.home.domain.home.BannerUseCase
 import com.arifwidayana.home.domain.home.CategoryProductUseCase
 import com.arifwidayana.home.domain.home.ProductUseCase
+import com.arifwidayana.home.domain.search.GetFindSearchHistoryUseCase
+import com.arifwidayana.home.domain.search.GetSearchHistoryUseCase
 import com.arifwidayana.home.domain.search.PostSearchHistoryUseCase
 import com.arifwidayana.home.presentation.ui.home.HomeViewModel
 import com.arifwidayana.home.presentation.ui.search.SearchViewModel
@@ -30,8 +32,10 @@ object HomeModule : FeatureModule {
     override val useCases: Module = module {
         single { BannerUseCase(get(), Dispatchers.IO) }
         single { CategoryProductUseCase(get(), Dispatchers.IO) }
-        single { ProductUseCase(get(), Dispatchers.IO) }
+        single { ProductUseCase(get()) }
         single { PostSearchHistoryUseCase(get(), Dispatchers.IO) }
+        single { GetSearchHistoryUseCase(get(), Dispatchers.IO) }
+        single { GetFindSearchHistoryUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
