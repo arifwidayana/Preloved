@@ -1,10 +1,8 @@
 package com.arifwidayana.shared.data.network.model.mapper.home
 
-import androidx.paging.PagingData
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductResponse
 import com.arifwidayana.shared.utils.mapper.ListMapper
-import com.arifwidayana.shared.utils.mapper.PagingDataMapper
 import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 
 typealias BuyerProductMap = BuyerProductResponse
@@ -12,9 +10,9 @@ typealias BuyerProductParamMap = BuyerProductParamResponse
 typealias BuyerProductCategoryMap = BuyerProductResponse.Category
 typealias BuyerProductCategoryParamMap = BuyerProductParamResponse.Category
 
-object BuyerProductMapper : ViewParamMapper<PagingData<BuyerProductMap>, PagingData<BuyerProductParamMap>> {
-    override fun toViewParam(dataObject: PagingData<BuyerProductMap>?): PagingData<BuyerProductParamMap> =
-        PagingDataMapper(BuyerProductPagingMapper).toViewParams(dataObject)
+object BuyerProductMapper : ViewParamMapper<List<BuyerProductMap>, List<BuyerProductParamMap>> {
+    override fun toViewParam(dataObject: List<BuyerProductMap>?): List<BuyerProductParamMap> =
+        ListMapper(BuyerProductPagingMapper).toViewParams(dataObject)
 }
 
 object BuyerProductPagingMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMap> {

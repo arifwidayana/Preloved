@@ -1,9 +1,8 @@
 package com.arifwidayana.home.data.network.repository
 
-import androidx.paging.PagingData
 import com.arifwidayana.core.wrapper.DataResource
 import com.arifwidayana.home.data.network.datasource.HomeDatasource
-import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
+import com.arifwidayana.shared.data.network.model.request.home.ProductParamRequest
 import com.arifwidayana.shared.data.network.model.response.home.banner.BannerResponse
 import com.arifwidayana.shared.data.network.model.response.home.category.CategoryResponse
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductResponse
@@ -13,13 +12,12 @@ import kotlinx.coroutines.flow.flow
 
 typealias BannerDataResource = DataResource<List<BannerResponse>>
 typealias CategoryDataResource = DataResource<List<CategoryResponse>>
-typealias ProductDataResource = PagingData<BuyerProductResponse>
+typealias ProductDataResource = List<BuyerProductResponse>
 
 interface HomeRepository {
     suspend fun showBanner(): Flow<BannerDataResource>
     suspend fun categoryProduct(): Flow<CategoryDataResource>
-    suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource>
-//    suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource>
+    suspend fun showProduct(productParamRequest: ProductParamRequest): ProductDataResource
 }
 
 class HomeRepositoryImpl(
@@ -33,11 +31,7 @@ class HomeRepositoryImpl(
         emit(safeNetworkCall { homeDatasource.categoryProduct() })
     }
 
-    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource> {
-        return homeDatasource.showProduct(categoryParamRequest)
+    override suspend fun showProduct(productParamRequest: ProductParamRequest): ProductDataResource {
+        return homeDatasource.showProduct(productParamRequest)
     }
-
-//    override suspend fun showProduct(categoryParamRequest: CategoryParamRequest): Flow<ProductDataResource> = flow {
-//        emit(safeNetworkCall { homeDatasource.showProduct(categoryParamRequest).first() })
-//    }
 }

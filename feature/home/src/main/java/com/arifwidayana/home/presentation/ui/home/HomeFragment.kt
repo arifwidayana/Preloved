@@ -57,16 +57,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                 viewModel.showProductResult.collect {
                     setStateProduct(it)
                 }
-//                viewModel.showProductResult.collect {
-//                    it.source(
-//                        doOnSuccess = { result ->
-//                            setStateProduct(result.payload)
-//                        },
-//                        doOnError = { error ->
-//                            Log.d("CATEGORYPRODUCT", error.exception.toString())
-//                        }
-//                    )
-//                }
             }
             launchWhenStarted {
                 viewModel.bannerProductResult.collect {
@@ -105,21 +95,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     private fun setStateProduct(data: BuyerProductParamDataResponse?) {
         binding.apply {
-            val adapter = ProductAdapter { }
             data?.let {
+                val adapter = ProductAdapter { }
                 adapter.submitData(lifecycle, it)
-            }
-            adapter.loadStateFlow.asLiveData().observe(viewLifecycleOwner) {
-                when (it.source.refresh) {
-                    is LoadState.Loading -> {
-                    }
-                    is LoadState.Error -> {
-                    }
-                    is LoadState.NotLoading -> {
+                adapter.loadStateFlow.asLiveData().observe(viewLifecycleOwner) { obs ->
+                    when (obs.source.refresh) {
+                        is LoadState.Loading -> {
+                        }
+                        is LoadState.Error -> {
+                        }
+                        is LoadState.NotLoading -> {
+                        }
                     }
                 }
+                rvListProduct.adapter = adapter
             }
-            rvListProduct.adapter = adapter
         }
     }
 }
