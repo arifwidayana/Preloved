@@ -18,6 +18,6 @@ interface SearchDao {
     @Query("SELECT * FROM search_history")
     fun getSearchHistory(): Flow<List<SearchHistoryEntity>>
 
-    @Query("SELECT * FROM search_history WHERE searchHistoryName LIKE :searchName+'%'")
+    @Query("SELECT * FROM search_history WHERE searchHistoryName LIKE :searchName||'%'")
     fun getFindHistory(searchName: String): Flow<List<SearchHistoryEntity>>
 }

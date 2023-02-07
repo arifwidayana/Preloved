@@ -21,23 +21,22 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
     }
 
     private fun onView() {
-        binding.apply {
-            viewModel.searchHistory()
-        }
+        viewModel.searchHistory()
     }
 
     private fun onClick() {
         binding.apply {
             btnBack.setOnClickListener {
-                moveNav()
+                moveNavigateUp()
             }
-            svProduct.changed(onQueryTextChange = {
-                viewModel.searchHistory(it)
-            })
-            svProduct.changed(onQueryTextSubmit = {
-                viewModel.saveSearchHistory(it)
-//                moveNav()
-            })
+            svProduct.changed(
+                onQueryTextSubmit = {
+                    viewModel.saveSearchHistory(it)
+                },
+                onQueryTextChange = {
+                    viewModel.searchHistory(it)
+                }
+            )
         }
     }
 
@@ -72,8 +71,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
     private fun setStateSearch(data: SearchHistoryParamResponse?) {
         binding.apply {
             val adapter = SearchHistoryAdapter {
-//                viewModel.saveSearchHistory(it)
-                moveNav()
+                viewModel.saveSearchHistory(it)
+//                moveNav()
             }
             adapter.submitList(data)
             rvSearchHistory.adapter = adapter

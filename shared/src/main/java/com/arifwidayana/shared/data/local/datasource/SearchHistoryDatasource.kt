@@ -5,6 +5,7 @@ import com.arifwidayana.shared.data.local.model.request.SearchHistoryRequest
 import com.arifwidayana.shared.data.local.service.SearchDao
 import com.arifwidayana.shared.utils.DateUtils
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 interface SearchHistoryDatasource {
@@ -18,8 +19,11 @@ class SearchHistoryDatasourceImpl(
 ) : SearchHistoryDatasource {
 
     override suspend fun postSearchHistory(searchHistoryRequest: SearchHistoryRequest) {
-        searchDao.getFindHistory(searchHistoryRequest.searchName).collect {
-            return@collect if (it.isNotEmpty()) {
+        getFindHistory(searchHistoryRequest).collect {
+            if (it.map { data ->
+                    data.searchHistoryName
+                }.contains(searchHistoryRequest.searchName)
+            ) {
                 searchDao.updateSearchHistory(
                     searchName = searchHistoryRequest.searchName,
                     updatedAt = DateUtils.getLocalDateTime()
@@ -37,10 +41,11 @@ class SearchHistoryDatasourceImpl(
     }
 
     override suspend fun getSearchHistory(): Flow<List<SearchHistoryEntity>> = flow {
-        searchDao.getSearchHistory()
+        emit(searchDao.getSearchHistory().first())
     }
 
-    override suspend fun getFindHistory(searchHistoryRequest: SearchHistoryRequest): Flow<List<SearchHistoryEntity>> = flow {
-        searchDao.getFindHistory(searchHistoryRequest.searchName)
-    }
+    override suspend fun getFindHistory(searchHistoryRequest: SearchHistoryRequest): Flow<List<SearchHistoryEntity>> =
+        flow {
+            emit(searchDao.getFindHistory(searchHistoryRequest.searchName).first())
+        }
 }

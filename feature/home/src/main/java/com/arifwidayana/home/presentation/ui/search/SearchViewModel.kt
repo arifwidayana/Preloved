@@ -23,14 +23,14 @@ class SearchViewModel(
 
     override fun searchHistory(searchName: String?) {
         viewModelScope.launch {
-            if (searchName.isNullOrEmpty()) {
-                postSearchHistoryUseCase.execute(searchName).first()
-                getFindSearchHistoryUseCase.execute(searchName).collect {
-                    ViewResource.Success(it)
+            if (searchName?.isNotEmpty() == true) {
+//                saveSearchHistory(searchName = searchName)
+                getFindSearchHistoryUseCase(searchName).collect {
+                    _searchHistoryResult.value = it
                 }
             } else {
-                getSearchHistoryUseCase.execute().collect {
-                    ViewResource.Success(it)
+                getSearchHistoryUseCase().collect {
+                    _searchDefaultResult.value = it
                 }
             }
         }
@@ -38,7 +38,7 @@ class SearchViewModel(
 
     override fun saveSearchHistory(searchName: String) {
         viewModelScope.launch {
-            postSearchHistoryUseCase.execute(searchName).first()
+            postSearchHistoryUseCase(searchName).first()
         }
     }
 }
