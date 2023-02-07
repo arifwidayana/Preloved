@@ -2,8 +2,8 @@ package com.arifwidayana.core.base
 
 import java.lang.Exception
 
-interface BaseView {
-    fun moveNav()
+interface BaseContract {
+    fun moveNavigateUp()
     fun moveNav(navUp: Int)
     fun moveNav(deepLink: String?)
     fun moveNav(deepLink: String, idFragmentPopUp: String?, inclusive: Boolean = true)

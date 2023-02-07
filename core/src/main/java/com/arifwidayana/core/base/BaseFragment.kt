@@ -19,7 +19,7 @@ import java.lang.Exception
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val bindingFactory: (LayoutInflater) -> VB
-) : BaseView, Fragment() {
+) : BaseContract, Fragment() {
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
     protected abstract val viewModel: VM
@@ -42,7 +42,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     abstract fun initView()
     abstract fun observeData()
 
-    override fun moveNav() {
+    override fun moveNavigateUp() {
         findNavController().popBackStack()
     }
 
