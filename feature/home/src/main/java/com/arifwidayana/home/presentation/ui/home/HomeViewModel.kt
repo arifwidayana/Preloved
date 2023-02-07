@@ -2,13 +2,13 @@ package com.arifwidayana.home.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.home.domain.BannerUseCase
-import com.arifwidayana.home.domain.CategoryProductUseCase
-import com.arifwidayana.home.domain.ProductUseCase
-import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.arifwidayana.home.domain.home.BannerUseCase
+import com.arifwidayana.home.domain.home.CategoryProductUseCase
+import com.arifwidayana.home.domain.home.ProductUseCase
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -18,10 +18,10 @@ class HomeViewModel(
 ) : HomeContract, ViewModel() {
     private val _bannerProductResult = MutableStateFlow<ViewResource<BannerParamDataResponse>>(ViewResource.Empty())
     private val _categoryProductResult = MutableStateFlow<ViewResource<CategoryParamDataResponse>>(ViewResource.Empty())
-    private val _showProductResult = MutableStateFlow<ViewResource<BuyerProductParamDataResponse>>(ViewResource.Empty())
+    private val _showProductResult = MutableStateFlow<BuyerProductParamDataResponse>(PagingData.empty())
     override val bannerProductResult: StateFlow<ViewResource<BannerParamDataResponse>> = _bannerProductResult
     override val categoryProductResult: StateFlow<ViewResource<CategoryParamDataResponse>> = _categoryProductResult
-    override val showProductResult: StateFlow<ViewResource<BuyerProductParamDataResponse>> = _showProductResult
+    override val showProductResult: StateFlow<BuyerProductParamDataResponse> = _showProductResult
 
     override fun categoryProduct() {
         viewModelScope.launch {
@@ -36,7 +36,7 @@ class HomeViewModel(
 
     override fun showProduct(categoryId: Int) {
         viewModelScope.launch {
-            productUseCase(CategoryParamRequest(categoryId = categoryId)).collect {
+            productUseCase(categoryId).cachedIn(viewModelScope).collect {
                 _showProductResult.value = it
             }
         }

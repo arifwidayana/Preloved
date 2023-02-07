@@ -130,11 +130,6 @@ dependencies {
     // Coil
     api(Library.coil)
 
-    // Room
-    api(Library.roomKtx)
-    api(Library.roomRuntime)
-    kapt(Library.roomCompiler)
-
     // Navigation Fragment
     api(Library.navigationUi)
     api(Library.navigationFragment)

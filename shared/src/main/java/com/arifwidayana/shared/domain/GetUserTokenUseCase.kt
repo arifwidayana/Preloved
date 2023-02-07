@@ -2,7 +2,7 @@ package com.arifwidayana.shared.domain
 
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.shared.data.local.repository.UserPreferenceRepository
+import com.arifwidayana.shared.data.repository.UserPreferenceRepository
 import com.arifwidayana.shared.utils.ext.suspendSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

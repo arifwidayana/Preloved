@@ -3,6 +3,7 @@ package com.arifwidayana.shared.utils.ext
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.SearchView
 import com.google.android.material.tabs.TabLayout
 
 fun EditText.changed(
@@ -37,6 +38,23 @@ fun TabLayout.changed(
         }
         override fun onTabReselected(tab: TabLayout.Tab?) {
             onTabReselected?.invoke(tab?.id ?: 0)
+        }
+    })
+}
+
+fun SearchView.changed(
+    onQueryTextSubmit: ((String) -> Unit)? = null,
+    onQueryTextChange: ((String) -> Unit)? = null
+) {
+    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            onQueryTextSubmit?.invoke(query.toString())
+            return false
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            onQueryTextChange?.invoke(newText.toString())
+            return false
         }
     })
 }

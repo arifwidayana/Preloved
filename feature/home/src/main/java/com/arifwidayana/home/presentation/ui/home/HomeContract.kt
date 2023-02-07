@@ -14,7 +14,7 @@ typealias BuyerProductParamDataResponse = PagingData<BuyerProductParamResponse>
 interface HomeContract {
     val bannerProductResult: StateFlow<ViewResource<BannerParamDataResponse>>
     val categoryProductResult: StateFlow<ViewResource<CategoryParamDataResponse>>
-    val showProductResult: StateFlow<ViewResource<BuyerProductParamDataResponse>>
+    val showProductResult: StateFlow<BuyerProductParamDataResponse>
     fun categoryProduct()
     fun showProduct(categoryId: Int)
 }

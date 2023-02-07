@@ -65,8 +65,14 @@ configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
 dependencies {
 
+    // Chucker
     debugImplementation(Library.chucker)
     releaseImplementation(Library.chuckerNoOp)
+
+    // Room
+    api(Library.roomKtx)
+    api(Library.roomRuntime)
+    kapt(Library.roomCompiler)
 
     testImplementation(Library.junit4)
     androidTestImplementation(Library.androidJunit)
