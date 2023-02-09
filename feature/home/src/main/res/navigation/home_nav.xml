@@ -16,10 +16,14 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bid_nav"
+            app:destination="@id/bid_nav" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.arifwidayana.home.presentation.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <include app:graph="@navigation/bid_nav" />
 </navigation>
