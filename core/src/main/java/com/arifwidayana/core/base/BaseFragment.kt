@@ -11,6 +11,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -46,8 +47,12 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
         findNavController().popBackStack()
     }
 
-    override fun moveNav(navUp: Int) {
-        findNavController().navigate(navUp)
+    override fun moveNav(navUp: Int, args: Bundle?) {
+        findNavController().navigate(navUp, args)
+    }
+
+    override fun moveNav(direction: NavDirections) {
+        findNavController().navigate(direction)
     }
 
     override fun moveNav(deepLink: String?) {

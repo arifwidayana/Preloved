@@ -1,10 +1,13 @@
 package com.arifwidayana.core.base
 
+import android.os.Bundle
+import androidx.navigation.NavDirections
 import java.lang.Exception
 
 interface BaseContract {
     fun moveNavigateUp()
-    fun moveNav(navUp: Int)
+    fun moveNav(navUp: Int, args: Bundle? = null)
+    fun moveNav(direction: NavDirections)
     fun moveNav(deepLink: String?)
     fun moveNav(deepLink: String, idFragmentPopUp: String?, inclusive: Boolean = true)
     fun showLoading(isVisible: Boolean)
