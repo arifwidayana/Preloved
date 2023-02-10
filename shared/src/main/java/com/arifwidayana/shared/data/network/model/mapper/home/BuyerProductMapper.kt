@@ -29,7 +29,16 @@ object BuyerProductPagingMapper : ViewParamMapper<BuyerProductMap, BuyerProductP
             status = dataObject?.status.orEmpty(),
             createdAt = dataObject?.createdAt.orEmpty(),
             updatedAt = dataObject?.updatedAt.orEmpty(),
-            categories = ListMapper(BuyerProductCategoryMapper).toViewParams(dataObject?.categories)
+            categories = ListMapper(BuyerProductCategoryMapper).toViewParams(dataObject?.categories),
+            user = BuyerProductParamResponse.User(
+                id = dataObject?.user?.id ?: 0,
+                fullName = dataObject?.user?.fullName.orEmpty(),
+                email = dataObject?.user?.email.orEmpty(),
+                phoneNumber = dataObject?.user?.phoneNumber.orEmpty(),
+                address = dataObject?.user?.address.orEmpty(),
+                imageUrl = dataObject?.user?.imageUrl.orEmpty(),
+                city = dataObject?.user?.city.orEmpty()
+            )
         )
 }
 

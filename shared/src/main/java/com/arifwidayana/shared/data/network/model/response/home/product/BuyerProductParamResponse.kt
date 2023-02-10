@@ -12,10 +12,21 @@ data class BuyerProductParamResponse(
     val status: String,
     val createdAt: String,
     val updatedAt: String,
-    val categories: List<Category>
+    val categories: List<Category>,
+    val user: User
 ) {
     data class Category(
         val id: Int,
         val name: String
+    )
+
+    data class User(
+        val id: Int,
+        val fullName: String,
+        val email: String,
+        val phoneNumber: String,
+        val address: String,
+        val imageUrl: String,
+        val city: String
     )
 }
