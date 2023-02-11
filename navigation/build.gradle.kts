@@ -80,4 +80,5 @@ dependencies {
     api(project(":feature:sale"))
     api(project(":feature:sell"))
     api(project(":feature:account"))
+    api(project(":feature:bid"))
 }
