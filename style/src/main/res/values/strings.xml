@@ -85,11 +85,13 @@
     <string name="message_complete_account">Please Complete Your Identity First Before Sell Product</string>
     <string name="message_want_delete_product">Are You Sure Want Delete This Product?</string>
     <string name="message_product_success">Product Successfully Add.</string>
+    <string name="message_add_wishlist">Product has been added to Wishlist</string>
+    <string name="message_delete_wishlist">Product has been deleted from Wishlist</string>
     <string name="message_edit_product">Successfully Edit Product</string>
     <string name="message_delete_product">Successfully Delete Product</string>
     <string name="message_exit">Are You Sure Want Logout?</string>
-    <string name="sure">Sure</string>
     <string name="message_product_add">Successfully Add Your Product.</string>
+    <string name="sure">Sure</string>
 
     #Error Exception
     <string name="message_error_no_internet">Something is wrong with internet connection\nMake sure you have an Internet Connection and try again.</string>
