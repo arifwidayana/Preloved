@@ -1,5 +1,6 @@
 package com.arifwidayana.home.presentation.ui.home
 
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
@@ -96,7 +97,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun setStateProduct(data: BuyerProductParamDataResponse?) {
         binding.apply {
             data?.let {
-                val adapter = ProductAdapter { }
+                val adapter = ProductAdapter { productId ->
+                    val parcel = Bundle()
+                    parcel.putInt("id", productId)
+                    moveNav(R.id.action_homeFragment_to_bid_nav, parcel)
+                }
                 adapter.submitData(lifecycle, it)
                 adapter.loadStateFlow.asLiveData().observe(viewLifecycleOwner) { obs ->
                     when (obs.source.refresh) {
