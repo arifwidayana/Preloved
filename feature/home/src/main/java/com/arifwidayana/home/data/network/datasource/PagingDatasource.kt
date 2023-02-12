@@ -3,7 +3,7 @@ package com.arifwidayana.home.data.network.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.arifwidayana.home.data.network.repository.HomeRepository
-import com.arifwidayana.shared.data.network.model.mapper.home.BuyerProductMapper
+import com.arifwidayana.shared.data.network.model.mapper.home.BuyerProductListMapper
 import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
 import com.arifwidayana.shared.data.network.model.request.home.ProductParamRequest
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
@@ -30,7 +30,7 @@ class PagingDatasource(
                     categoryId = categoryParamRequest.categoryId
                 )
             )
-            result = BuyerProductMapper.toViewParam(response)
+            result = BuyerProductListMapper.toViewParam(response)
             LoadResult.Page(
                 data = result,
                 prevKey = if (pageIndex == DEFAULT_INDEX_PAGE) null else pageIndex - 1,
