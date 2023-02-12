@@ -26,12 +26,31 @@ data class BuyerProductResponse(
     @SerializedName("updatedAt")
     val updatedAt: String?,
     @SerializedName("Categories")
-    val categories: List<Category>
+    val categories: List<Category>,
+    @SerializedName("User")
+    val user: User?
 ) {
     data class Category(
         @SerializedName("id")
         val id: Int?,
         @SerializedName("name")
         val name: String?
+    )
+
+    data class User(
+        @SerializedName("id")
+        val id: Int?,
+        @SerializedName("full_name")
+        val fullName: String?,
+        @SerializedName("email")
+        val email: String?,
+        @SerializedName("phone_number")
+        val phoneNumber: String?,
+        @SerializedName("address")
+        val address: String?,
+        @SerializedName("image_url")
+        val imageUrl: String?,
+        @SerializedName("city")
+        val city: String?
     )
 }

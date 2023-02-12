@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bid_nav"
+    app:startDestination="@id/detailProductFragment">
+
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="com.arifwidayana.bid.presentation.ui.product.DetailProductFragment"
+        android:label="fragment_detail_product"
+        tools:layout="@layout/fragment_detail_product" >
+    </fragment>
+</navigation>

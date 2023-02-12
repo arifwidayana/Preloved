@@ -21,8 +21,8 @@ class SearchHistoryDatasourceImpl(
     override suspend fun postSearchHistory(searchHistoryRequest: SearchHistoryRequest) {
         getFindHistory(searchHistoryRequest).collect {
             if (it.map { data ->
-                    data.searchHistoryName
-                }.contains(searchHistoryRequest.searchName)
+                data.searchHistoryName
+            }.contains(searchHistoryRequest.searchName)
             ) {
                 searchDao.updateSearchHistory(
                     searchName = searchHistoryRequest.searchName,

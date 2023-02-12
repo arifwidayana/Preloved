@@ -56,6 +56,8 @@ android {
             buildConfigField("String", "END_POINT_SELLER_BANNER", coreProperties["END_POINT_SELLER_BANNER"].toString())
             buildConfigField("String", "END_POINT_BUYER_PRODUCT", coreProperties["END_POINT_BUYER_PRODUCT"].toString())
             buildConfigField("String", "END_POINT_DETAIL_BUYER_PRODUCT", coreProperties["END_POINT_DETAIL_BUYER_PRODUCT"].toString())
+            buildConfigField("String", "END_POINT_BUYER_WISHLIST", coreProperties["END_POINT_BUYER_WISHLIST"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_WISHLIST", coreProperties["END_POINT_DETAIL_BUYER_WISHLIST"].toString())
         }
     }
 }

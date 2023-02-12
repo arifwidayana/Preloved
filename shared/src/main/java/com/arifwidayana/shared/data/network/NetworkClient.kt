@@ -22,7 +22,7 @@ class NetworkClient(
                 getUserTokenUseCase().first { tokenResponse ->
                     val token = tokenResponse.payload
                     if (!token.isNullOrEmpty()) {
-                        requestBuilder.addHeader("Authorization", "Bearer $token")
+                        requestBuilder.addHeader("access_token", token)
                     }
                     true
                 }

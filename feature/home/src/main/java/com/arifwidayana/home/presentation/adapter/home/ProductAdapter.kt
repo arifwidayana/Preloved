@@ -27,15 +27,13 @@ class ProductAdapter(
                 sivImageItem.load(data.imageUrl) {
                     placeholder(R.drawable.ic_account)
                 }
-                tvStatusProduct.text = data.status.replaceFirstChar {
-                    it.uppercase()
-                }
+                tvStatusProduct.text = data.status
                 if (data.status != SOLD) {
                     mcvStatusProduct.visibility = View.GONE
                 }
                 tvNameItem.text = data.name
                 tvPriceItem.text = convertCurrency(data.basePrice)
-                tvCategoryItem.text = data.categories.joinToString { it.name }
+                tvCategoryItem.text = data.categories
 
                 root.setOnClickListener {
                     onClick.invoke(data.id)
