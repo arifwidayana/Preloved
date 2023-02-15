@@ -15,6 +15,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.arifwidayana.core.utils.getErrorMessage
 import com.google.android.material.snackbar.Snackbar
 import java.lang.Exception
 
@@ -96,6 +97,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
 
     override fun showMessageSnackBar(isEnabled: Boolean, message: String?, exception: Exception?) {
         when {
+            exception != null -> {
+                Snackbar.make(binding.root, requireContext().getErrorMessage(exception), Toast.LENGTH_SHORT).show()
+            }
             isEnabled -> {
                 Snackbar.make(binding.root, message.toString(), Toast.LENGTH_SHORT).show()
             }
