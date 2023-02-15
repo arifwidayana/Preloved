@@ -4,7 +4,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 interface UserPreferenceDatasource {
@@ -16,8 +15,8 @@ interface UserPreferenceDatasource {
 class UserPreferenceDatasourceImpl(
     private val dataStore: DataStore<Preferences>
 ) : UserPreferenceDatasource {
-    override suspend fun getUserToken(): Flow<String> = flow {
-        dataStore.data.map {
+    override suspend fun getUserToken(): Flow<String> {
+        return dataStore.data.map {
             it.toPreferences()[UserPreferenceKey.userToken].orEmpty()
         }
     }
