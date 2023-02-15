@@ -17,9 +17,9 @@ class Preloved : Application() {
             androidContext(this@Preloved)
             modules(
                 SharedModule.getModules() +
-                        HomeModule.getModules() +
-                        BidModule.getModules() +
-                        LoginModule.getModules()
+                    HomeModule.getModules() +
+                    BidModule.getModules() +
+                    LoginModule.getModules()
             )
         }
     }
