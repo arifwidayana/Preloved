@@ -28,9 +28,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             svSearchItem.setOnClickListener {
                 moveNav(R.id.action_homeFragment_to_searchFragment)
             }
-            tvTitleCategory.setOnClickListener {
-                moveNav(R.id.action_homeFragment_to_login_nav)
-            }
         }
     }
 
