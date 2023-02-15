@@ -16,5 +16,5 @@ interface HomeContract {
     val categoryProductResult: StateFlow<ViewResource<CategoryParamDataResponse>>
     val showProductResult: StateFlow<BuyerProductParamDataResponse>
     fun categoryProduct()
-    fun showProduct(categoryId: Int)
+    fun showProduct(categoryId: Int? = 0)
 }

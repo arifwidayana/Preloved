@@ -1,7 +1,6 @@
 package com.arifwidayana.home.presentation.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -29,13 +28,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             svSearchItem.setOnClickListener {
                 moveNav(R.id.action_homeFragment_to_searchFragment)
             }
+            tvTitleCategory.setOnClickListener {
+                moveNav(R.id.action_homeFragment_to_login_nav)
+            }
         }
     }
 
     private fun onView() {
         viewModel.apply {
             categoryProduct()
-            showProduct(categoryId = 0)
+            showProduct()
         }
     }
 
@@ -49,7 +51,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                         },
                         doOnError = { error ->
                             showMessageSnackBar(true, exception = error.exception)
-                            Log.d("CATEGORY", error.exception.toString())
                         }
                     )
                 }
@@ -66,7 +67,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                             setStateBanner(result.payload)
                         },
                         doOnError = { error ->
-                            Log.d("BANNER", error.exception.toString())
+                            showMessageSnackBar(true, exception = error.exception)
                         }
                     )
                 }
@@ -98,8 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         binding.apply {
             data?.let {
                 val adapter = ProductAdapter { productId ->
-                    val parcel = Bundle()
-                    parcel.putInt("id", productId)
+                    val parcel = Bundle().apply { putInt("id", productId) }
                     moveNav(R.id.action_homeFragment_to_bid_nav, parcel)
                 }
                 adapter.submitData(lifecycle, it)
