@@ -52,6 +52,7 @@ android {
             buildConfigField("String", "BASE_URL", coreProperties["BASE_URL"].toString())
             buildConfigField("String", "END_POINT_LOGIN", coreProperties["END_POINT_LOGIN"].toString())
             buildConfigField("String", "END_POINT_REGISTER", coreProperties["END_POINT_REGISTER"].toString())
+            buildConfigField("String", "END_POINT_USER", coreProperties["END_POINT_USER"].toString())
             buildConfigField("String", "END_POINT_SELLER_CATEGORY", coreProperties["END_POINT_SELLER_CATEGORY"].toString())
             buildConfigField("String", "END_POINT_SELLER_BANNER", coreProperties["END_POINT_SELLER_BANNER"].toString())
             buildConfigField("String", "END_POINT_BUYER_PRODUCT", coreProperties["END_POINT_BUYER_PRODUCT"].toString())

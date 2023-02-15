@@ -34,10 +34,12 @@ class HomeViewModel(
         }
     }
 
-    override fun showProduct(categoryId: Int) {
+    override fun showProduct(categoryId: Int?) {
         viewModelScope.launch {
-            productUseCase(categoryId).cachedIn(viewModelScope).collect {
-                _showProductResult.value = it
+            categoryId?.let {
+                productUseCase(categoryId).cachedIn(viewModelScope).collect {
+                    _showProductResult.value = it
+                }
             }
         }
     }

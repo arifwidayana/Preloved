@@ -15,6 +15,20 @@
     <string name="enter_your_address">Enter Your Address</string>
     <string name="wrong_password">Wrong Password</string>
 
+    #Error Field
+    <string name="error_field_firstname_empty">Nama depan wajib diisi</string>
+    <string name="error_field_lastname_empty">Nama belakang wajib diisi</string>
+    <string name="error_field_password_empty">Password wajib diisi</string>
+    <string name="error_field_password_length_below_min">Password minimal 6 karakter</string>
+    <string name="error_field_password_contains_space">Password tidak menggunakan spasi</string>
+    <string name="error_field_confirm_password_empty">Konfirmasi password wajib diisi</string>
+    <string name="error_field_confirm_password_length_below_min">Konfirmasi password minimal 8 karakter</string>
+    <string name="error_field_confirm_password_not_same">Konfirmasi password tidak sama</string>
+    <string name="error_field_email_empty">Email wajib diisi</string>
+    <string name="error_field_email_not_valid">Masukkan email yang valid</string>
+    <string name="error_field_phone_empty">Phone wajib diisi</string>
+    <string name="error_field_privacy_not_checked">Kamu belum menyetujui kebijakan privasi dan persyaratan layanan</string>
+
     #Home
     <string name="home">Home</string>
     <string name="search_hint">Search your preloved…</string>

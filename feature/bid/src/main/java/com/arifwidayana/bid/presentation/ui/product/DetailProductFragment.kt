@@ -33,10 +33,9 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                 moveNavigateUp()
             }
             btnWishlist.setOnClickListener {
-//                viewModel.wishlistProduct(args)
+                viewModel.wishlistProduct(args)
             }
             btnBid.setOnClickListener {
-
             }
         }
     }

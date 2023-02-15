@@ -27,9 +27,9 @@ class DetailProductViewModel(
             detailProductUseCase(idProduct).collect {
                 _detailProductResult.value = it
             }
-//            validateWishlistProductUseCase(idProduct).collect {
-//                _checkWishlistProductResult.value = it
-//            }
+            validateWishlistProductUseCase(idProduct).collect {
+                _checkWishlistProductResult.value = it
+            }
         }
     }
 

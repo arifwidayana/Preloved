@@ -17,7 +17,14 @@ abstract class BaseRepository {
             when (throwable) {
                 is IOException -> DataResource.Error(NoInternetConnectionException())
                 is HttpException -> {
-                    DataResource.Error(ApiErrorException(getErrorMessageFromApi(throwable.response()?.errorBody()), throwable.code()))
+                    DataResource.Error(
+                        ApiErrorException(
+                            getErrorMessageFromApi(
+                                response = throwable.response()?.errorBody()
+                            ),
+                            httpCode = throwable.code()
+                        )
+                    )
                 }
                 else -> {
                     DataResource.Error(UnexpectedErrorException())
