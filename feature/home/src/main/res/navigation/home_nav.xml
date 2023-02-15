@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bid_nav"
             app:destination="@id/bid_nav" />
+        <action
+            android:id="@+id/action_homeFragment_to_login_nav"
+            app:destination="@id/login_nav" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -26,4 +29,5 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <include app:graph="@navigation/bid_nav" />
+    <include app:graph="@navigation/login_nav" />
 </navigation>
