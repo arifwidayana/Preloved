@@ -74,4 +74,5 @@ dependencies {
     androidTestImplementation(Library.androidEspressoCore)
 
     implementation(project(":shared"))
+    api(project(":feature:auth:register"))
 }
