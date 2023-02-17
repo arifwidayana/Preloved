@@ -30,11 +30,11 @@ object Constant {
     const val LOGIN_PASSWORD_FIELD = 1
 
     // REGISTER
-    const val REGISTER_FIRSTNAME_FIELD = 0
-    const val REGISTER_LASTNAME_FIELD = 1
+    const val REGISTER_FULLNAME_FIELD = 0
+    const val REGISTER_EMAIL_FIELD = 1
     const val REGISTER_PASSWORD_FIELD = 2
     const val REGISTER_CONFIRM_PASSWORD_FIELD = 3
-    const val REGISTER_EMAIL_FIELD = 4
-    const val REGISTER_PHONE_FIELD = 5
-    const val REGISTER_PRIVACY_FIELD = 6
+    const val REGISTER_PHONE_FIELD = 4
+    const val REGISTER_ADDRESS_FIELD = 5
+    const val REGISTER_CITY_FIELD = 6
 }

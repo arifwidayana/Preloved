@@ -168,9 +168,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
+                        android:text="@string/description"
                         android:textSize="16sp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Description" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_description_product"

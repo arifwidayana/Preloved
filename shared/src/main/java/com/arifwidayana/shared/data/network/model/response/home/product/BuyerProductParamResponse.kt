@@ -4,7 +4,7 @@ data class BuyerProductParamResponse(
     val id: Int,
     val name: String,
     val description: String,
-    val basePrice: Int,
+    val basePrice: String,
     val imageUrl: String,
     val imageName: String,
     val location: String,

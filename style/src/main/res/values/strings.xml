@@ -6,28 +6,27 @@
     <string name="email">Email</string>
     <string name="register">Register</string>
     <string name="password">Password</string>
-    <string name="already_have_account">Already Have Account?  <b><font color='#EE839F'>Login</font></b></string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already Have Account? <b><font color='#EE839F'>Login</font></b></string>
     <string name="no_have_account">Didn`t Have Account? <b><font color='#EE839F'>Register</font></b></string>
-    <string name="your_full_name">Your Full Name</string>
-    <string name="your_valid_email">Your Valid Email</string>
-    <string name="your_unique_password">Your Unique Password</string>
-    <string name="your_phone_number">Your Phone Number</string>
-    <string name="enter_your_address">Enter Your Address</string>
+    <string name="full_name">Fullname</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
     <string name="wrong_password">Wrong Password</string>
 
     #Error Field
-    <string name="error_field_firstname_empty">Nama depan wajib diisi</string>
-    <string name="error_field_lastname_empty">Nama belakang wajib diisi</string>
+    <string name="error_field_fullname_empty">Nama lengkap wajib diisi</string>
+    <string name="error_field_email_empty">Email wajib diisi</string>
+    <string name="error_field_email_not_valid">Masukkan email yang valid</string>
     <string name="error_field_password_empty">Password wajib diisi</string>
     <string name="error_field_password_length_below_min">Password minimal 6 karakter</string>
     <string name="error_field_password_contains_space">Password tidak menggunakan spasi</string>
     <string name="error_field_confirm_password_empty">Konfirmasi password wajib diisi</string>
-    <string name="error_field_confirm_password_length_below_min">Konfirmasi password minimal 8 karakter</string>
     <string name="error_field_confirm_password_not_same">Konfirmasi password tidak sama</string>
-    <string name="error_field_email_empty">Email wajib diisi</string>
-    <string name="error_field_email_not_valid">Masukkan email yang valid</string>
-    <string name="error_field_phone_empty">Phone wajib diisi</string>
-    <string name="error_field_privacy_not_checked">Kamu belum menyetujui kebijakan privasi dan persyaratan layanan</string>
+    <string name="error_field_phone_empty">Phone number wajib diisi</string>
+    <string name="error_field_phone_length_below_min">Phone number minimal lebih dari 10</string>
+    <string name="error_field_address_empty">Address wajib diisi</string>
+    <string name="error_field_city_empty">City wajib diisi</string>
 
     #Home
     <string name="home">Home</string>
@@ -35,7 +34,7 @@
     <string name="category">Category</string>
 
     #Bid
-    <string name="description_product">Description Product</string>
+    <string name="description">Description</string>
     <string name="your_bid_accepted">Your Bid Had Accepted By Buyer</string>
     <string name="unfortunately">Unfortunately, Your Bid Declined By Buyer, But U Can Re-bid Again, Edit Your Bid</string>
     <string name="enter_your_bid">Enter Your Bid Price</string>
@@ -85,7 +84,6 @@
     <string name="my_order">My Order</string>
     <string name="logout">Logout</string>
     <string name="city">City</string>
-    <string name="enter_your_city">Enter Your City</string>
     <string name="change_password">Change Password</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>

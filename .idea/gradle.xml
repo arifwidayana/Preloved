@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/feature/account" />
             <option value="$PROJECT_DIR$/feature/auth" />
             <option value="$PROJECT_DIR$/feature/auth/login" />
+            <option value="$PROJECT_DIR$/feature/auth/register" />
             <option value="$PROJECT_DIR$/feature/bid" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/notification" />

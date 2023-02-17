@@ -4,6 +4,7 @@ import android.app.Application
 import com.arifwidayana.bid.di.BidModule
 import com.arifwidayana.home.di.HomeModule
 import com.arifwidayana.login.di.LoginModule
+import com.arifwidayana.register.di.RegisterModule
 import com.arifwidayana.shared.di.SharedModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -19,7 +20,8 @@ class Preloved : Application() {
                 SharedModule.getModules() +
                     HomeModule.getModules() +
                     BidModule.getModules() +
-                    LoginModule.getModules()
+                    LoginModule.getModules() +
+                    RegisterModule.getModules()
             )
         }
     }
