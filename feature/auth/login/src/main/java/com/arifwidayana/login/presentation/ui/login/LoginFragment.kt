@@ -1,8 +1,10 @@
 package com.arifwidayana.login.presentation.ui.login
 
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.core.utils.FieldErrorException
+import com.arifwidayana.login.R
 import com.arifwidayana.login.databinding.FragmentLoginBinding
 import com.arifwidayana.shared.utils.Constant
 import com.arifwidayana.shared.utils.ext.changed
@@ -23,6 +25,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         resetFieldError()
     }
 
+    private fun onClick() {
+        binding.apply {
+            btnBack.setOnClickListener {
+                moveNavigateUp()
+            }
+            btnLogin.setOnClickListener {
+                viewModel.loginUser(
+                    email = etEmail.text.toString(),
+                    password = etPassword.text.toString()
+                )
+            }
+            tvNoHaveAccount.setOnClickListener {
+                moveNav(R.id.action_loginFragment_to_register_nav)
+            }
+        }
+    }
+
     private fun resetFieldError() {
         binding.apply {
             etEmail.changed(onTextChanged = {
@@ -34,26 +53,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
         }
     }
 
-    private fun onClick() {
-        binding.apply {
-            btnLogin.setOnClickListener {
-                viewModel.loginUser(
-                    email = etEmail.text.toString(),
-                    password = etPassword.text.toString()
-                )
-            }
-        }
+    override fun showLoading(isVisible: Boolean) {
+        binding.containerLoading.isVisible = isVisible
     }
 
     override fun observeData() {
         lifecycleScope.launchWhenStarted {
             viewModel.loginUserResult.collect {
                 it.source(
+                    doOnLoading = {
+                        showLoading(true)
+                    },
                     doOnSuccess = {
+                        showLoading(false)
                         moveNavigateUp()
                     },
                     doOnError = { error ->
-                        when (it.exception) {
+                        showLoading(false)
+                        when (error.exception) {
                             is FieldErrorException -> handleErrorField(error.exception as FieldErrorException)
                             else -> showMessageSnackBar(true, exception = error.exception)
                         }
