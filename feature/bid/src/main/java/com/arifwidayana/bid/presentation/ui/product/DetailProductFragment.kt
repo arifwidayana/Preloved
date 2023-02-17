@@ -108,7 +108,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                 }
                 tvTitleProduct.text = it.name
                 tvCategoryProduct.text = it.categories
-                tvPriceProduct.text = it.basePrice.toString()
+                tvPriceProduct.text = it.basePrice
                 tvUsernameSeller.text = it.user.fullName
                 tvLocationSeller.text = it.location
                 tvDescriptionProduct.text = it.description
