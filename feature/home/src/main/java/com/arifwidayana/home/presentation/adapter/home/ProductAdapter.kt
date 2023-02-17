@@ -10,7 +10,6 @@ import coil.load
 import com.arifwidayana.home.databinding.CardCategoryProductBinding
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.Constant.SOLD
-import com.arifwidayana.shared.utils.ext.convertCurrency
 import com.arifwidayana.style.R
 
 typealias BuyerProductParam = BuyerProductParamResponse
@@ -32,7 +31,7 @@ class ProductAdapter(
                     mcvStatusProduct.visibility = View.GONE
                 }
                 tvNameItem.text = data.name
-                tvPriceItem.text = convertCurrency(data.basePrice)
+                tvPriceItem.text = data.basePrice
                 tvCategoryItem.text = data.categories
 
                 root.setOnClickListener {
