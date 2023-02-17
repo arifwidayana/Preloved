@@ -2,13 +2,12 @@ package com.arifwidayana.shared.data.network.model.mapper.home
 
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductResponse
+import com.arifwidayana.shared.utils.ext.convertCurrency
 import com.arifwidayana.shared.utils.mapper.ListMapper
 import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 
 typealias BuyerProductMap = BuyerProductResponse
 typealias BuyerProductParamMap = BuyerProductParamResponse
-// typealias BuyerProductCategoryMap = BuyerProductResponse.Category
-// typealias BuyerProductCategoryParamMap = BuyerProductParamResponse.Category
 
 object BuyerProductListMapper : ViewParamMapper<List<BuyerProductMap>, List<BuyerProductParamMap>> {
     override fun toViewParam(dataObject: List<BuyerProductMap>?): List<BuyerProductParamMap> =
@@ -20,19 +19,18 @@ object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMa
         BuyerProductParamMap(
             id = dataObject?.id ?: 0,
             name = dataObject?.name.orEmpty(),
-            description = dataObject?.description ?: "No Descriptions",
-            basePrice = dataObject?.basePrice ?: 0,
+            description = dataObject?.description ?: "Empty Descriptions",
+            basePrice = convertCurrency(dataObject?.basePrice ?: 0),
             imageUrl = dataObject?.imageUrl.orEmpty(),
             imageName = dataObject?.imageName.orEmpty(),
-            location = dataObject?.location.orEmpty(),
+            location = dataObject?.location ?: "Empty Location",
             userId = dataObject?.userId ?: 0,
             status = dataObject?.status.toString().replaceFirstChar {
                 it.uppercase()
             },
             createdAt = dataObject?.createdAt.orEmpty(),
             updatedAt = dataObject?.updatedAt.orEmpty(),
-//            categories = ListMapper(BuyerProductCategoryMapper).toViewParams(dataObject?.categories),
-            categories = dataObject?.categories?.joinToString { it.name.toString() }.orEmpty(),
+            categories = dataObject?.categories?.joinToString { it.name.toString() } ?: "Empty Category",
             user = BuyerProductParamResponse.User(
                 id = dataObject?.user?.id ?: 0,
                 fullName = dataObject?.user?.fullName.orEmpty(),
@@ -44,12 +42,3 @@ object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMa
             )
         )
 }
-
-// object BuyerProductCategoryMapper :
-//    ViewParamMapper<BuyerProductCategoryMap, BuyerProductCategoryParamMap> {
-//    override fun toViewParam(dataObject: BuyerProductCategoryMap?): BuyerProductCategoryParamMap =
-//        BuyerProductCategoryParamMap(
-//            id = dataObject?.id ?: 0,
-//            name = dataObject?.name ?: "No Category"
-//        )
-// }
