@@ -34,7 +34,7 @@
     <string name="category">Category</string>
 
     #Bid
-    <string name="description_product">Description Product</string>
+    <string name="description">Description</string>
     <string name="your_bid_accepted">Your Bid Had Accepted By Buyer</string>
     <string name="unfortunately">Unfortunately, Your Bid Declined By Buyer, But U Can Re-bid Again, Edit Your Bid</string>
     <string name="enter_your_bid">Enter Your Bid Price</string>
