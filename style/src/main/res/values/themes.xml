@@ -20,4 +20,12 @@
     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
     </style>
+
+    <style name="BottomSheetStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
 </resources>
