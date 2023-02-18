@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-class ValidateWishlistProductUseCase(
+class WishlistProductValidationUseCase(
     private val bidRepository: BidRepository,
     coroutineDispatcher: CoroutineDispatcher
 ) : BaseUseCase<Int, Boolean>(coroutineDispatcher) {

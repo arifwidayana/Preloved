@@ -6,7 +6,7 @@ import com.arifwidayana.bid.data.network.repository.BidRepository
 import com.arifwidayana.bid.data.network.repository.BidRepositoryImpl
 import com.arifwidayana.bid.data.network.service.BidService
 import com.arifwidayana.bid.domain.product.DetailProductUseCase
-import com.arifwidayana.bid.domain.product.ValidateWishlistProductUseCase
+import com.arifwidayana.bid.domain.product.WishlistProductValidationUseCase
 import com.arifwidayana.bid.domain.product.WishlistProductUseCase
 import com.arifwidayana.bid.presentation.ui.product.DetailProductViewModel
 import com.arifwidayana.core.base.FeatureModule
@@ -29,7 +29,7 @@ object BidModule : FeatureModule {
     override val useCases: Module = module {
         single { DetailProductUseCase(get(), Dispatchers.IO) }
         single { WishlistProductUseCase(androidContext(), get(), Dispatchers.IO) }
-        single { ValidateWishlistProductUseCase(get(), Dispatchers.IO) }
+        single { WishlistProductValidationUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
