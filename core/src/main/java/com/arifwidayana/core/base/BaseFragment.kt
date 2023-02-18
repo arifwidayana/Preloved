@@ -21,7 +21,7 @@ import java.lang.Exception
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val bindingFactory: (LayoutInflater) -> VB
-) : BaseContract, Fragment() {
+) : BaseContract.Fragment, Fragment() {
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
     protected abstract val viewModel: VM
