@@ -13,6 +13,8 @@ object Constant {
     // STATUS
     const val AVAILABLE = "available"
     const val SOLD = "sold"
+    const val PENDING = "pending"
+    const val DECLINED = "declined"
 
     // QUERY
     const val PAGE = "page"
