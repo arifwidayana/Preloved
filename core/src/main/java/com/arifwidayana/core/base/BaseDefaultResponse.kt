@@ -1,6 +1,6 @@
 package com.arifwidayana.core.base
 
-data class BaseErrorResponse(
+data class BaseDefaultResponse(
     val name: String?,
     val message: String?
 )
