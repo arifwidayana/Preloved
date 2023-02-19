@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.arifwidayana.style.R
 import com.arifwidayana.core.utils.getErrorMessage
+import com.arifwidayana.style.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
@@ -37,7 +37,8 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding, VM : ViewModel>(
         observeData()
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
+        BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
 
     abstract fun initView()
     abstract fun observeData()
@@ -45,7 +46,11 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding, VM : ViewModel>(
     override fun showMessageSnackBar(isEnabled: Boolean, message: String?, exception: Exception?) {
         when {
             exception != null -> {
-                Snackbar.make(binding.root, requireContext().getErrorMessage(exception), Toast.LENGTH_SHORT).show()
+                Snackbar.make(
+                    binding.root,
+                    requireContext().getErrorMessage(exception),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             isEnabled -> {
                 Snackbar.make(binding.root, message.toString(), Toast.LENGTH_SHORT).show()
