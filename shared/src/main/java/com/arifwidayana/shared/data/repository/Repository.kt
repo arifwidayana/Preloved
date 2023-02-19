@@ -1,6 +1,6 @@
 package com.arifwidayana.shared.data.repository
 
-import com.arifwidayana.core.base.BaseErrorResponse
+import com.arifwidayana.core.base.BaseDefaultResponse
 import com.arifwidayana.core.base.BaseRepository
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
@@ -13,7 +13,7 @@ open class Repository : BaseRepository() {
     override fun <T> getErrorMessageFromApi(response: T): String {
         val responseBody = response as ResponseBody
         return try {
-            val body = gson.fromJson(responseBody.string(), BaseErrorResponse::class.java)
+            val body = gson.fromJson(responseBody.string(), BaseDefaultResponse::class.java)
             body.message ?: "Error Api"
         } catch (e: JsonParseException) {
             "Error Api"
