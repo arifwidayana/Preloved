@@ -4,7 +4,7 @@ import android.content.Context
 import com.arifwidayana.bid.data.network.repository.BidRepository
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.shared.data.network.model.request.bid.WishlistProductRequest
+import com.arifwidayana.shared.data.network.model.request.bid.product.WishlistProductRequest
 import com.arifwidayana.shared.utils.ext.suspendSource
 import com.arifwidayana.style.R
 import kotlinx.coroutines.CoroutineDispatcher
