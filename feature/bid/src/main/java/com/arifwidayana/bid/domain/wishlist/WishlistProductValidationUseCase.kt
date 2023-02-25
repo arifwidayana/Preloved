@@ -1,4 +1,4 @@
-package com.arifwidayana.bid.domain.product
+package com.arifwidayana.bid.domain.wishlist
 
 import com.arifwidayana.bid.data.network.repository.BidRepository
 import com.arifwidayana.core.base.BaseUseCase
