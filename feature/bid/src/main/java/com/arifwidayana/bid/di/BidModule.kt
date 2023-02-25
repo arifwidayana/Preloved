@@ -5,9 +5,12 @@ import com.arifwidayana.bid.data.network.datasource.BidDatasourceImpl
 import com.arifwidayana.bid.data.network.repository.BidRepository
 import com.arifwidayana.bid.data.network.repository.BidRepositoryImpl
 import com.arifwidayana.bid.data.network.service.BidService
+import com.arifwidayana.bid.domain.bid.BidProductUseCase
+import com.arifwidayana.bid.domain.order.OrderProductValidationUseCase
 import com.arifwidayana.bid.domain.product.DetailProductUseCase
-import com.arifwidayana.bid.domain.product.WishlistProductValidationUseCase
-import com.arifwidayana.bid.domain.product.WishlistProductUseCase
+import com.arifwidayana.bid.domain.wishlist.WishlistProductUseCase
+import com.arifwidayana.bid.domain.wishlist.WishlistProductValidationUseCase
+import com.arifwidayana.bid.presentation.ui.order.BidProductViewModel
 import com.arifwidayana.bid.presentation.ui.product.DetailProductViewModel
 import com.arifwidayana.core.base.FeatureModule
 import com.arifwidayana.shared.data.network.NetworkClient
@@ -30,6 +33,8 @@ object BidModule : FeatureModule {
         single { DetailProductUseCase(get(), Dispatchers.IO) }
         single { WishlistProductUseCase(androidContext(), get(), Dispatchers.IO) }
         single { WishlistProductValidationUseCase(get(), Dispatchers.IO) }
+        single { BidProductUseCase(get(), Dispatchers.IO) }
+        single { OrderProductValidationUseCase(get(), get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
@@ -38,6 +43,7 @@ object BidModule : FeatureModule {
 
     override val viewModels: Module = module {
         viewModelOf(::DetailProductViewModel)
+        viewModelOf(::BidProductViewModel)
     }
 
     override fun getModules(): List<Module> =
