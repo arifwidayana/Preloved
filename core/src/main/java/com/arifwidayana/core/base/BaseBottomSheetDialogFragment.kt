@@ -43,17 +43,32 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding, VM : ViewModel>(
     abstract fun initView()
     abstract fun observeData()
 
+    override fun showMessageToast(isEnabled: Boolean, message: String?, exception: Exception?) {
+        when {
+            exception != null -> {
+                Toast.makeText(
+                    requireContext(),
+                    requireContext().getErrorMessage(exception),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            isEnabled -> {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     override fun showMessageSnackBar(isEnabled: Boolean, message: String?, exception: Exception?) {
         when {
             exception != null -> {
                 Snackbar.make(
                     binding.root,
                     requireContext().getErrorMessage(exception),
-                    Toast.LENGTH_SHORT
+                    Snackbar.LENGTH_LONG
                 ).show()
             }
             isEnabled -> {
-                Snackbar.make(binding.root, message.toString(), Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, message.toString(), Snackbar.LENGTH_LONG).show()
             }
         }
     }

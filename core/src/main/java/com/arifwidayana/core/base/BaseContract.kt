@@ -14,14 +14,24 @@ interface BaseContract {
         fun showLoading(isVisible: Boolean)
         fun showContent(isVisible: Boolean)
         fun showContentEmpty(isVisible: Boolean)
-        fun showMessageToast(isEnabled: Boolean, message: String? = null, exception: Exception? = null)
+        fun showMessageToast(
+            isEnabled: Boolean,
+            message: String? = null,
+            exception: Exception? = null
+        )
         fun showMessageSnackBar(
             isEnabled: Boolean,
             message: String? = null,
             exception: Exception? = null
         )
     }
+
     interface BottomSheetDialogFragment {
+        fun showMessageToast(
+            isEnabled: Boolean,
+            message: String? = null,
+            exception: Exception? = null
+        )
         fun showMessageSnackBar(
             isEnabled: Boolean,
             message: String? = null,
