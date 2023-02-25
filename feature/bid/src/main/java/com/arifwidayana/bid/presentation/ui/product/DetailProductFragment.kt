@@ -4,7 +4,9 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.size.Scale
 import com.arifwidayana.bid.databinding.FragmentDetailProductBinding
+import com.arifwidayana.bid.presentation.ui.order.BidProductFragment
 import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.shared.data.network.model.response.bid.order.OrderProductParamResponse
 import com.arifwidayana.shared.utils.ext.source
 import com.arifwidayana.style.R
 import org.koin.android.ext.android.inject
@@ -13,6 +15,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
     FragmentDetailProductBinding::inflate
 ) {
     private var args: Int = 0
+    private lateinit var product: ProductParamDataResponse
     override val viewModel: DetailProductViewModel by inject()
 
     override fun initView() {
@@ -36,6 +39,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                 viewModel.wishlistProduct(args)
             }
             btnBid.setOnClickListener {
+                BidProductFragment(product = product).show(childFragmentManager, null)
             }
         }
     }
@@ -49,7 +53,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                             setStateProduct(result.payload)
                         },
                         doOnError = { error ->
-                            showMessageSnackBar(true, error.exception.toString())
+                            showMessageSnackBar(true, exception = error.exception)
                         }
                     )
                 }
@@ -61,7 +65,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                             setStateWishlist(result.payload)
                         },
                         doOnError = { error ->
-                            showMessageSnackBar(true, error.exception.toString())
+                            showMessageSnackBar(true, exception = error.exception)
                         }
                     )
                 }
@@ -71,10 +75,23 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                     it.source(
                         doOnSuccess = { result ->
                             setStateWishlist(result.payload)
-                            showMessageSnackBar(true, result.message)
                         },
                         doOnError = { error ->
-                            showMessageSnackBar(true, error.exception?.message)
+                            showMessageSnackBar(true, exception = error.exception)
+                        }
+                    )
+                }
+            }
+            launchWhenStarted {
+                viewModel.orderStatusResult.collect {
+                    it.source(
+                        doOnLoading = {
+                        },
+                        doOnSuccess = { result ->
+                            setStateBid(result.payload)
+                        },
+                        doOnError = { error ->
+                            showMessageSnackBar(true, exception = error.exception)
                         }
                     )
                 }
@@ -98,6 +115,7 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
     private fun setStateProduct(data: ProductParamDataResponse?) {
         binding.apply {
             data?.let {
+                product = it
                 sivImageProduct.load(it.imageUrl) {
                     placeholder(R.color.gray)
                     scale(Scale.FIT)
@@ -114,5 +132,21 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                 tvDescriptionProduct.text = it.description
             }
         }
+    }
+
+    private fun setStateBid(data: OrderProductParamResponse?) {
+        binding.apply {
+            data?.let {
+                btnBid.apply {
+                    text = it.status
+                    isEnabled = it.state
+                    if (it.state) setBackgroundButton(R.color.gray) else setBackgroundButton(R.color.primary)
+                }
+            }
+        }
+    }
+
+    private fun setBackgroundButton(color: Int) {
+        binding.btnBid.setBackgroundResource(color)
     }
 }
