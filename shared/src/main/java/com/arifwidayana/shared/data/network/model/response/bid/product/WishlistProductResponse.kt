@@ -1,13 +1,19 @@
-package com.arifwidayana.shared.data.network.model.response.bid
+package com.arifwidayana.shared.data.network.model.response.bid.product
 
 import com.google.gson.annotations.SerializedName
 
-data class StatusWishlistProductResponse(
-    @SerializedName("name")
-    val name: String?,
-    @SerializedName("message")
-    val message: String?,
-    @SerializedName("product")
+data class WishlistProductResponse(
+    @SerializedName("id")
+    val id: Int?,
+    @SerializedName("product_id")
+    val productId: Int?,
+    @SerializedName("user_id")
+    val userId: Int?,
+    @SerializedName("createdAt")
+    val createdAt: String?,
+    @SerializedName("updatedAt")
+    val updatedAt: String?,
+    @SerializedName("Product")
     val product: Product?
 ) {
     data class Product(
@@ -29,9 +35,14 @@ data class StatusWishlistProductResponse(
         val userId: Int?,
         @SerializedName("status")
         val status: String?,
-        @SerializedName("createdAt")
-        val createdAt: String?,
-        @SerializedName("updatedAt")
-        val updatedAt: String?
-    )
+        @SerializedName("Categories")
+        val categories: List<Category>
+    ) {
+        data class Category(
+            @SerializedName("id")
+            val id: Int?,
+            @SerializedName("name")
+            val name: String?
+        )
+    }
 }

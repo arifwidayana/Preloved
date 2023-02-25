@@ -1,4 +1,4 @@
-package com.arifwidayana.shared.data.network.model.request.bid
+package com.arifwidayana.shared.data.network.model.request.bid.wishlist
 
 import com.google.gson.annotations.SerializedName
 

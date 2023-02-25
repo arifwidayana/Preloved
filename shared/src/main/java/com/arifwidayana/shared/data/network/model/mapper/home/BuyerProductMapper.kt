@@ -23,11 +23,9 @@ object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMa
             basePrice = convertCurrency(dataObject?.basePrice ?: 0),
             imageUrl = dataObject?.imageUrl.orEmpty(),
             imageName = dataObject?.imageName.orEmpty(),
-            location = dataObject?.location ?: "Empty Location",
+            location = dataObject?.location.toString().replaceFirstChar { it.uppercase() },
             userId = dataObject?.userId ?: 0,
-            status = dataObject?.status.toString().replaceFirstChar {
-                it.uppercase()
-            },
+            status = dataObject?.status.orEmpty(),
             createdAt = dataObject?.createdAt.orEmpty(),
             updatedAt = dataObject?.updatedAt.orEmpty(),
             categories = dataObject?.categories?.joinToString { it.name.toString() } ?: "Empty Category",
@@ -38,7 +36,7 @@ object BuyerProductMapper : ViewParamMapper<BuyerProductMap, BuyerProductParamMa
                 phoneNumber = dataObject?.user?.phoneNumber.orEmpty(),
                 address = dataObject?.user?.address.orEmpty(),
                 imageUrl = dataObject?.user?.imageUrl.orEmpty(),
-                city = dataObject?.user?.city.orEmpty()
+                city = dataObject?.user?.city.toString().replaceFirstChar { it.uppercase() }
             )
         )
 }

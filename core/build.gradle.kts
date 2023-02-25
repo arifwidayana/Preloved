@@ -53,12 +53,22 @@ android {
             buildConfigField("String", "END_POINT_LOGIN", coreProperties["END_POINT_LOGIN"].toString())
             buildConfigField("String", "END_POINT_REGISTER", coreProperties["END_POINT_REGISTER"].toString())
             buildConfigField("String", "END_POINT_USER", coreProperties["END_POINT_USER"].toString())
+            buildConfigField("String", "END_POINT_CHANGE_PASSWORD", coreProperties["END_POINT_CHANGE_PASSWORD"].toString())
+            buildConfigField("String", "END_POINT_SELLER_PRODUCT", coreProperties["END_POINT_SELLER_PRODUCT"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_SELLER_PRODUCT", coreProperties["END_POINT_DETAIL_SELLER_PRODUCT"].toString())
+            buildConfigField("String", "END_POINT_SELLER_ORDER", coreProperties["END_POINT_SELLER_ORDER"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_SELLER_ORDER", coreProperties["END_POINT_DETAIL_SELLER_ORDER"].toString())
             buildConfigField("String", "END_POINT_SELLER_CATEGORY", coreProperties["END_POINT_SELLER_CATEGORY"].toString())
             buildConfigField("String", "END_POINT_SELLER_BANNER", coreProperties["END_POINT_SELLER_BANNER"].toString())
             buildConfigField("String", "END_POINT_BUYER_PRODUCT", coreProperties["END_POINT_BUYER_PRODUCT"].toString())
             buildConfigField("String", "END_POINT_DETAIL_BUYER_PRODUCT", coreProperties["END_POINT_DETAIL_BUYER_PRODUCT"].toString())
+            buildConfigField("String", "END_POINT_BUYER_ORDER", coreProperties["END_POINT_BUYER_ORDER"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_ORDER", coreProperties["END_POINT_DETAIL_BUYER_ORDER"].toString())
             buildConfigField("String", "END_POINT_BUYER_WISHLIST", coreProperties["END_POINT_BUYER_WISHLIST"].toString())
             buildConfigField("String", "END_POINT_DETAIL_BUYER_WISHLIST", coreProperties["END_POINT_DETAIL_BUYER_WISHLIST"].toString())
+            buildConfigField("String", "END_POINT_HISTORY", coreProperties["END_POINT_HISTORY"].toString())
+            buildConfigField("String", "END_POINT_NOTIFICATION", coreProperties["END_POINT_NOTIFICATION"].toString())
+            buildConfigField("String", "END_POINT_DETAIL_NOTIFICATION", coreProperties["END_POINT_DETAIL_NOTIFICATION"].toString())
         }
     }
 }
