@@ -42,7 +42,11 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.setupWithNavController(navController)
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
-                    R.id.homeFragment, R.id.accountFragment -> {
+                    com.arifwidayana.home.R.id.homeFragment,
+                    R.id.notificationFragment,
+                    R.id.sellFragment,
+                    R.id.saleFragment,
+                    com.arifwidayana.account.R.id.accountFragment -> {
                         bottomNavigationView.visibility = View.VISIBLE
                     }
                     else -> {
