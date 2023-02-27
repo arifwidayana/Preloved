@@ -1,6 +1,7 @@
 package com.arifwidayana.preloved
 
 import android.app.Application
+import com.arifwidayana.account.di.AccountModule
 import com.arifwidayana.bid.di.BidModule
 import com.arifwidayana.home.di.HomeModule
 import com.arifwidayana.login.di.LoginModule
@@ -21,7 +22,8 @@ class Preloved : Application() {
                     HomeModule.getModules() +
                     BidModule.getModules() +
                     LoginModule.getModules() +
-                    RegisterModule.getModules()
+                    RegisterModule.getModules() +
+                    AccountModule.getModules()
             )
         }
     }
