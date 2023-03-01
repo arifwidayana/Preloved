@@ -87,11 +87,12 @@
     <string name="change_password">Change Password</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="enter_old_password">Enter Old Password</string>
-    <string name="enter_new_password">Enter New Password</string>
-    <string name="re_enter_new_password">Re-Enter New Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
 
     #Message
+    <string name="message_success_update_profile">Update profile success</string>
     <string name="success_edit_password">Successfully Edit Your Password</string>
     <string name="message_cant_edit_product">You\'re Cannot Edit Sold Product or Offered Product</string>
     <string name="message_complete_account">Please Complete Your Identity First Before Sell Product</string>
