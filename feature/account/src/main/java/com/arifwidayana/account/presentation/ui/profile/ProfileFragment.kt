@@ -3,12 +3,15 @@ package com.arifwidayana.account.presentation.ui.profile
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.size.Scale
-import com.arifwidayana.style.R
 import com.arifwidayana.account.databinding.FragmentProfileBinding
 import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.core.utils.FieldErrorException
 import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserParamRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
+import com.arifwidayana.shared.utils.Constant
+import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
+import com.arifwidayana.style.R
 import org.koin.android.ext.android.inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
@@ -23,6 +26,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
 
     private fun onView() {
         viewModel.getUser()
+        resetErrorField()
+    }
+
+    private fun resetErrorField() {
+        binding.apply {
+            etFullName.changed(onTextChanged = {
+                tilFullName.isErrorEnabled = false
+            })
+            etPhone.changed(onTextChanged = {
+                tilPhone.isErrorEnabled = false
+            })
+            etAddress.changed(onTextChanged = {
+                tilAddress.isErrorEnabled = false
+            })
+            etCity.changed(onTextChanged = {
+                tilCity.isErrorEnabled = false
+            })
+        }
     }
 
     private fun onClick() {
@@ -66,7 +87,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
                             }
                         },
                         doOnError = { error ->
-                            showMessageSnackBar(true, exception = error.exception)
+                            when (error.exception) {
+                                is FieldErrorException -> handleStateErrorField(error.exception as FieldErrorException)
+                                else -> showMessageSnackBar(true, exception = error.exception)
+                            }
                         }
                     )
                 }
@@ -85,6 +109,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
             etPhone.setText(data?.phoneNumber)
             etCity.setText(data?.city)
             etAddress.setText(data?.address)
+        }
+    }
+
+    private fun handleStateErrorField(fieldErrorException: FieldErrorException) {
+        binding.apply {
+            fieldErrorException.apply {
+                errorFields.forEach {
+                    if (it.first == Constant.PROFILE_FULLNAME_FIELD) {
+                        tilFullName.error = getString(it.second)
+                    }
+                    if (it.first == Constant.PROFILE_PHONE_NUMBER_FIELD) {
+                        tilPhone.error = getString(it.second)
+                    }
+                    if (it.first == Constant.PROFILE_ADDRESS_FIELD) {
+                        tilAddress.error = getString(it.second)
+                    }
+                    if (it.first == Constant.PROFILE_CITY_FIELD) {
+                        tilCity.error = getString(it.second)
+                    }
+                }
+            }
         }
     }
 }
