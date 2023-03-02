@@ -27,6 +27,12 @@
     <string name="error_field_phone_length_below_min">Phone number minimal lebih dari 10</string>
     <string name="error_field_address_empty">Address wajib diisi</string>
     <string name="error_field_city_empty">City wajib diisi</string>
+    <string name="error_field_current_password_empty">Password lama wajib diisi</string>
+    <string name="error_field_new_password_empty">Password baru wajib diisi</string>
+    <string name="error_field_new_password_length_below_min">Password baru minimal 6 karakter</string>
+    <string name="error_field_new_password_contains_space">Password baru tidak menggunakan spasi</string>
+    <string name="error_field_confirm_new_password_empty">Konfirmasi password baru wajib diisi</string>
+    <string name="error_field_confirm_new_password_not_same">Konfirmasi password baru tidak sama</string>
 
     #Home
     <string name="home">Home</string>
