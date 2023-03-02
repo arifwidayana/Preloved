@@ -8,7 +8,7 @@ object Constant {
 
     // PATH
     const val ID_PATH = "id"
-    
+
     // STATUS
     const val AVAILABLE = "available"
     const val SOLD = "sold"
@@ -44,4 +44,9 @@ object Constant {
     const val PROFILE_PHONE_NUMBER_FIELD = 1
     const val PROFILE_ADDRESS_FIELD = 2
     const val PROFILE_CITY_FIELD = 3
+
+    // PASSWORD
+    const val PASSWORD_CURRENT_FIELD = 0
+    const val PASSWORD_NEW_FIELD = 1
+    const val PASSWORD_CONFIRM_NEW_FIELD = 2
 }
