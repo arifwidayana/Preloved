@@ -5,6 +5,9 @@ import com.arifwidayana.account.data.datasource.AccountDatasourceImpl
 import com.arifwidayana.account.data.repository.AccountRepository
 import com.arifwidayana.account.data.repository.AccountRepositoryImpl
 import com.arifwidayana.account.data.service.AccountService
+import com.arifwidayana.account.domain.ProfileFieldValidationUseCase
+import com.arifwidayana.account.domain.UpdatePasswordUseCase
+import com.arifwidayana.account.domain.UpdateProfileUseCase
 import com.arifwidayana.account.domain.UserUseCase
 import com.arifwidayana.account.presentation.ui.account.AccountViewModel
 import com.arifwidayana.account.presentation.ui.order.OrderViewModel
@@ -29,6 +32,9 @@ object AccountModule : FeatureModule {
 
     override val useCases: Module = module {
         single { UserUseCase(get(), Dispatchers.IO) }
+        single { ProfileFieldValidationUseCase(Dispatchers.IO) }
+        single { UpdateProfileUseCase(get(), get(), Dispatchers.IO) }
+        single { UpdatePasswordUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
