@@ -13,14 +13,22 @@ import kotlinx.coroutines.flow.flow
 
 class UpdatePasswordUseCase(
     private val accountRepository: AccountRepository,
+    private val passwordFieldValidationUseCase: PasswordFieldValidationUseCase,
     coroutineDispatcher: CoroutineDispatcher
 ) : BaseUseCase<PasswordParamRequest, String>(coroutineDispatcher) {
     override suspend fun execute(param: PasswordParamRequest?): Flow<ViewResource<String>> = flow {
         emit(ViewResource.Loading())
-        param?.let {
-            accountRepository.updatePassword(PasswordMapper.toDataObject(it)).first().suspendSource(
-                doOnSuccess = { source ->
-                    emit(ViewResource.Success(source.payload?.message.toString()))
+        param?.let { res ->
+            passwordFieldValidationUseCase(res).first().suspendSource(
+                doOnSuccess = {
+                    accountRepository.updatePassword(PasswordMapper.toDataObject(res)).first().suspendSource(
+                        doOnSuccess = { source ->
+                            emit(ViewResource.Success(source.payload?.message.toString()))
+                        },
+                        doOnError = { error ->
+                            emit(ViewResource.Error(error.exception))
+                        }
+                    )
                 },
                 doOnError = { error ->
                     emit(ViewResource.Error(error.exception))
