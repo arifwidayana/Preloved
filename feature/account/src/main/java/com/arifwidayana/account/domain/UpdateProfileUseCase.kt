@@ -14,14 +14,22 @@ import kotlinx.coroutines.flow.flow
 
 class UpdateProfileUseCase(
     private val accountRepository: AccountRepository,
+    private val profileFieldValidationUseCase: ProfileFieldValidationUseCase,
     coroutineDispatcher: CoroutineDispatcher
 ) : BaseUseCase<ProfileUserParamRequest, Int>(coroutineDispatcher) {
     override suspend fun execute(param: ProfileUserParamRequest?): Flow<ViewResource<Int>> = flow {
         emit(ViewResource.Loading())
-        param?.let {
-            accountRepository.updateProfileUser(ProfileRequestMapper.toDataObject(it)).first().suspendSource(
+        param?.let { res ->
+            profileFieldValidationUseCase(res).first().suspendSource(
                 doOnSuccess = {
-                    emit(ViewResource.Success(R.string.message_success_update_profile))
+                    accountRepository.updateProfileUser(ProfileRequestMapper.toDataObject(res)).first().suspendSource(
+                        doOnSuccess = {
+                            emit(ViewResource.Success(R.string.message_success_update_profile))
+                        },
+                        doOnError = { error ->
+                            emit(ViewResource.Error(error.exception))
+                        }
+                    )
                 },
                 doOnError = { error ->
                     emit(ViewResource.Error(error.exception))
