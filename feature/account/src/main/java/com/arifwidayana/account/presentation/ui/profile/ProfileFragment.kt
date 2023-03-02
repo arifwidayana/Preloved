@@ -29,23 +29,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
         resetErrorField()
     }
 
-    private fun resetErrorField() {
-        binding.apply {
-            etFullName.changed(onTextChanged = {
-                tilFullName.isErrorEnabled = false
-            })
-            etPhone.changed(onTextChanged = {
-                tilPhone.isErrorEnabled = false
-            })
-            etAddress.changed(onTextChanged = {
-                tilAddress.isErrorEnabled = false
-            })
-            etCity.changed(onTextChanged = {
-                tilCity.isErrorEnabled = false
-            })
-        }
-    }
-
     private fun onClick() {
         binding.apply {
             btnBack.setOnClickListener {
@@ -109,6 +92,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
             etPhone.setText(data?.phoneNumber)
             etCity.setText(data?.city)
             etAddress.setText(data?.address)
+        }
+    }
+
+    private fun resetErrorField() {
+        binding.apply {
+            etFullName.changed(onTextChanged = {
+                tilFullName.isErrorEnabled = false
+            })
+            etPhone.changed(onTextChanged = {
+                tilPhone.isErrorEnabled = false
+            })
+            etAddress.changed(onTextChanged = {
+                tilAddress.isErrorEnabled = false
+            })
+            etCity.changed(onTextChanged = {
+                tilCity.isErrorEnabled = false
+            })
         }
     }
 
