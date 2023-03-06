@@ -6,6 +6,10 @@ import com.arifwidayana.account.data.repository.AccountRepository
 import com.arifwidayana.account.data.repository.AccountRepositoryImpl
 import com.arifwidayana.account.data.service.AccountService
 import com.arifwidayana.account.domain.*
+import com.arifwidayana.account.domain.password.PasswordFieldValidationUseCase
+import com.arifwidayana.account.domain.password.UpdatePasswordUseCase
+import com.arifwidayana.account.domain.profile.ProfileFieldValidationUseCase
+import com.arifwidayana.account.domain.profile.UpdateProfileUseCase
 import com.arifwidayana.account.presentation.ui.account.AccountViewModel
 import com.arifwidayana.account.presentation.ui.order.OrderViewModel
 import com.arifwidayana.account.presentation.ui.password.PasswordViewModel

@@ -2,7 +2,7 @@ package com.arifwidayana.account.presentation.ui.password
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arifwidayana.account.domain.UpdatePasswordUseCase
+import com.arifwidayana.account.domain.password.UpdatePasswordUseCase
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.shared.data.network.model.request.account.password.PasswordParamRequest
 import kotlinx.coroutines.flow.MutableStateFlow

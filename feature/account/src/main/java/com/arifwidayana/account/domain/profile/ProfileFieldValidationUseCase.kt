@@ -1,4 +1,4 @@
-package com.arifwidayana.account.domain
+package com.arifwidayana.account.domain.profile
 
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.utils.FieldErrorException

@@ -1,29 +1,30 @@
-package com.arifwidayana.account.domain
+package com.arifwidayana.account.domain.profile
 
 import com.arifwidayana.account.data.repository.AccountRepository
 import com.arifwidayana.core.base.BaseUseCase
 import com.arifwidayana.core.wrapper.ViewResource
-import com.arifwidayana.shared.data.network.model.mapper.account.password.PasswordMapper
-import com.arifwidayana.shared.data.network.model.request.account.password.PasswordParamRequest
+import com.arifwidayana.shared.data.network.model.mapper.account.profile.ProfileRequestMapper
+import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserParamRequest
 import com.arifwidayana.shared.utils.ext.suspendSource
+import com.arifwidayana.style.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-class UpdatePasswordUseCase(
+class UpdateProfileUseCase(
     private val accountRepository: AccountRepository,
-    private val passwordFieldValidationUseCase: PasswordFieldValidationUseCase,
+    private val profileFieldValidationUseCase: ProfileFieldValidationUseCase,
     coroutineDispatcher: CoroutineDispatcher
-) : BaseUseCase<PasswordParamRequest, String>(coroutineDispatcher) {
-    override suspend fun execute(param: PasswordParamRequest?): Flow<ViewResource<String>> = flow {
+) : BaseUseCase<ProfileUserParamRequest, Int>(coroutineDispatcher) {
+    override suspend fun execute(param: ProfileUserParamRequest?): Flow<ViewResource<Int>> = flow {
         emit(ViewResource.Loading())
         param?.let { res ->
-            passwordFieldValidationUseCase(res).first().suspendSource(
+            profileFieldValidationUseCase(res).first().suspendSource(
                 doOnSuccess = {
-                    accountRepository.updatePassword(PasswordMapper.toDataObject(res)).first().suspendSource(
-                        doOnSuccess = { source ->
-                            emit(ViewResource.Success(source.payload?.message.toString()))
+                    accountRepository.updateProfileUser(ProfileRequestMapper.toDataObject(res)).first().suspendSource(
+                        doOnSuccess = {
+                            emit(ViewResource.Success(R.string.message_success_update_profile))
                         },
                         doOnError = { error ->
                             emit(ViewResource.Error(error.exception))
