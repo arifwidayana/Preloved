@@ -5,6 +5,7 @@ import com.arifwidayana.core.base.BaseDefaultResponse
 import com.arifwidayana.shared.data.network.model.request.account.password.PasswordRequest
 import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserResponse
+import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountResponse
 import java.io.File
 
 interface AccountDatasource {
@@ -12,6 +13,7 @@ interface AccountDatasource {
     suspend fun uploadImageProfile(image: File): UserResponse
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): UserResponse
     suspend fun updatePassword(passwordRequest: PasswordRequest): BaseDefaultResponse
+    suspend fun getOrder(): List<OrderAccountResponse>
 }
 
 class AccountDatasourceImpl(
@@ -31,5 +33,9 @@ class AccountDatasourceImpl(
 
     override suspend fun updatePassword(passwordRequest: PasswordRequest): BaseDefaultResponse {
         return accountService.updatePassword(passwordRequest)
+    }
+
+    override suspend fun getOrder(): List<OrderAccountResponse> {
+        return accountService.getOrder()
     }
 }
