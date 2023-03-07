@@ -6,6 +6,7 @@ import com.arifwidayana.account.data.repository.AccountRepository
 import com.arifwidayana.account.data.repository.AccountRepositoryImpl
 import com.arifwidayana.account.data.service.AccountService
 import com.arifwidayana.account.domain.*
+import com.arifwidayana.account.domain.order.OrderUseCase
 import com.arifwidayana.account.domain.password.PasswordFieldValidationUseCase
 import com.arifwidayana.account.domain.password.UpdatePasswordUseCase
 import com.arifwidayana.account.domain.profile.ProfileFieldValidationUseCase
@@ -37,6 +38,7 @@ object AccountModule : FeatureModule {
         single { UserUseCase(get(), Dispatchers.IO) }
         single { UpdateProfileUseCase(get(), get(), Dispatchers.IO) }
         single { UpdatePasswordUseCase(get(), get(), Dispatchers.IO) }
+        single { OrderUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
