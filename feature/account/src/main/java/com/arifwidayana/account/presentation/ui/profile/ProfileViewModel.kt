@@ -2,8 +2,8 @@ package com.arifwidayana.account.presentation.ui.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arifwidayana.account.domain.profile.UpdateProfileUseCase
 import com.arifwidayana.account.domain.UserUseCase
+import com.arifwidayana.account.domain.profile.UpdateProfileUseCase
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserParamRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
