@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_accountFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_home_nav"
+            app:destination="@id/home_nav" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -49,6 +52,11 @@
         android:id="@+id/wishlistFragment"
         android:name="com.arifwidayana.account.presentation.ui.wishlist.WishlistFragment"
         android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishlistFragment_to_bid_nav"
+            app:destination="@id/bid_nav" />
+    </fragment>
     <include app:graph="@navigation/bid_nav" />
+    <include app:graph="@navigation/home_nav" />
 </navigation>
