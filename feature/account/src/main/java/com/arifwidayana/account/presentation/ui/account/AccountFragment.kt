@@ -38,17 +38,37 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel>(
             tvWishlist.setOnClickListener {
                 moveNav(R.id.action_accountFragment_to_wishlistFragment)
             }
+            tvLogout.setOnClickListener {
+                viewModel.logoutUser()
+            }
         }
     }
 
     override fun observeData() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.getUserResult.collect {
-                it.source(doOnSuccess = { result ->
-                    setStateView(result.payload)
-                }, doOnError = { error ->
-                    showMessageSnackBar(true, exception = error.exception)
-                })
+        lifecycleScope.apply {
+            launchWhenCreated {
+                viewModel.getUserResult.collect {
+                    it.source(
+                        doOnSuccess = { result ->
+                            setStateView(result.payload)
+                        },
+                        doOnError = { error ->
+                            showMessageSnackBar(true, exception = error.exception)
+                        }
+                    )
+                }
+            }
+            launchWhenCreated {
+                viewModel.logoutUserResult.collect {
+                    it.source(
+                        doOnSuccess = {
+                            moveNav(R.id.action_accountFragment_to_home_nav)
+                        },
+                        doOnError = { error ->
+                            showMessageSnackBar(true, exception = error.exception)
+                        }
+                    )
+                }
             }
         }
     }

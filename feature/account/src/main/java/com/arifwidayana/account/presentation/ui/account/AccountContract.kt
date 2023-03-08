@@ -6,5 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface AccountContract {
     val getUserResult: StateFlow<ViewResource<UserParamResponse>>
+    val logoutUserResult: StateFlow<ViewResource<String>>
     fun getUser()
+    fun logoutUser()
 }
