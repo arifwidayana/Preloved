@@ -11,6 +11,7 @@ import com.arifwidayana.account.domain.password.PasswordFieldValidationUseCase
 import com.arifwidayana.account.domain.password.UpdatePasswordUseCase
 import com.arifwidayana.account.domain.profile.ProfileFieldValidationUseCase
 import com.arifwidayana.account.domain.profile.UpdateProfileUseCase
+import com.arifwidayana.account.domain.wishlist.WishlistUseCase
 import com.arifwidayana.account.presentation.ui.account.AccountViewModel
 import com.arifwidayana.account.presentation.ui.order.OrderViewModel
 import com.arifwidayana.account.presentation.ui.password.PasswordViewModel
@@ -39,6 +40,7 @@ object AccountModule : FeatureModule {
         single { UpdateProfileUseCase(get(), get(), Dispatchers.IO) }
         single { UpdatePasswordUseCase(get(), get(), Dispatchers.IO) }
         single { OrderUseCase(get(), Dispatchers.IO) }
+        single { WishlistUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
