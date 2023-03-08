@@ -7,6 +7,7 @@ import com.arifwidayana.shared.data.network.model.request.account.password.Passw
 import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserResponse
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountResponse
+import com.arifwidayana.shared.data.network.model.response.account.wishlist.WishlistAccountResponse
 import com.arifwidayana.shared.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,6 +16,7 @@ import java.io.File
 typealias UserDataResource = DataResource<UserResponse>
 typealias PasswordDataResource = DataResource<BaseDefaultResponse>
 typealias OrderDataResource = DataResource<List<OrderAccountResponse>>
+typealias WishlistDataResource = DataResource<List<WishlistAccountResponse>>
 
 interface AccountRepository {
     suspend fun getUser(): Flow<UserDataResource>
@@ -22,6 +24,7 @@ interface AccountRepository {
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): Flow<UserDataResource>
     suspend fun updatePassword(passwordRequest: PasswordRequest): Flow<PasswordDataResource>
     suspend fun getOrder(): Flow<OrderDataResource>
+    suspend fun getWishlist(): Flow<WishlistDataResource>
 }
 
 class AccountRepositoryImpl(
@@ -45,5 +48,9 @@ class AccountRepositoryImpl(
 
     override suspend fun getOrder(): Flow<OrderDataResource> = flow {
         emit(safeNetworkCall { accountDatasource.getOrder() })
+    }
+
+    override suspend fun getWishlist(): Flow<WishlistDataResource> = flow {
+        emit(safeNetworkCall { accountDatasource.getWishlist() })
     }
 }

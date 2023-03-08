@@ -6,6 +6,7 @@ import com.arifwidayana.shared.data.network.model.request.account.password.Passw
 import com.arifwidayana.shared.data.network.model.request.account.profile.ProfileUserRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserResponse
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountResponse
+import com.arifwidayana.shared.data.network.model.response.account.wishlist.WishlistAccountResponse
 import java.io.File
 
 interface AccountDatasource {
@@ -14,6 +15,7 @@ interface AccountDatasource {
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): UserResponse
     suspend fun updatePassword(passwordRequest: PasswordRequest): BaseDefaultResponse
     suspend fun getOrder(): List<OrderAccountResponse>
+    suspend fun getWishlist(): List<WishlistAccountResponse>
 }
 
 class AccountDatasourceImpl(
@@ -37,5 +39,9 @@ class AccountDatasourceImpl(
 
     override suspend fun getOrder(): List<OrderAccountResponse> {
         return accountService.getOrder()
+    }
+
+    override suspend fun getWishlist(): List<WishlistAccountResponse> {
+        return accountService.getWishlist()
     }
 }
