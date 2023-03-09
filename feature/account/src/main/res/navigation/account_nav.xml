@@ -26,8 +26,8 @@
             android:id="@+id/action_accountFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_accountFragment_to_home_nav"
-            app:destination="@id/home_nav" />
+            android:id="@+id/action_accountFragment_to_login_nav"
+            app:destination="@id/login_nav" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -58,5 +58,5 @@
             app:destination="@id/bid_nav" />
     </fragment>
     <include app:graph="@navigation/bid_nav" />
-    <include app:graph="@navigation/home_nav" />
+    <include app:graph="@navigation/login_nav" />
 </navigation>

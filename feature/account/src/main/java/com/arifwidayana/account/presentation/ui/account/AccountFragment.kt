@@ -7,6 +7,7 @@ import com.arifwidayana.account.R
 import com.arifwidayana.account.databinding.FragmentAccountBinding
 import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
+import com.arifwidayana.shared.utils.Navigation.HOMEPAGE_URI
 import com.arifwidayana.shared.utils.ext.source
 import org.koin.android.ext.android.inject
 
@@ -26,6 +27,9 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel>(
 
     private fun onClick() {
         binding.apply {
+            materialToolbar.setOnClickListener {
+                moveNav(R.id.action_accountFragment_to_login_nav)
+            }
             tvProfile.setOnClickListener {
                 moveNav(R.id.action_accountFragment_to_profileFragment)
             }
@@ -51,9 +55,6 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel>(
                     it.source(
                         doOnSuccess = { result ->
                             setStateView(result.payload)
-                        },
-                        doOnError = { error ->
-                            showMessageSnackBar(true, exception = error.exception)
                         }
                     )
                 }
@@ -62,7 +63,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding, AccountViewModel>(
                 viewModel.logoutUserResult.collect {
                     it.source(
                         doOnSuccess = {
-                            moveNav(R.id.action_accountFragment_to_home_nav)
+                            moveNav(deepLink = HOMEPAGE_URI)
                         },
                         doOnError = { error ->
                             showMessageSnackBar(true, exception = error.exception)
