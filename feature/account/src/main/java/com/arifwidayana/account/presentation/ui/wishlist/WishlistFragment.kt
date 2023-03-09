@@ -16,10 +16,19 @@ class WishlistFragment : BaseFragment<FragmentWishlistBinding, WishlistViewModel
 
     override fun initView() {
         onView()
+        onClick()
     }
 
     private fun onView() {
         viewModel.getWishlist()
+    }
+
+    private fun onClick() {
+        binding.apply {
+            btnBack.setOnClickListener {
+                moveNavigateUp()
+            }
+        }
     }
 
     override fun observeData() {

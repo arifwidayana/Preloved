@@ -15,10 +15,19 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>(
 
     override fun initView() {
         onView()
+        onClick()
     }
 
     private fun onView() {
         viewModel.getOrder()
+    }
+
+    private fun onClick() {
+        binding.apply {
+            btnBack.setOnClickListener {
+                moveNavigateUp()
+            }
+        }
     }
 
     override fun observeData() {
