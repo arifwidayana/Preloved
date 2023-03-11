@@ -116,6 +116,11 @@
     <string name="message_error_no_internet">Something is wrong with internet connection\nMake sure you have an Internet Connection and try again.</string>
     <string name="message_error_unknown">Something is wrong when fetch data\nPlease try again</string>
 
+    #Alert Dialog
+    <string name="yes">Login</string>
+    <string name="no">Later</string>
+    <string name="body_login">You are not logged in</string>
+
     #Undefined
     <string name="content_login">Welcome to PreLoved App, Please Login Before Use Application.</string>
     <string name="register_detail">Please register your identity before use Preloved.</string>
@@ -123,7 +128,6 @@
     <string name="content_back_button">Back Button</string>
     <string name="add">Add</string>
     <string name="warning">Warning</string>
-    <string name="later">Later</string>
     <string name="date">18 Jul, 10:42</string>
     <string name="dummy_title_product">Jam Tangan Casio</string>
     <string name="rp_400_000">Rp.400.000</string>
