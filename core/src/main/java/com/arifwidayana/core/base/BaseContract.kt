@@ -2,6 +2,7 @@ package com.arifwidayana.core.base
 
 import android.os.Bundle
 import androidx.navigation.NavDirections
+import com.arifwidayana.style.R
 import java.lang.Exception
 
 interface BaseContract {
@@ -23,6 +24,14 @@ interface BaseContract {
             isEnabled: Boolean,
             message: String? = null,
             exception: Exception? = null
+        )
+        fun noticeDialog(
+            positiveNav: Int,
+            negativeNav: Any,
+            title: Int = R.string.warning,
+            body: Int? = null,
+            positiveText: Int = R.string.yes,
+            negativeText: Int = R.string.no
         )
     }
 
