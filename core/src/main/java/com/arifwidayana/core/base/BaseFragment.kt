@@ -1,6 +1,7 @@
 package com.arifwidayana.core.base
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -115,6 +116,32 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
                 Snackbar.make(binding.root, message.toString(), Snackbar.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun noticeDialog(
+        positiveNav: Int,
+        negativeNav: Any,
+        title: Int,
+        body: Int?,
+        positiveText: Int,
+        negativeText: Int
+    ) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(title))
+            .setMessage(getString(body ?: 0))
+            .setPositiveButton(getString(positiveText)) { dialog, _ ->
+                dialog.dismiss()
+                moveNav(positiveNav)
+            }
+            .setNegativeButton(getString(negativeText)) { dialog, _ ->
+                dialog.dismiss()
+                when (negativeNav) {
+                    is String -> moveNav(negativeNav)
+                    is Int -> moveNav(negativeNav)
+                }
+            }
+            .setCancelable(false)
+            .show()
     }
 
     override fun onDestroy() {

@@ -70,7 +70,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tl_category_item"
                 app:spanCount="2"
-                tools:listitem="@layout/card_category_product" />
+                tools:listitem="@layout/card_product" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

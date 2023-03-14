@@ -47,8 +47,10 @@ object SharedModule : BaseModule {
     }
 
     private val useCase = module {
+        single { DeleteUserTokenUseCase(get(), Dispatchers.IO) }
         single { SetUserTokenUseCase(get(), Dispatchers.IO) }
         single { GetUserTokenUseCase(get(), Dispatchers.IO) }
+        single { ValidateUserTokenUseCase(get(), Dispatchers.IO) }
     }
 
     private val common = module {

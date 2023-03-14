@@ -74,4 +74,5 @@ dependencies {
     androidTestImplementation(Library.androidEspressoCore)
 
     implementation(project(":shared"))
+    implementation(project(":feature:home"))
 }

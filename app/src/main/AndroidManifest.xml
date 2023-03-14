@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.arifwidayana.preloved">
 
-    <uses-permission-sdk-23 android:name="android.permission.INTERNET"/>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
 
     <application
         android:name=".Preloved"
@@ -18,14 +18,15 @@
         tools:targetApi="33">
         <activity
             android:name="com.arifwidayana.navigation.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <nav-graph android:value="@navigation/main_nav"/>
+            <nav-graph android:value="@navigation/main_nav" />
         </activity>
     </application>
 
