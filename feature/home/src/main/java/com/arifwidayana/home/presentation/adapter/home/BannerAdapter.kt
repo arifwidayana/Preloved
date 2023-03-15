@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import com.arifwidayana.home.databinding.CardBannerProductBinding
 import com.arifwidayana.shared.data.network.model.response.home.banner.BannerParamResponse
 import com.arifwidayana.style.R
+import com.arifwidayana.style.databinding.CardBannerProductBinding
 
 class BannerAdapter : ListAdapter<BannerParamResponse, BannerAdapter.BannerHolder>(
     Differ()
