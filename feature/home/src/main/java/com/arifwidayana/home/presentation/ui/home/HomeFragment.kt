@@ -23,18 +23,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         onClick()
     }
 
-    private fun onClick() {
-        binding.apply {
-            svSearchItem.setOnClickListener {
-                moveNav(R.id.action_homeFragment_to_searchFragment)
-            }
-        }
-    }
-
     private fun onView() {
         viewModel.apply {
             categoryProduct()
             showProduct()
+        }
+    }
+
+    private fun onClick() {
+        binding.apply {
+            svSearchItem.setOnClickListener {
+                moveNav(R.id.action_homeFragment_to_searchKeywordFragment)
+            }
         }
     }
 
