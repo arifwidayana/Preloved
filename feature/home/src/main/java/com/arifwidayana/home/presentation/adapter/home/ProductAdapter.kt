@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.arifwidayana.home.databinding.CardProductBinding
+import com.arifwidayana.style.databinding.CardProductBinding
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.Constant.SOLD
 import com.arifwidayana.style.R

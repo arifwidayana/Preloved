@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import com.arifwidayana.home.databinding.CardProductBinding
+import com.arifwidayana.style.databinding.CardProductBinding
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountParamResponse
 
 class OrderAdapter(private val onClick: (Int) -> Unit) :
