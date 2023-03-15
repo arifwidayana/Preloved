@@ -12,8 +12,10 @@ import com.arifwidayana.home.domain.home.ProductUseCase
 import com.arifwidayana.home.domain.search.GetFindSearchHistoryUseCase
 import com.arifwidayana.home.domain.search.GetSearchHistoryUseCase
 import com.arifwidayana.home.domain.search.PostSearchHistoryUseCase
+import com.arifwidayana.home.domain.search.product.SearchProductUseCase
 import com.arifwidayana.home.presentation.ui.home.HomeViewModel
-import com.arifwidayana.home.presentation.ui.search.SearchViewModel
+import com.arifwidayana.home.presentation.ui.search.keyword.SearchKeywordViewModel
+import com.arifwidayana.home.presentation.ui.search.product.SearchProductViewModel
 import com.arifwidayana.shared.data.network.NetworkClient
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -36,6 +38,7 @@ object HomeModule : FeatureModule {
         single { PostSearchHistoryUseCase(get(), Dispatchers.IO) }
         single { GetSearchHistoryUseCase(get(), Dispatchers.IO) }
         single { GetFindSearchHistoryUseCase(get(), Dispatchers.IO) }
+        single { SearchProductUseCase(get()) }
     }
 
     override val networks: Module = module {
@@ -44,7 +47,8 @@ object HomeModule : FeatureModule {
 
     override val viewModels: Module = module {
         viewModelOf(::HomeViewModel)
-        viewModelOf(::SearchViewModel)
+        viewModelOf(::SearchKeywordViewModel)
+        viewModelOf(::SearchProductViewModel)
     }
 
     override fun getModules(): List<Module> =
