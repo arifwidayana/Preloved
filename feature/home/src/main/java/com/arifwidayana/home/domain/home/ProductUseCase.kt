@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.arifwidayana.home.data.network.datasource.PagingDatasource
 import com.arifwidayana.home.data.network.repository.HomeRepository
-import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
+import com.arifwidayana.shared.data.network.model.request.home.SearchProductParamRequest
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.Constant
 import kotlinx.coroutines.flow.Flow
@@ -24,7 +24,7 @@ class ProductUseCase(
             pagingSourceFactory = {
                 PagingDatasource(
                     homeRepository = homeRepository,
-                    categoryParamRequest = CategoryParamRequest(param)
+                    searchProductParamRequest = SearchProductParamRequest(categoryId = param)
                 )
             }
         ).flow

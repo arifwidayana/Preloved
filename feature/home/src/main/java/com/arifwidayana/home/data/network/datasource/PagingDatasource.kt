@@ -4,8 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.arifwidayana.home.data.network.repository.HomeRepository
 import com.arifwidayana.shared.data.network.model.mapper.home.BuyerProductListMapper
-import com.arifwidayana.shared.data.network.model.request.home.CategoryParamRequest
 import com.arifwidayana.shared.data.network.model.request.home.ProductParamRequest
+import com.arifwidayana.shared.data.network.model.request.home.SearchProductParamRequest
 import com.arifwidayana.shared.data.network.model.response.home.product.BuyerProductParamResponse
 import com.arifwidayana.shared.utils.Constant.DEFAULT_INDEX_PAGE
 import com.arifwidayana.shared.utils.Constant.DEFAULT_INDEX_PER_PAGE
@@ -16,7 +16,7 @@ typealias BuyerProduct = BuyerProductParamResponse
 
 class PagingDatasource(
     private val homeRepository: HomeRepository,
-    private val categoryParamRequest: CategoryParamRequest
+    private val searchProductParamRequest: SearchProductParamRequest
 ) : PagingSource<Int, BuyerProduct>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BuyerProduct> {
@@ -27,7 +27,8 @@ class PagingDatasource(
                 ProductParamRequest(
                     page = pageIndex,
                     perPage = DEFAULT_INDEX_PER_PAGE,
-                    categoryId = categoryParamRequest.categoryId
+                    categoryId = searchProductParamRequest.categoryId,
+                    search = searchProductParamRequest.searchProduct
                 )
             )
             result = BuyerProductListMapper.toViewParam(response)
