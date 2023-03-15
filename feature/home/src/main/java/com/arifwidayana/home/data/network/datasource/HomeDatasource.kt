@@ -24,17 +24,27 @@ class HomeDatasourceImpl(
     }
 
     override suspend fun showProduct(productParamRequest: ProductParamRequest): List<BuyerProductResponse> {
-        return if (productParamRequest.categoryId != 0) {
-            homeService.showProduct(
-                page = productParamRequest.page,
-                perPage = productParamRequest.perPage,
-                categoryId = productParamRequest.categoryId
-            )
-        } else {
-            homeService.showAllProduct(
-                page = productParamRequest.page,
-                perPage = productParamRequest.perPage
-            )
+        return when {
+            productParamRequest.search.isNotEmpty() -> {
+                homeService.searchProduct(
+                    page = productParamRequest.page,
+                    perPage = productParamRequest.perPage,
+                    search = productParamRequest.search
+                )
+            }
+            productParamRequest.categoryId != 0 -> {
+                homeService.showProduct(
+                    page = productParamRequest.page,
+                    perPage = productParamRequest.perPage,
+                    categoryId = productParamRequest.categoryId
+                )
+            }
+            else -> {
+                homeService.showAllProduct(
+                    page = productParamRequest.page,
+                    perPage = productParamRequest.perPage
+                )
+            }
         }
     }
 }

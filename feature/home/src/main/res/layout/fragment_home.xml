@@ -24,7 +24,7 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="30dp"
                 android:background="@drawable/border_white_fill_10"
-                android:iconifiedByDefault="false"
+                android:iconifiedByDefault="true"
                 android:queryHint="@string/search_hint"
                 app:layout_constraintTop_toTopOf="parent" />
 

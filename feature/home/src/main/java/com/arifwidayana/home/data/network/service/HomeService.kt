@@ -7,6 +7,7 @@ import com.arifwidayana.shared.data.network.model.response.home.product.BuyerPro
 import com.arifwidayana.shared.utils.Constant.CATEGORY_ID
 import com.arifwidayana.shared.utils.Constant.PAGE
 import com.arifwidayana.shared.utils.Constant.PER_PAGE
+import com.arifwidayana.shared.utils.Constant.SEARCH
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -26,6 +27,13 @@ interface HomeService {
 
     @GET(BuildConfig.END_POINT_BUYER_PRODUCT)
     suspend fun showAllProduct(
+        @Query(PAGE) page: Int,
+        @Query(PER_PAGE) perPage: Int
+    ): List<BuyerProductResponse>
+
+    @GET(BuildConfig.END_POINT_BUYER_PRODUCT)
+    suspend fun searchProduct(
+        @Query(SEARCH) search: String,
         @Query(PAGE) page: Int,
         @Query(PER_PAGE) perPage: Int
     ): List<BuyerProductResponse>
