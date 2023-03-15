@@ -1,4 +1,4 @@
-package com.arifwidayana.home.presentation.ui.search
+package com.arifwidayana.home.presentation.ui.search.keyword
 
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.shared.data.local.model.entity.SearchHistoryParamEntity
