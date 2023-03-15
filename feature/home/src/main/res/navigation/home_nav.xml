@@ -14,20 +14,38 @@
             android:id="@+id/deepLink"
             app:uri="Preloved://homeFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_bid_nav"
             app:destination="@id/bid_nav" />
         <action
             android:id="@+id/action_homeFragment_to_login_nav"
             app:destination="@id/login_nav" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchKeywordFragment"
+            app:destination="@id/searchKeywordFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.arifwidayana.home.presentation.ui.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
     <include app:graph="@navigation/bid_nav" />
     <include app:graph="@navigation/login_nav" />
+    <fragment
+        android:id="@+id/searchProductFragment"
+        android:name="com.arifwidayana.home.presentation.ui.search.product.SearchProductFragment"
+        android:label="fragment_search_product"
+        tools:layout="@layout/fragment_search_product">
+        <argument
+            android:name="search"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchProductFragment_to_bid_nav"
+            app:destination="@id/bid_nav" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchKeywordFragment"
+        android:name="com.arifwidayana.home.presentation.ui.search.keyword.SearchKeywordFragment"
+        android:label="fragment_search_keyword"
+        tools:layout="@layout/fragment_search_keyword">
+        <action
+            android:id="@+id/action_searchKeywordFragment_to_searchProductFragment"
+            app:destination="@id/searchProductFragment"
+            app:popUpTo="@id/searchKeywordFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
