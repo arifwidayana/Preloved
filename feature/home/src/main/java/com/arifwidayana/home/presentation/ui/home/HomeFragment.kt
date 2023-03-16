@@ -9,6 +9,7 @@ import com.arifwidayana.home.R
 import com.arifwidayana.home.databinding.FragmentHomeBinding
 import com.arifwidayana.home.presentation.adapter.home.BannerAdapter
 import com.arifwidayana.home.presentation.adapter.home.ProductAdapter
+import com.arifwidayana.shared.utils.helper.AutoSlideHelper
 import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
 import org.koin.android.ext.android.inject
@@ -16,6 +17,7 @@ import org.koin.android.ext.android.inject
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     FragmentHomeBinding::inflate
 ) {
+    private lateinit var autoSlideHelper: AutoSlideHelper
     override val viewModel: HomeViewModel by inject()
 
     override fun initView() {
@@ -28,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             categoryProduct()
             showProduct()
         }
+        autoSlideHelper = AutoSlideHelper(binding.vpBanner)
     }
 
     private fun onClick() {
@@ -77,6 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             val adapter = BannerAdapter()
             adapter.submitList(data)
             vpBanner.adapter = adapter
+            autoSlideHelper.startAutoSlide()
         }
     }
 
@@ -113,5 +117,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                 rvListProduct.adapter = adapter
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        autoSlideHelper.stopAutoSlide()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        autoSlideHelper.startAutoSlide()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        autoSlideHelper.stopAutoSlide()
     }
 }

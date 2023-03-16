@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SearchView
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 
 fun EditText.changed(
@@ -55,6 +56,30 @@ fun SearchView.changed(
         override fun onQueryTextChange(newText: String?): Boolean {
             onQueryTextChange?.invoke(newText.toString())
             return false
+        }
+    })
+}
+
+fun ViewPager2.changed(
+    onPageScrolled: ((Int, Float, Int) -> Unit)? = null,
+    onPageSelected: ((Int) -> Unit)? = null,
+    onPageScrollStateChanged: ((Int) -> Unit)? = null
+) {
+    this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            onPageScrolled?.invoke(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            onPageSelected?.invoke(position)
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+            onPageScrollStateChanged?.invoke(state)
         }
     })
 }

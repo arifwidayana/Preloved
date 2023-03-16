@@ -49,4 +49,8 @@ object Constant {
     const val PASSWORD_CURRENT_FIELD = 0
     const val PASSWORD_NEW_FIELD = 1
     const val PASSWORD_CONFIRM_NEW_FIELD = 2
+
+    // DELAY
+    const val DELAY_AUTO_SLIDE = 3000L
+    const val LAST_AUTO_SLIDE = 0L
 }
