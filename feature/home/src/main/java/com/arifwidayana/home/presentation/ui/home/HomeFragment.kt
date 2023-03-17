@@ -9,9 +9,9 @@ import com.arifwidayana.home.R
 import com.arifwidayana.home.databinding.FragmentHomeBinding
 import com.arifwidayana.home.presentation.adapter.home.BannerAdapter
 import com.arifwidayana.home.presentation.adapter.home.ProductAdapter
-import com.arifwidayana.shared.utils.helper.AutoSlideHelper
 import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
+import com.arifwidayana.shared.utils.helper.AutoSlideHelper
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
