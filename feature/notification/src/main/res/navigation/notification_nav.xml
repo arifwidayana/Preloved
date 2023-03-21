@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notification_nav"
+    app:startDestination="@id/notificationFragment">
+
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.arifwidayana.notification.presentation.ui.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_account_nav"
+            app:destination="@id/account_nav" />
+        <action
+            android:id="@+id/action_notificationFragment_to_bid_nav"
+            app:destination="@id/bid_nav" />
+    </fragment>
+    <include app:graph="@navigation/bid_nav" />
+    <include app:graph="@navigation/account_nav" />
+</navigation>
