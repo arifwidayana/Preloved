@@ -22,7 +22,7 @@ object BidResponseMapper : ViewParamMapper<OrderProductResponse, OrderProductPar
         OrderProductParamResponse(
             id = dataObject?.id ?: 0,
             productId = dataObject?.productId ?: 0,
-            status = dataObject?.status.orEmpty(),
+            status = dataObject?.status.toString().replaceFirstChar { it.uppercase() },
             state = dataObject?.status != Constant.PENDING
         )
 }

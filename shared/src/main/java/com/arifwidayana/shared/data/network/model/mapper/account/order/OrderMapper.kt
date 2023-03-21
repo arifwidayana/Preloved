@@ -2,6 +2,7 @@ package com.arifwidayana.shared.data.network.model.mapper.account.order
 
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountParamResponse
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountResponse
+import com.arifwidayana.shared.utils.Constant
 import com.arifwidayana.shared.utils.DateUtils
 import com.arifwidayana.shared.utils.ext.convertCurrency
 import com.arifwidayana.shared.utils.mapper.ListMapper
@@ -19,7 +20,10 @@ object OrderMapper : ViewParamMapper<OrderAccountResponse, OrderAccountParamResp
             productId = dataObject?.productId ?: 0,
             buyerId = dataObject?.buyerId ?: 0,
             price = convertCurrency(dataObject?.price ?: 0),
-            transactionDate = DateUtils.convertDateTime(dataObject?.transactionDate.orEmpty()),
+            transactionDate = DateUtils.convertDateTime(
+                time = dataObject?.transactionDate.orEmpty(),
+                pattern = Constant.PATTERN_FORMAT_2
+            ),
             productName = dataObject?.productName.orEmpty(),
             basePrice = convertCurrency(dataObject?.basePrice ?: 0),
             imageProduct = dataObject?.imageProduct.orEmpty(),

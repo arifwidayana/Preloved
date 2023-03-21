@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.arifwidayana.home.databinding.CardSearchHistoryBinding
 import com.arifwidayana.shared.data.local.model.entity.SearchHistoryParamEntity
+import com.arifwidayana.style.databinding.CardSearchHistoryBinding
 
 class SearchHistoryAdapter(
     private val onClick: (String) -> Unit

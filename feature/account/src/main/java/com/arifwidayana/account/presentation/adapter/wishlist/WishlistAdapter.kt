@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import com.arifwidayana.home.databinding.CardProductBinding
 import com.arifwidayana.shared.data.network.model.response.account.wishlist.WishlistAccountParamResponse
+import com.arifwidayana.style.databinding.CardProductBinding
 
 class WishlistAdapter(private val onClick: (Int) -> Unit) :
-    ListAdapter<WishlistAccountParamResponse, WishlistAdapter.OrderHolder>(
+    ListAdapter<WishlistAccountParamResponse, WishlistAdapter.WishlistHolder>(
         Differ()
     ) {
-    class OrderHolder(
+    class WishlistHolder(
         private val binding: CardProductBinding,
         private val onClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -53,13 +53,13 @@ class WishlistAdapter(private val onClick: (Int) -> Unit) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WishlistHolder {
         val binding =
             CardProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OrderHolder(binding, onClick)
+        return WishlistHolder(binding, onClick)
     }
 
-    override fun onBindViewHolder(holder: OrderHolder, position: Int) {
+    override fun onBindViewHolder(holder: WishlistHolder, position: Int) {
         return holder.bind(getItem(position))
     }
 }

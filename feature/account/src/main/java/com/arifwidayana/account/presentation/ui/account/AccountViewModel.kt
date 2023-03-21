@@ -17,10 +17,10 @@ class AccountViewModel(
 ) : AccountContract, ViewModel() {
     private val _getUserResult = MutableStateFlow<ViewResource<UserParamResponse>>(ViewResource.Empty())
     private val _logoutUserResult = MutableStateFlow<ViewResource<String>>(ViewResource.Empty())
-    private val _validateTokenUserResult = MutableSharedFlow<ViewResource<Boolean>>(replay = 0)
+    private val _validateTokenUserResult = MutableStateFlow<ViewResource<Boolean>>(ViewResource.Empty())
     override val getUserResult: StateFlow<ViewResource<UserParamResponse>> = _getUserResult
     override val logoutUserResult: StateFlow<ViewResource<String>> = _logoutUserResult
-    override val validateTokenUserResult: SharedFlow<ViewResource<Boolean>> = _validateTokenUserResult
+    override val validateTokenUserResult: StateFlow<ViewResource<Boolean>> = _validateTokenUserResult
 
     override fun getUser() {
         viewModelScope.launch {

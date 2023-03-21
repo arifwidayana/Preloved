@@ -9,4 +9,5 @@ object Navigation {
     // Uri Deeplink
     const val HOMEPAGE_URI = "Preloved://homeFragment"
     const val ACCOUNT_URI = "Preloved://accountFragment"
+    const val ORDER_URI = "Preloved://orderFragment"
 }

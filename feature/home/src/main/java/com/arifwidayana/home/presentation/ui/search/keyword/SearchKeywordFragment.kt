@@ -1,19 +1,20 @@
-package com.arifwidayana.home.presentation.ui.search
+package com.arifwidayana.home.presentation.ui.search.keyword
 
 import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import com.arifwidayana.core.base.BaseFragment
-import com.arifwidayana.home.databinding.FragmentSearchBinding
+import com.arifwidayana.home.databinding.FragmentSearchKeywordBinding
 import com.arifwidayana.home.presentation.adapter.category.SearchHistoryAdapter
 import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
 import org.koin.android.ext.android.inject
 
-class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
-    FragmentSearchBinding::inflate
+class SearchKeywordFragment : BaseFragment<FragmentSearchKeywordBinding, SearchKeywordViewModel>(
+    FragmentSearchKeywordBinding::inflate
 ) {
-    override val viewModel: SearchViewModel by inject()
+    override val viewModel: SearchKeywordViewModel by inject()
 
     override fun initView() {
         onView()
@@ -22,6 +23,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
 
     private fun onView() {
         viewModel.searchHistory()
+        binding.svProduct.onActionViewExpanded()
     }
 
     private fun onClick() {
@@ -32,6 +34,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
             svProduct.changed(
                 onQueryTextSubmit = {
                     viewModel.saveSearchHistory(it)
+                    moveNav(directionFrag(it))
                 },
                 onQueryTextChange = {
                     viewModel.searchHistory(it)
@@ -68,11 +71,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(
         }
     }
 
+    private fun directionFrag(data: String): NavDirections =
+        SearchKeywordFragmentDirections.actionSearchKeywordFragmentToSearchProductFragment(data)
+
     private fun setStateSearch(data: SearchHistoryParamResponse?) {
         binding.apply {
             val adapter = SearchHistoryAdapter {
                 viewModel.saveSearchHistory(it)
-//                moveNav()
+                moveNav(directionFrag(it))
             }
             adapter.submitList(data)
             rvSearchHistory.adapter = adapter

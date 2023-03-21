@@ -74,6 +74,6 @@ dependencies {
     androidTestImplementation(Library.androidEspressoCore)
 
     implementation(project(":shared"))
-    api(project(":feature:auth:login"))
-    api(project(":feature:bid"))
+    implementation(project(":feature:auth:login"))
+    implementation(project(":feature:bid"))
 }

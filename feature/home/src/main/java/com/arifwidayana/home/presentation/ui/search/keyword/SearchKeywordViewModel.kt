@@ -1,4 +1,4 @@
-package com.arifwidayana.home.presentation.ui.search
+package com.arifwidayana.home.presentation.ui.search.keyword
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class SearchViewModel(
+class SearchKeywordViewModel(
     private val postSearchHistoryUseCase: PostSearchHistoryUseCase,
     private val getSearchHistoryUseCase: GetSearchHistoryUseCase,
     private val getFindSearchHistoryUseCase: GetFindSearchHistoryUseCase
@@ -24,7 +24,6 @@ class SearchViewModel(
     override fun searchHistory(searchName: String?) {
         viewModelScope.launch {
             if (searchName?.isNotEmpty() == true) {
-//                saveSearchHistory(searchName = searchName)
                 getFindSearchHistoryUseCase(searchName).collect {
                     _searchHistoryResult.value = it
                 }
