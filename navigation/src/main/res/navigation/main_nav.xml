@@ -9,4 +9,5 @@
         android:label="SplashFragment" />
     <include app:graph="@navigation/home_nav" />
     <include app:graph="@navigation/account_nav" />
+    <include app:graph="@navigation/notification_nav" />
 </navigation>
