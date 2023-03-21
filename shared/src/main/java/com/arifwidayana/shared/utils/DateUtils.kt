@@ -54,23 +54,24 @@ object DateUtils {
         }
     }
 
-    fun getLocalDateTime(): String {
+    fun getLocalDateTime(pattern: String? = null): String {
+        val formatPattern = pattern ?: Constant.PATTERN_FORMAT_1
         val timeZone = TimeZone.getDefault()
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val dateTimeFormatter = DateTimeFormatter.ofPattern(formatPattern)
             val localDateTime = LocalDateTime.now(ZoneId.of(timeZone.id))
             localDateTime.format(dateTimeFormatter)
         } else {
-            val simpleDateFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val simpleDateFormatter = SimpleDateFormat(formatPattern, Locale.getDefault())
             simpleDateFormatter.timeZone = timeZone
             simpleDateFormatter.format(Calendar.getInstance().time)
         }
     }
 
-    fun convertDateTime(time: String? = null): String {
+    fun convertDateTime(time: String? = null, pattern: String = Constant.PATTERN_FORMAT_1): String {
         val timeZone = TimeZone.getDefault()
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+            val dateTimeFormatter = DateTimeFormatter.ofPattern(pattern)
             val zonedDateTime = if (time != null) {
                 ZonedDateTime.parse(time, DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.of("UTC")))
             } else {
@@ -79,8 +80,8 @@ object DateUtils {
             val localDateTime = zonedDateTime.toLocalDateTime()
             localDateTime.format(dateTimeFormatter)
         } else {
-            val simpleDateFormatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault())
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            val simpleDateFormatter = SimpleDateFormat(pattern, Locale.getDefault())
+            val dateFormat = SimpleDateFormat(Constant.PATTERN_FORMAT_DEFAULT, Locale.getDefault())
             simpleDateFormatter.timeZone = TimeZone.getDefault()
             dateFormat.timeZone = TimeZone.getTimeZone("UTC")
             return if (time != null) {

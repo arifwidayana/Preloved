@@ -9,17 +9,31 @@ object Constant {
     // PATH
     const val ID_PATH = "id"
 
-    // STATUS
+    // TYPE
+    const val BUYER = "buyer"
+    const val SELLER = "seller"
+
+    // STATUS PRODUCT
     const val AVAILABLE = "available"
     const val SOLD = "sold"
     const val PENDING = "pending"
+
+    // STATUS NOTIFICATION
+    const val BID = "bid"
     const val DECLINED = "declined"
+    const val ACCEPTED = "accepted"
+    const val CREATE = "create"
 
     // QUERY
     const val PAGE = "page"
     const val PER_PAGE = "per_page"
     const val CATEGORY_ID = "category_id"
     const val SEARCH = "search"
+
+    // DATE PATTERN
+    const val PATTERN_FORMAT_DEFAULT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    const val PATTERN_FORMAT_1 = "dd-MM-yyyy HH:mm:ss"
+    const val PATTERN_FORMAT_2 = "dd MMM yyyy, HH:mm 'WIB'"
 
     // INDEX
     const val DEFAULT_INDEX_PAGE = 1
@@ -49,6 +63,10 @@ object Constant {
     const val PASSWORD_CURRENT_FIELD = 0
     const val PASSWORD_NEW_FIELD = 1
     const val PASSWORD_CONFIRM_NEW_FIELD = 2
+
+    // NOTIFICATION
+    const val NOTIFICATION_MESSAGE = 0
+    const val NOTIFICATION_STATUS = 1
 
     // DELAY
     const val DELAY_AUTO_SLIDE = 3000L
