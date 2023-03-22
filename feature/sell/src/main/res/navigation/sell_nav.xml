@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sell_nav"
+    app:startDestination="@id/sellFragment">
+
+    <fragment
+        android:id="@+id/sellFragment"
+        android:name="com.arifwidayana.sell.presentation.ui.SellFragment"
+        android:label="fragment_sell"
+        tools:layout="@layout/fragment_sell" />
+</navigation>
