@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_notification"
         android:title="@string/notification" />
     <item
-        android:id="@+id/sellFragment"
+        android:id="@+id/sell_nav"
         android:icon="@drawable/ic_post_add"
         android:title="@string/sell" />
     <item
