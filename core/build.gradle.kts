@@ -140,6 +140,9 @@ dependencies {
     api(Library.glide)
     kapt(Library.glideCompiler)
 
+    // ImagePicker
+    api(Library.imagePicker)
+
     // Coil
     api(Library.coil)
 
