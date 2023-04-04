@@ -78,12 +78,15 @@
 
     #Sell
     <string name="sell">Sell</string>
+    <string name="submit">Submit</string>
+    <string name="sell_product">Sell Product</string>
     <string name="preview">Preview</string>
     <string name="product_data">Product Data</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Product Price</string>
     <string name="image_product">Image Product <b><font color='#EE839F'>*</font></b></string>
     <string name="select_category">Select Category</string>
+    <string name="publish">Publish</string>
 
     #Sale
     <string name="sale">Sale</string>
