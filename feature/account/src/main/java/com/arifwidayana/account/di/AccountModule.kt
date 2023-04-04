@@ -5,7 +5,6 @@ import com.arifwidayana.account.data.datasource.AccountDatasourceImpl
 import com.arifwidayana.account.data.repository.AccountRepository
 import com.arifwidayana.account.data.repository.AccountRepositoryImpl
 import com.arifwidayana.account.data.service.AccountService
-import com.arifwidayana.account.domain.*
 import com.arifwidayana.account.domain.order.OrderUseCase
 import com.arifwidayana.account.domain.password.PasswordFieldValidationUseCase
 import com.arifwidayana.account.domain.password.UpdatePasswordUseCase
@@ -19,6 +18,7 @@ import com.arifwidayana.account.presentation.ui.profile.ProfileViewModel
 import com.arifwidayana.account.presentation.ui.wishlist.WishlistViewModel
 import com.arifwidayana.core.base.FeatureModule
 import com.arifwidayana.shared.data.network.NetworkClient
+import com.arifwidayana.shared.domain.UserUseCase
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module

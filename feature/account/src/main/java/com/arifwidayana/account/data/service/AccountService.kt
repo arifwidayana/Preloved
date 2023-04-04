@@ -13,9 +13,6 @@ import retrofit2.http.PUT
 import java.io.File
 
 interface AccountService {
-    @GET(BuildConfig.END_POINT_USER)
-    suspend fun getUser(): UserResponse
-
     @PUT(BuildConfig.END_POINT_USER)
     suspend fun uploadImageProfile(@Body image: File): UserResponse
 
