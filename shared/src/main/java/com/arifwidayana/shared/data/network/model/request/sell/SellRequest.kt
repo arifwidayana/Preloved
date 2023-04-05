@@ -1,7 +1,7 @@
 package com.arifwidayana.shared.data.network.model.request.sell
 
 import com.google.gson.annotations.SerializedName
-import okhttp3.RequestBody
+import java.io.File
 
 data class SellRequest(
     @SerializedName("name")
@@ -15,5 +15,5 @@ data class SellRequest(
     @SerializedName("location")
     val location: String?,
     @SerializedName("image")
-    val image: RequestBody?
+    val image: File?
 )
