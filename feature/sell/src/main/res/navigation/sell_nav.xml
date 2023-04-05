@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/sellFragment"
-        android:name="com.arifwidayana.sell.presentation.ui.SellFragment"
+        android:name="com.arifwidayana.sell.presentation.ui.sell.SellFragment"
         android:label="fragment_sell"
-        tools:layout="@layout/fragment_sell" />
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_sellFragment_to_previewFragment"
+            app:destination="@id/previewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewFragment"
+        android:name="com.arifwidayana.sell.presentation.ui.preview.PreviewFragment"
+        android:label="fragment_preview"
+        tools:layout="@layout/fragment_preview" >
+        <argument
+            android:name="preview"
+            app:argType="com.arifwidayana.shared.data.network.model.request.sell.preview.PreviewRequest" />
+    </fragment>
 </navigation>
