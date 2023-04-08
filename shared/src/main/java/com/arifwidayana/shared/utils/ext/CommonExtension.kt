@@ -13,16 +13,22 @@ fun convertCurrency(value: Int): String {
         .format(value)
 }
 
-fun uriToFile(context: Context, uri: Uri): File {
-    val file = File(
-        context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-        "${System.currentTimeMillis()}.jpg"
-    )
-    context.contentResolver.openInputStream(uri)?.use { inputStream ->
-        file.outputStream().use { outputStream ->
-            inputStream.copyTo(outputStream)
+fun uriToFile(context: Context, uri: Uri? = null): File? {
+    return when (uri) {
+        null -> {
+            null
+        }
+        else -> {
+            val file = File(
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                "${System.currentTimeMillis()}.jpg"
+            )
+            context.contentResolver.openInputStream(uri)?.use { inputStream ->
+                file.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+            return file
         }
     }
-
-    return file
 }
