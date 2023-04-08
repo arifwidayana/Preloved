@@ -10,12 +10,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import coil.size.Scale
 import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.core.utils.FieldErrorException
 import com.arifwidayana.sell.databinding.FragmentSellBinding
 import com.arifwidayana.sell.presentation.ui.category.AddCategoryFragment
 import com.arifwidayana.shared.data.network.model.request.sell.SellParamRequest
 import com.arifwidayana.shared.data.network.model.request.sell.category.SellCategoryRequest
 import com.arifwidayana.shared.data.network.model.request.sell.preview.PreviewRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
+import com.arifwidayana.shared.utils.Constant
+import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
 import com.arifwidayana.shared.utils.ext.uriToFile
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -26,7 +29,7 @@ import java.io.File
 class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
     FragmentSellBinding::inflate
 ) {
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
     private lateinit var userParamResponse: UserParamResponse
     private lateinit var listCategory: List<SellCategoryRequest>
     override val viewModel: SellViewModel by inject()
@@ -38,6 +41,7 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
 
     private fun onView() {
         viewModel.getUser()
+        resetFieldError()
         listCategory = viewModel.listCategoryResult
         binding.etProductCategory.setText(listCategory.joinToString { it.name })
     }
@@ -79,7 +83,10 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
                                 showMessageToast(true, "Create product success!")
                             },
                             doOnError = { error ->
-                                showMessageSnackBar(true, exception = error.exception)
+                                when (error.exception) {
+                                    is FieldErrorException -> handleErrorField(error.exception as FieldErrorException)
+                                    else -> showMessageSnackBar(true, exception = error.exception)
+                                }
                             }
                         )
                     }
@@ -158,4 +165,45 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
                 }
             }
         }
+
+    private fun resetFieldError() {
+        binding.apply {
+            etProductName.changed(onTextChanged = {
+                tilProductName.isErrorEnabled = false
+            })
+            etProductPrice.changed(onTextChanged = {
+                tilProductPrice.isErrorEnabled = false
+            })
+            etProductCategory.changed(onTextChanged = {
+                tilProductCategory.isErrorEnabled = false
+            })
+            etProductDescription.changed(onTextChanged = {
+                tilProductDescription.isErrorEnabled = false
+            })
+        }
+    }
+
+    private fun handleErrorField(fieldErrorException: FieldErrorException) {
+        binding.apply {
+            fieldErrorException.apply {
+                errorFields.forEach {
+                    if (it.first == Constant.SELL_NAME_FIELD) {
+                        tilProductName.error = getString(it.second)
+                    }
+                    if (it.first == Constant.SELL_PRICE_FIELD) {
+                        tilProductPrice.error = getString(it.second)
+                    }
+                    if (it.first == Constant.SELL_CATEGORY_FIELD) {
+                        tilProductCategory.error = getString(it.second)
+                    }
+                    if (it.first == Constant.SELL_DESCRIPTION_FIELD) {
+                        tilProductDescription.error = getString(it.second)
+                    }
+                    if (it.first == Constant.SELL_IMAGE_FIELD) {
+                        showMessageToast(true, getString(it.second))
+                    }
+                }
+            }
+        }
+    }
 }
