@@ -14,18 +14,26 @@ import kotlinx.coroutines.flow.flow
 
 class CreateProductUseCase(
     private val sellRepository: SellRepository,
+    private val fieldValidation: CreateProductFieldValidationUseCase,
     coroutineDispatcher: CoroutineDispatcher
 ) : BaseUseCase<SellParamRequest, SellResponse>(coroutineDispatcher) {
     override suspend fun execute(param: SellParamRequest?): Flow<ViewResource<SellResponse>> = flow {
         emit(ViewResource.Loading())
-        param?.let {
-            sellRepository.createProduct(
-                SellMapper.toDataObject(it)
-            ).first().suspendSource(
-                doOnSuccess = { source ->
-                    source.payload?.let { res ->
-                        emit(ViewResource.Success(res))
-                    }
+        param?.let { p ->
+            fieldValidation(p).first().suspendSource(
+                doOnSuccess = {
+                    sellRepository.createProduct(
+                        SellMapper.toDataObject(p)
+                    ).first().suspendSource(
+                        doOnSuccess = { source ->
+                            source.payload?.let { res ->
+                                emit(ViewResource.Success(res))
+                            }
+                        },
+                        doOnError = { error ->
+                            emit(ViewResource.Error(error.exception))
+                        }
+                    )
                 },
                 doOnError = { error ->
                     emit(ViewResource.Error(error.exception))
