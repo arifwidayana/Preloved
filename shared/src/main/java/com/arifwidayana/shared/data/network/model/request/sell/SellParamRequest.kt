@@ -12,5 +12,5 @@ data class SellParamRequest(
     val basePrice: Int,
     val categoryId: List<SellCategoryRequest>,
     val location: String,
-    val image: File
+    val image: File?
 ) : Parcelable

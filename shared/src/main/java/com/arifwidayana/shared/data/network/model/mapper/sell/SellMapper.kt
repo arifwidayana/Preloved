@@ -13,14 +13,16 @@ object SellMapper : DataObjectMapper<RequestBody, SellParamRequest> {
 
     private fun requestPartBody(viewParam: SellParamRequest?): RequestBody {
         val requestBuilder = MultipartBody.Builder()
-        viewParam?.let { it ->
-            requestBuilder.setType(MultipartBody.FORM)
-                .addFormDataPart("name", it.name)
-                .addFormDataPart("description", it.description)
-                .addFormDataPart("base_price", it.basePrice.toString())
-                .addFormDataPart("category_ids", it.categoryId.map { map -> map.id }.toString())
-                .addFormDataPart("location", it.location)
-                .addFormDataPart("image", it.image.name, it.image.asRequestBody("image/jpg".toMediaType()))
+        viewParam?.let {
+            it.image?.let { file ->
+                requestBuilder.setType(MultipartBody.FORM)
+                    .addFormDataPart("name", it.name)
+                    .addFormDataPart("description", it.description)
+                    .addFormDataPart("base_price", it.basePrice.toString())
+                    .addFormDataPart("category_ids", it.categoryId.map { map -> map.id }.toString())
+                    .addFormDataPart("location", it.location)
+                    .addFormDataPart("image", file.name, file.asRequestBody("image/jpg".toMediaType()))
+            }
         }
         return requestBuilder.build()
     }
