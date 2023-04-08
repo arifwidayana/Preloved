@@ -7,6 +7,7 @@ import com.arifwidayana.sell.data.repository.SellRepository
 import com.arifwidayana.sell.data.repository.SellRepositoryImpl
 import com.arifwidayana.sell.data.service.SellService
 import com.arifwidayana.sell.domain.CategoryProductUseCase
+import com.arifwidayana.sell.domain.CreateProductFieldValidationUseCase
 import com.arifwidayana.sell.domain.CreateProductUseCase
 import com.arifwidayana.sell.presentation.ui.category.AddCategoryViewModel
 import com.arifwidayana.sell.presentation.ui.sell.SellViewModel
@@ -27,7 +28,8 @@ object SellModule : FeatureModule {
 
     override val useCases: Module = module {
         single { CategoryProductUseCase(get(), Dispatchers.IO) }
-        single { CreateProductUseCase(get(), Dispatchers.IO) }
+        single { CreateProductFieldValidationUseCase(Dispatchers.IO) }
+        single { CreateProductUseCase(get(), get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
