@@ -14,7 +14,7 @@
     <string name="address">Address</string>
     <string name="wrong_password">Wrong Password</string>
 
-    #Error Field
+    #Auth - Error Field
     <string name="error_field_fullname_empty">Nama lengkap wajib diisi</string>
     <string name="error_field_email_empty">Email wajib diisi</string>
     <string name="error_field_email_not_valid">Masukkan email yang valid</string>
@@ -87,6 +87,13 @@
     <string name="image_product">Image Product <b><font color='#EE839F'>*</font></b></string>
     <string name="select_category">Select Category</string>
     <string name="publish">Publish</string>
+
+    #Sell - Error Field
+    <string name="error_field_sell_name_empty">Nama product tidak boleh kosong</string>
+    <string name="error_field_sell_description_empty">Description product tidak boleh kosong</string>
+    <string name="error_field_sell_price_empty">Price product tidak boleh kosong</string>
+    <string name="error_field_sell_category_empty">Category product tidak boleh kosong</string>
+    <string name="error_field_sell_image_empty">Image product wajib dipasang</string>
 
     #Sale
     <string name="sale">Sale</string>
@@ -179,4 +186,5 @@
     <string name="accept_offer">Accept the Offer?</string>
     <string name="accept">Accept</string>
     <string name="decline_the_offer">Decline the Offer?</string>
+    <string name="zero">0</string>
 </resources>

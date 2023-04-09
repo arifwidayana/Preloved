@@ -43,35 +43,35 @@ class CreateProductFieldValidationUseCase(
 
     private fun isNameValid(name: String): Pair<Int, Int>? {
         return when {
-            name.isEmpty() -> Pair(Constant.SELL_NAME_FIELD, R.string.error_field_fullname_empty)
+            name.isEmpty() -> Pair(Constant.SELL_NAME_FIELD, R.string.error_field_sell_name_empty)
             else -> null
         }
     }
 
     private fun isDescriptionValid(description: String): Pair<Int, Int>? {
         return when {
-            description.isEmpty() -> Pair(Constant.SELL_DESCRIPTION_FIELD, R.string.error_field_fullname_empty)
+            description.isEmpty() -> Pair(Constant.SELL_DESCRIPTION_FIELD, R.string.error_field_sell_description_empty)
             else -> null
         }
     }
 
     private fun isPriceValid(price: Int): Pair<Int, Int>? {
         return when (price) {
-            0 -> Pair(Constant.SELL_PRICE_FIELD, R.string.error_field_fullname_empty)
+            0 -> Pair(Constant.SELL_PRICE_FIELD, R.string.error_field_sell_price_empty)
             else -> null
         }
     }
 
     private fun isCategoryValid(category: Int): Pair<Int, Int>? {
         return when (category) {
-            0 -> Pair(Constant.SELL_CATEGORY_FIELD, R.string.error_field_fullname_empty)
+            0 -> Pair(Constant.SELL_CATEGORY_FIELD, R.string.error_field_sell_category_empty)
             else -> null
         }
     }
 
     private fun isImageValid(image: File?): Pair<Int, Int>? {
         return when (image) {
-            null -> Pair(Constant.SELL_IMAGE_FIELD, R.string.error_field_fullname_empty)
+            null -> Pair(Constant.SELL_IMAGE_FIELD, R.string.error_field_sell_image_empty)
             else -> null
         }
     }
