@@ -6,8 +6,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.arifwidayana.core.base.BaseFragment
+import com.arifwidayana.core.utils.FieldErrorException
 import com.arifwidayana.sell.databinding.FragmentPreviewBinding
 import com.arifwidayana.sell.presentation.ui.sell.SellViewModel
+import com.arifwidayana.shared.utils.Constant
+import com.arifwidayana.shared.utils.ext.convertCurrency
 import com.arifwidayana.shared.utils.ext.source
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -28,8 +31,9 @@ class PreviewFragment : BaseFragment<FragmentPreviewBinding, SellViewModel>(
             sivImageProduct.load(args.preview.sellParamRequest.image)
             sivPhotoSeller.load(args.preview.userParamResponse.imageUrl)
             tvTitleProduct.text = args.preview.sellParamRequest.name
-            tvCategoryProduct.text = args.preview.sellParamRequest.categoryId.joinToString { it.name }
-            tvPriceProduct.text = args.preview.sellParamRequest.basePrice.toString()
+            tvCategoryProduct.text =
+                args.preview.sellParamRequest.categoryId.joinToString { it.name }
+            tvPriceProduct.text = convertCurrency(args.preview.sellParamRequest.basePrice)
             tvDescriptionProduct.text = args.preview.sellParamRequest.description
             tvUsernameSeller.text = args.preview.userParamResponse.fullName
             tvLocationSeller.text = args.preview.userParamResponse.city
@@ -57,9 +61,22 @@ class PreviewFragment : BaseFragment<FragmentPreviewBinding, SellViewModel>(
                             showMessageToast(true, "Create product success!")
                         },
                         doOnError = { error ->
-                            showMessageSnackBar(true, exception = error.exception)
+                            when (error.exception) {
+                                is FieldErrorException -> handleErrorField(error.exception as FieldErrorException)
+                                else -> showMessageSnackBar(true, exception = error.exception)
+                            }
                         }
                     )
+                }
+            }
+        }
+    }
+
+    private fun handleErrorField(fieldErrorException: FieldErrorException) {
+        binding.apply {
+            fieldErrorException.errorFields.forEach {
+                if (it.first == Constant.SELL_IMAGE_FIELD) {
+                    showMessageToast(true, getString(it.second))
                 }
             }
         }

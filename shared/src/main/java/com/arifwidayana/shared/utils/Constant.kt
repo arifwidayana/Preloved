@@ -35,6 +35,9 @@ object Constant {
     const val PATTERN_FORMAT_1 = "dd-MM-yyyy HH:mm:ss"
     const val PATTERN_FORMAT_2 = "dd MMM yyyy, HH:mm 'WIB'"
 
+    // DEFAULT CURRENCY
+    const val ZERO_VALUE = 0
+
     // INDEX
     const val DEFAULT_INDEX_PAGE = 1
     const val DEFAULT_INDEX_PER_PAGE = 10
