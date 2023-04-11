@@ -20,6 +20,9 @@ fun EditText.changed(
             onTextChanged?.invoke(s.toString())
         }
         override fun afterTextChanged(editable: Editable?) {
+            this@changed.removeTextChangedListener(this).also {
+                addTextChangedListener(this)
+            }
             afterTextChanged?.invoke(editable.toString())
         }
     })
