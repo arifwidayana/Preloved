@@ -45,7 +45,7 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
             etProductCategory.setText(listCategory.joinToString { it.name })
             etProductPrice.changed(
                 onTextChanged = {
-                    if (it.isEmpty()) etProductPrice.setText("0")
+                    if (it.isEmpty()) etProductPrice.setText(Constant.ZERO_VALUE.toString())
                 },
                 afterTextChanged = {
                     if (it.isEmpty()) return@changed
