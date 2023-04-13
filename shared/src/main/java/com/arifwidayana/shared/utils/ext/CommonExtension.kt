@@ -5,12 +5,25 @@ import android.net.Uri
 import android.os.Environment
 import java.io.File
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.*
 
+private val defaultCurrency = DecimalFormat.getCurrencyInstance(Locale("id", "ID"))
+private val formatCurrency = DecimalFormatSymbols(Locale("id", "ID"))
+
 fun convertCurrency(value: Int): String {
-    return DecimalFormat
-        .getCurrencyInstance(Locale("id", "ID"))
-        .format(value)
+    return defaultCurrency.format(value)
+}
+
+fun parseCurrencyValue(value: String): String {
+    val defaultDecimalFormat = DecimalFormat("#,###")
+    val newCurrency = value.replace("[,.]".toRegex(), "").toBigDecimal()
+    defaultDecimalFormat.decimalFormatSymbols = formatCurrency.apply { groupingSeparator = '.' }
+    return defaultDecimalFormat.format(newCurrency)
+}
+
+fun clearCurrencyValue(value: String): String {
+    return value.replace("[,.]".toRegex(), "")
 }
 
 fun uriToFile(context: Context, uri: Uri? = null): File? {
@@ -28,7 +41,7 @@ fun uriToFile(context: Context, uri: Uri? = null): File? {
                     inputStream.copyTo(outputStream)
                 }
             }
-            return file
+            file
         }
     }
 }

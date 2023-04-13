@@ -18,9 +18,7 @@ import com.arifwidayana.shared.data.network.model.request.sell.category.SellCate
 import com.arifwidayana.shared.data.network.model.request.sell.preview.PreviewRequest
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
 import com.arifwidayana.shared.utils.Constant
-import com.arifwidayana.shared.utils.ext.changed
-import com.arifwidayana.shared.utils.ext.source
-import com.arifwidayana.shared.utils.ext.uriToFile
+import com.arifwidayana.shared.utils.ext.*
 import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -40,10 +38,23 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
     }
 
     private fun onView() {
-        viewModel.getUser()
-        resetFieldError()
-        listCategory = viewModel.listCategoryResult
-        binding.etProductCategory.setText(listCategory.joinToString { it.name })
+        binding.apply {
+            viewModel.getUser()
+            resetFieldError()
+            listCategory = viewModel.listCategoryResult
+            etProductCategory.setText(listCategory.joinToString { it.name })
+            etProductPrice.changed(
+                onTextChanged = {
+                    if (it.isEmpty()) etProductPrice.setText("0")
+                },
+                afterTextChanged = {
+                    if (it.isEmpty()) return@changed
+                    val parsed = parseCurrencyValue(it)
+                    etProductPrice.setText(parsed)
+                    etProductPrice.setSelection(parsed.length)
+                }
+            )
+        }
     }
 
     private fun onClick() {
@@ -115,7 +126,7 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
             return SellParamRequest(
                 name = etProductName.text.toString(),
                 description = etProductDescription.text.toString(),
-                basePrice = etProductPrice.text.toString().toInt(),
+                basePrice = clearCurrencyValue(etProductPrice.text.toString()).toInt(),
                 categoryId = listCategory,
                 location = userParamResponse.city,
                 image = uriToFile(requireContext(), imageUri)
@@ -185,25 +196,30 @@ class SellFragment : BaseFragment<FragmentSellBinding, SellViewModel>(
 
     private fun handleErrorField(fieldErrorException: FieldErrorException) {
         binding.apply {
-            fieldErrorException.apply {
-                errorFields.forEach {
-                    if (it.first == Constant.SELL_NAME_FIELD) {
-                        tilProductName.error = getString(it.second)
-                    }
-                    if (it.first == Constant.SELL_PRICE_FIELD) {
-                        tilProductPrice.error = getString(it.second)
-                    }
-                    if (it.first == Constant.SELL_CATEGORY_FIELD) {
-                        tilProductCategory.error = getString(it.second)
-                    }
-                    if (it.first == Constant.SELL_DESCRIPTION_FIELD) {
-                        tilProductDescription.error = getString(it.second)
-                    }
-                    if (it.first == Constant.SELL_IMAGE_FIELD) {
-                        showMessageToast(true, getString(it.second))
-                    }
+            fieldErrorException.errorFields.forEach {
+                if (it.first == Constant.SELL_NAME_FIELD) {
+                    tilProductName.error = getString(it.second)
+                }
+                if (it.first == Constant.SELL_PRICE_FIELD) {
+                    tilProductPrice.error = getString(it.second)
+                }
+                if (it.first == Constant.SELL_CATEGORY_FIELD) {
+                    tilProductCategory.error = getString(it.second)
+                }
+                if (it.first == Constant.SELL_DESCRIPTION_FIELD) {
+                    tilProductDescription.error = getString(it.second)
+                }
+                if (it.first == Constant.SELL_IMAGE_FIELD) {
+                    showMessageToast(true, getString(it.second))
                 }
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.sivImageProduct.load(imageUri) {
+            scale(Scale.FILL)
         }
     }
 }

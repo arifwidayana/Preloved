@@ -16,9 +16,11 @@ fun EditText.changed(
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             beforeTextChanged?.invoke(s.toString())
         }
+
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             onTextChanged?.invoke(s.toString())
         }
+
         override fun afterTextChanged(editable: Editable?) {
             this@changed.removeTextChangedListener(this).also {
                 addTextChangedListener(this)
@@ -37,9 +39,11 @@ fun TabLayout.changed(
         override fun onTabSelected(tab: TabLayout.Tab?) {
             onTabSelected?.invoke(tab?.id ?: 0)
         }
+
         override fun onTabUnselected(tab: TabLayout.Tab?) {
             onTabUnselected?.invoke(tab?.id ?: 0)
         }
+
         override fun onTabReselected(tab: TabLayout.Tab?) {
             onTabReselected?.invoke(tab?.id ?: 0)
         }
