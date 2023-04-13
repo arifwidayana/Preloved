@@ -10,7 +10,6 @@ import com.arifwidayana.shared.data.network.model.response.account.wishlist.Wish
 import java.io.File
 
 interface AccountDatasource {
-    suspend fun getUser(): UserResponse
     suspend fun uploadImageProfile(image: File): UserResponse
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): UserResponse
     suspend fun updatePassword(passwordRequest: PasswordRequest): BaseDefaultResponse
@@ -21,10 +20,6 @@ interface AccountDatasource {
 class AccountDatasourceImpl(
     private val accountService: AccountService
 ) : AccountDatasource {
-    override suspend fun getUser(): UserResponse {
-        return accountService.getUser()
-    }
-
     override suspend fun uploadImageProfile(image: File): UserResponse {
         return accountService.uploadImageProfile(image)
     }

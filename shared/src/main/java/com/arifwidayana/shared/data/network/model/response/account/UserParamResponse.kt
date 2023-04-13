@@ -1,5 +1,9 @@
 package com.arifwidayana.shared.data.network.model.response.account
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class UserParamResponse(
     val id: Int,
     val fullName: String,
@@ -11,4 +15,4 @@ data class UserParamResponse(
     val city: String,
     val createdAt: String,
     val updatedAt: String
-)
+) : Parcelable

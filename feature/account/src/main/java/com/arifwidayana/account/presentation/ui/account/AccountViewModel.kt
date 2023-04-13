@@ -2,10 +2,10 @@ package com.arifwidayana.account.presentation.ui.account
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arifwidayana.account.domain.UserUseCase
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.shared.data.network.model.response.account.UserParamResponse
 import com.arifwidayana.shared.domain.DeleteUserTokenUseCase
+import com.arifwidayana.shared.domain.UserUseCase
 import com.arifwidayana.shared.domain.ValidateUserTokenUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

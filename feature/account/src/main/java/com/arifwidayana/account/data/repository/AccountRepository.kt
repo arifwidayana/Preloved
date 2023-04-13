@@ -19,7 +19,6 @@ typealias OrderDataResource = DataResource<List<OrderAccountResponse>>
 typealias WishlistDataResource = DataResource<List<WishlistAccountResponse>>
 
 interface AccountRepository {
-    suspend fun getUser(): Flow<UserDataResource>
     suspend fun uploadImageProfile(image: File): Flow<UserDataResource>
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): Flow<UserDataResource>
     suspend fun updatePassword(passwordRequest: PasswordRequest): Flow<PasswordDataResource>
@@ -30,10 +29,6 @@ interface AccountRepository {
 class AccountRepositoryImpl(
     private val accountDatasource: AccountDatasource
 ) : AccountRepository, Repository() {
-    override suspend fun getUser(): Flow<UserDataResource> = flow {
-        emit(safeNetworkCall { accountDatasource.getUser() })
-    }
-
     override suspend fun uploadImageProfile(image: File): Flow<UserDataResource> = flow {
         emit(safeNetworkCall { accountDatasource.uploadImageProfile(image) })
     }

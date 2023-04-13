@@ -35,16 +35,19 @@ object Constant {
     const val PATTERN_FORMAT_1 = "dd-MM-yyyy HH:mm:ss"
     const val PATTERN_FORMAT_2 = "dd MMM yyyy, HH:mm 'WIB'"
 
+    // DEFAULT CURRENCY
+    const val ZERO_VALUE = 0
+
     // INDEX
     const val DEFAULT_INDEX_PAGE = 1
     const val DEFAULT_INDEX_PER_PAGE = 10
     const val NETWORK_PAGE_SIZE = 25
 
-    // LOGIN
+    // AUTH - LOGIN
     const val LOGIN_EMAIL_FIELD = 0
     const val LOGIN_PASSWORD_FIELD = 1
 
-    // REGISTER
+    // AUTH - REGISTER
     const val REGISTER_FULLNAME_FIELD = 0
     const val REGISTER_EMAIL_FIELD = 1
     const val REGISTER_PASSWORD_FIELD = 2
@@ -53,16 +56,23 @@ object Constant {
     const val REGISTER_ADDRESS_FIELD = 5
     const val REGISTER_CITY_FIELD = 6
 
-    // PROFILE
+    // ACCOUNT - PROFILE
     const val PROFILE_FULLNAME_FIELD = 0
     const val PROFILE_PHONE_NUMBER_FIELD = 1
     const val PROFILE_ADDRESS_FIELD = 2
     const val PROFILE_CITY_FIELD = 3
 
-    // PASSWORD
+    // ACCOUNT - PASSWORD
     const val PASSWORD_CURRENT_FIELD = 0
     const val PASSWORD_NEW_FIELD = 1
     const val PASSWORD_CONFIRM_NEW_FIELD = 2
+
+    // SELL
+    const val SELL_NAME_FIELD = 0
+    const val SELL_DESCRIPTION_FIELD = 1
+    const val SELL_PRICE_FIELD = 2
+    const val SELL_CATEGORY_FIELD = 3
+    const val SELL_IMAGE_FIELD = 4
 
     // NOTIFICATION
     const val NOTIFICATION_MESSAGE = 0
