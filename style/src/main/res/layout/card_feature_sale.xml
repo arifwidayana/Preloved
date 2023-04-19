@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tab_feature"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_box"
+    app:backgroundTint="@null"
+    android:background="@drawable/tab_selector_feature"
+    android:textAllCaps="false"
+    android:textSize="@dimen/sub_content"
+    tools:text="@string/change" />
