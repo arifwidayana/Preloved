@@ -54,7 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_category"
-                app:tabBackground="@drawable/tab_color_selector"
+                app:tabBackground="@drawable/tab_selector_category"
                 app:tabIndicator="@null"
                 app:tabIndicatorAnimationMode="elastic"
                 app:tabMode="scrollable"
