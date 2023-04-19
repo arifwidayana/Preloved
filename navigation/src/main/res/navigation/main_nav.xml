@@ -11,4 +11,5 @@
     <include app:graph="@navigation/account_nav" />
     <include app:graph="@navigation/notification_nav" />
     <include app:graph="@navigation/sell_nav" />
+    <include app:graph="@navigation/sale_nav" />
 </navigation>
