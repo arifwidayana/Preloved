@@ -100,6 +100,7 @@
     <string name="change">Change</string>
     <string name="products">Products</string>
     <string name="interested">Interested</string>
+    <string name="list_product">List Product</string>
     <string name="sold">Sold</string>
     <string name="history">History</string>
     <string name="no_products">No Product Show, Add First</string>
@@ -113,6 +114,14 @@
     <string name="add_4">Add \n Product (4/5)</string>
     <string name="add_5">Add \n Product (5/5)</string>
     <string name="max_upload">Max Upload 5 Product</string>
+    
+    #Sale - Tab Feature
+    <string-array name="tab_feature_sale">
+        <item>Product</item>
+        <item>Interested</item>
+        <item>Sold</item>
+        <item>History</item>
+    </string-array>
 
     #Account
     <string name="account">Account</string>
@@ -165,7 +174,6 @@
     <string name="berhasil_di_rp_200_000">Berhasil di Rp 200.000</string>
     <string name="notif_message">Pesan Notif</string>
     <string name="product_offer">Product Offer</string>
-    <string name="list_product">List Product</string>
     <string name="seller_name">Seller Name</string>
     <string name="product_selled">Product Selled</string>
     <string name="ditawar_rp_200_000">Offered Rp.200.000</string>
