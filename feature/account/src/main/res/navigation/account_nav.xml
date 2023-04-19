@@ -52,12 +52,16 @@
         android:id="@+id/profileFragment"
         android:name="com.arifwidayana.account.presentation.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:uri="Preloved://profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wishlistFragment"
         android:name="com.arifwidayana.account.presentation.ui.wishlist.WishlistFragment"
         android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist" >
+        tools:layout="@layout/fragment_wishlist">
         <action
             android:id="@+id/action_wishlistFragment_to_bid_nav"
             app:destination="@id/bid_nav" />
