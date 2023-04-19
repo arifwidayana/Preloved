@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:start="15dp" android:end="15dp">
+    <item android:start="16dp" android:end="16dp">
         <shape>
             <solid android:color="@android:color/transparent"/>
-
         </shape>
     </item>
 </layer-list>
