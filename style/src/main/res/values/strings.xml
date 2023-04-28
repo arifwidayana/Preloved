@@ -114,7 +114,12 @@
     <string name="add_4">Add \n Product (4/5)</string>
     <string name="add_5">Add \n Product (5/5)</string>
     <string name="max_upload">Max Upload 5 Product</string>
-    
+
+    #Sale - History
+    <string name="status_sale_history_accepted">Product Offer Accepted</string>
+    <string name="status_sale_history_declined">Product Offer Declined</string>
+    <string name="status_sale_history_unknown">Product Offer Unknown</string>
+
     #Sale - Tab Feature
     <string-array name="tab_feature_sale">
         <item>Product</item>
