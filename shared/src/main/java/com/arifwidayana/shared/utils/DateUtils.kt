@@ -82,7 +82,7 @@ object DateUtils {
         } else {
             val simpleDateFormatter = SimpleDateFormat(pattern, Locale.getDefault())
             val dateFormat = SimpleDateFormat(Constant.PATTERN_FORMAT_DEFAULT, Locale.getDefault())
-            simpleDateFormatter.timeZone = TimeZone.getDefault()
+            simpleDateFormatter.timeZone = timeZone
             dateFormat.timeZone = TimeZone.getTimeZone("UTC")
             return if (time != null) {
                 simpleDateFormatter.format(dateFormat.parse(time) as Date)
