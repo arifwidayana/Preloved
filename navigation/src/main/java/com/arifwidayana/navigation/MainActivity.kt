@@ -19,26 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.apply {
-//            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//                if (navController.graph.findNode(item.itemId) != null) {
-//                    navController.graph.startDestination = item.itemId // <- The Magic Sauce
-//
-//                    val options = with(NavOptions.Builder()) {
-//                        setPopUpTo(R.navigation.my_nav_graph, true)
-//                        build()
-//                    }
-//
-//                    navController.navigate(item.itemId, null, options)
-//                    val parent = navigationView.parent
-//                    if (parent is DrawerLayout) {
-//                        parent.closeDrawer(navigationView)
-//                    }
-//                    return true
-//                }
-//
-//                return onNoDestination.invoke(item)
-//            }
-
             val navController = findNavController(R.id.fragmentContainerView)
             bottomNavigationView.setupWithNavController(navController)
 
