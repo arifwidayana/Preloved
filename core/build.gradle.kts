@@ -1,6 +1,4 @@
-import org.jetbrains.kotlin.konan.properties.Properties
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-import java.io.FileInputStream
 
 plugins {
     id("com.android.library")
@@ -8,11 +6,6 @@ plugins {
     id("kotlin-kapt")
     id("org.jlleitschuh.gradle.ktlint")
 }
-
-val corePropertiesFile = rootProject.file("core.properties")
-val coreProperties = Properties()
-
-coreProperties.load(FileInputStream(corePropertiesFile))
 
 android {
     namespace = "com.arifwidayana.core"
@@ -26,13 +19,29 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    signingConfigs {
+        create("productionSigningKey") {
+            storeFile = file(SigningHelper.getValue(SigningHelper.RELEASE_STORE_FILE))
+            storePassword = SigningHelper.getValue(SigningHelper.RELEASE_STORE_PASSWORD)
+            keyAlias = SigningHelper.getValue(SigningHelper.RELEASE_KEY_ALIAS)
+            keyPassword = SigningHelper.getValue(SigningHelper.RELEASE_KEY_PASSWORD)
+        }
+    }
+
     buildTypes {
-        release {
+        named("debug") {
             isMinifyEnabled = false
+            isJniDebuggable = true
+            signingConfig = signingConfigs.getByName("productionSigningKey")
+        }
+        named("release") {
+            isMinifyEnabled = false
+            isJniDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("productionSigningKey")
         }
     }
     compileOptions {
@@ -49,26 +58,26 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
-            buildConfigField("String", "BASE_URL", coreProperties["BASE_URL"].toString())
-            buildConfigField("String", "END_POINT_LOGIN", coreProperties["END_POINT_LOGIN"].toString())
-            buildConfigField("String", "END_POINT_REGISTER", coreProperties["END_POINT_REGISTER"].toString())
-            buildConfigField("String", "END_POINT_USER", coreProperties["END_POINT_USER"].toString())
-            buildConfigField("String", "END_POINT_CHANGE_PASSWORD", coreProperties["END_POINT_CHANGE_PASSWORD"].toString())
-            buildConfigField("String", "END_POINT_SELLER_PRODUCT", coreProperties["END_POINT_SELLER_PRODUCT"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_SELLER_PRODUCT", coreProperties["END_POINT_DETAIL_SELLER_PRODUCT"].toString())
-            buildConfigField("String", "END_POINT_SELLER_ORDER", coreProperties["END_POINT_SELLER_ORDER"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_SELLER_ORDER", coreProperties["END_POINT_DETAIL_SELLER_ORDER"].toString())
-            buildConfigField("String", "END_POINT_SELLER_CATEGORY", coreProperties["END_POINT_SELLER_CATEGORY"].toString())
-            buildConfigField("String", "END_POINT_SELLER_BANNER", coreProperties["END_POINT_SELLER_BANNER"].toString())
-            buildConfigField("String", "END_POINT_BUYER_PRODUCT", coreProperties["END_POINT_BUYER_PRODUCT"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_BUYER_PRODUCT", coreProperties["END_POINT_DETAIL_BUYER_PRODUCT"].toString())
-            buildConfigField("String", "END_POINT_BUYER_ORDER", coreProperties["END_POINT_BUYER_ORDER"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_BUYER_ORDER", coreProperties["END_POINT_DETAIL_BUYER_ORDER"].toString())
-            buildConfigField("String", "END_POINT_BUYER_WISHLIST", coreProperties["END_POINT_BUYER_WISHLIST"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_BUYER_WISHLIST", coreProperties["END_POINT_DETAIL_BUYER_WISHLIST"].toString())
-            buildConfigField("String", "END_POINT_HISTORY", coreProperties["END_POINT_HISTORY"].toString())
-            buildConfigField("String", "END_POINT_NOTIFICATION", coreProperties["END_POINT_NOTIFICATION"].toString())
-            buildConfigField("String", "END_POINT_DETAIL_NOTIFICATION", coreProperties["END_POINT_DETAIL_NOTIFICATION"].toString())
+            buildConfigField("String", "BASE_URL", CoreHelper.getValue(CoreHelper.BASE_URL))
+            buildConfigField("String", "END_POINT_LOGIN", CoreHelper.getValue(CoreHelper.END_POINT_LOGIN))
+            buildConfigField("String", "END_POINT_REGISTER", CoreHelper.getValue(CoreHelper.END_POINT_REGISTER))
+            buildConfigField("String", "END_POINT_USER", CoreHelper.getValue(CoreHelper.END_POINT_USER))
+            buildConfigField("String", "END_POINT_CHANGE_PASSWORD", CoreHelper.getValue(CoreHelper.END_POINT_CHANGE_PASSWORD))
+            buildConfigField("String", "END_POINT_SELLER_PRODUCT", CoreHelper.getValue(CoreHelper.END_POINT_SELLER_PRODUCT))
+            buildConfigField("String", "END_POINT_DETAIL_SELLER_PRODUCT", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_SELLER_PRODUCT))
+            buildConfigField("String", "END_POINT_SELLER_ORDER", CoreHelper.getValue(CoreHelper.END_POINT_SELLER_ORDER))
+            buildConfigField("String", "END_POINT_DETAIL_SELLER_ORDER", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_SELLER_ORDER))
+            buildConfigField("String", "END_POINT_SELLER_CATEGORY", CoreHelper.getValue(CoreHelper.END_POINT_SELLER_CATEGORY))
+            buildConfigField("String", "END_POINT_SELLER_BANNER", CoreHelper.getValue(CoreHelper.END_POINT_SELLER_BANNER))
+            buildConfigField("String", "END_POINT_BUYER_PRODUCT", CoreHelper.getValue(CoreHelper.END_POINT_BUYER_PRODUCT))
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_PRODUCT", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_BUYER_PRODUCT))
+            buildConfigField("String", "END_POINT_BUYER_ORDER", CoreHelper.getValue(CoreHelper.END_POINT_BUYER_ORDER))
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_ORDER", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_BUYER_ORDER))
+            buildConfigField("String", "END_POINT_BUYER_WISHLIST", CoreHelper.getValue(CoreHelper.END_POINT_BUYER_WISHLIST))
+            buildConfigField("String", "END_POINT_DETAIL_BUYER_WISHLIST", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_BUYER_WISHLIST))
+            buildConfigField("String", "END_POINT_HISTORY", CoreHelper.getValue(CoreHelper.END_POINT_HISTORY))
+            buildConfigField("String", "END_POINT_NOTIFICATION", CoreHelper.getValue(CoreHelper.END_POINT_NOTIFICATION))
+            buildConfigField("String", "END_POINT_DETAIL_NOTIFICATION", CoreHelper.getValue(CoreHelper.END_POINT_DETAIL_NOTIFICATION))
         }
     }
 }
