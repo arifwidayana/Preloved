@@ -1,40 +1,31 @@
-object AndroidConfig {
-    const val minSdk = 23
-    const val targetSdk = 33
-    const val compileSdk = 33
-    const val versionCode = 1
-    const val versionName = "1.0.0"
-    const val applicationId = "com.arifwidayana.preloved"
+object Versions {
+    const val coreKtx = "1.9.0"
+    const val appCompat = "1.6.0"
+    const val googleMaterial = "1.7.0"
+    const val constraint = "2.1.4"
+    const val junit = "4.13.2"
+    const val androidTestJunit = "1.1.4"
+    const val androidTestEspresso = "3.5.0"
+    const val lifecycle = "2.5.1"
+    const val coroutine = "1.6.4"
+    const val fragmentNavigation = "2.5.3"
+    const val gson = "2.9.0"
+    const val retrofit = "2.9.0"
+    const val chucker = "3.5.2"
+    const val hilt = "2.44"
+    const val koin = "3.2.2"
+    const val dataStore = "1.0.0"
+    const val room = "2.5.0"
+    const val paging = "3.1.1"
+    const val shimmer = "0.5.0"
+    const val glide = "4.13.2"
+    const val imagePicker = "2.1"
+    const val coil = "2.2.2"
+    const val swiperRefresh = "1.1.0"
+    const val mock = "1.13.3"
 }
 
 object Library {
-    object Versions {
-        const val coreKtx = "1.9.0"
-        const val appCompat = "1.6.0"
-        const val googleMaterial = "1.7.0"
-        const val constraint = "2.1.4"
-        const val junit = "4.13.2"
-        const val androidTestJunit = "1.1.4"
-        const val androidTestEspresso = "3.5.0"
-        const val lifecycle = "2.5.1"
-        const val coroutine = "1.6.4"
-        const val fragmentNavigation = "2.5.3"
-        const val gson = "2.9.0"
-        const val retrofit = "2.9.0"
-        const val chucker = "3.5.2"
-        const val hilt = "2.44"
-        const val koin = "3.2.2"
-        const val dataStore = "1.0.0"
-        const val room = "2.5.0"
-        const val paging = "3.1.1"
-        const val shimmer = "0.5.0"
-        const val glide = "4.13.2"
-        const val imagePicker = "2.1"
-        const val coil = "2.2.2"
-        const val swiperRefresh = "1.1.0"
-        const val mock = "1.13.3"
-    }
-
     const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"
