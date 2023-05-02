@@ -5,6 +5,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -161,6 +163,12 @@ dependencies {
 
     // Mock Test
     api(Library.mock)
+
+    // Firebase
+    api(platform(Library.firebaseBoM))
+    api(Library.googleAnalytics)
+    api(Library.googleCrashlytics)
+    api(Library.googleMonitoringPerformance)
 
     // Styling Module
     api(project(":style"))

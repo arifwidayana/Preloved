@@ -1,4 +1,10 @@
 object Versions {
+    const val classpathToolsBuild = "3.4.0"
+    const val classpathGoogleAnalytics = "4.3.15"
+    const val classpathGoogleCrashlytics = "2.9.2"
+    const val classpathGoogleMonitoringPerformance = "1.4.2"
+    const val firebaseBoM = "31.5.0"
+    const val googleAnalytics = "21.2.0"
     const val coreKtx = "1.9.0"
     const val appCompat = "1.6.0"
     const val googleMaterial = "1.7.0"
@@ -26,6 +32,14 @@ object Versions {
 }
 
 object Library {
+    const val classpathToolsBuild = "com.android.tools.build:gradle:${Versions.classpathToolsBuild}"
+    const val classpathGoogleAnalytics = "com.google.gms:google-services:${Versions.classpathGoogleAnalytics}"
+    const val classpathGoogleCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${Versions.classpathGoogleCrashlytics}"
+    const val classpathGoogleMonitoringPerformance = "com.google.firebase:perf-plugin:${Versions.classpathGoogleMonitoringPerformance}"
+    const val firebaseBoM = "com.google.firebase:firebase-bom:${Versions.firebaseBoM}"
+    const val googleAnalytics = "com.google.firebase:firebase-analytics-ktx"
+    const val googleCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+    const val googleMonitoringPerformance = "com.google.firebase:firebase-perf-ktx"
     const val androidCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"

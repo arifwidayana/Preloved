@@ -4,6 +4,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -20,6 +23,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("productionSigningKey") {
+            storeFile = file(SigningHelper.getValue(SigningHelper.RELEASE_STORE_FILE))
+            storePassword = SigningHelper.getValue(SigningHelper.RELEASE_STORE_PASSWORD)
+            keyAlias = SigningHelper.getValue(SigningHelper.RELEASE_KEY_ALIAS)
+            keyPassword = SigningHelper.getValue(SigningHelper.RELEASE_KEY_PASSWORD)
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -27,6 +39,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("productionSigningKey")
         }
     }
     compileOptions {
