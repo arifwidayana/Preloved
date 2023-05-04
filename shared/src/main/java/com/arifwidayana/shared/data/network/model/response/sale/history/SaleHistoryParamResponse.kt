@@ -2,7 +2,7 @@ package com.arifwidayana.shared.data.network.model.response.sale.history
 
 import android.text.Spannable
 
-data class HistoryParamResponse(
+data class SaleHistoryParamResponse(
     val productName: String,
     val price: String,
     val transactionDate: String,

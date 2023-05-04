@@ -2,7 +2,7 @@ package com.arifwidayana.shared.data.network.model.response.sale.history
 
 import com.google.gson.annotations.SerializedName
 
-data class HistoryResponse(
+data class SaleHistoryResponse(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("product_name")

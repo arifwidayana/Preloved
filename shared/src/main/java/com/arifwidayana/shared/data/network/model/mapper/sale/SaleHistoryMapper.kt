@@ -1,7 +1,7 @@
 package com.arifwidayana.shared.data.network.model.mapper.sale
 
-import com.arifwidayana.shared.data.network.model.response.sale.history.HistoryParamResponse
-import com.arifwidayana.shared.data.network.model.response.sale.history.HistoryResponse
+import com.arifwidayana.shared.data.network.model.response.sale.history.SaleHistoryParamResponse
+import com.arifwidayana.shared.data.network.model.response.sale.history.SaleHistoryResponse
 import com.arifwidayana.shared.utils.Constant
 import com.arifwidayana.shared.utils.DateUtils
 import com.arifwidayana.shared.utils.StringUtils
@@ -10,17 +10,17 @@ import com.arifwidayana.shared.utils.mapper.ListMapper
 import com.arifwidayana.shared.utils.mapper.ViewParamMapper
 import com.arifwidayana.style.R
 
-typealias ListHistoryMap = List<HistoryResponse>
-typealias ListHistoryParamMap = List<HistoryParamResponse>
+typealias ListHistoryMap = List<SaleHistoryResponse>
+typealias ListHistoryParamMap = List<SaleHistoryParamResponse>
 
 object HistoryMapper : ViewParamMapper<ListHistoryMap, ListHistoryParamMap> {
     override fun toViewParam(dataObject: ListHistoryMap?): ListHistoryParamMap =
         ListMapper(ListHistoryMapper).toViewParams(dataObject)
 }
 
-object ListHistoryMapper : ViewParamMapper<HistoryResponse, HistoryParamResponse> {
-    override fun toViewParam(dataObject: HistoryResponse?): HistoryParamResponse =
-        HistoryParamResponse(
+object ListHistoryMapper : ViewParamMapper<SaleHistoryResponse, SaleHistoryParamResponse> {
+    override fun toViewParam(dataObject: SaleHistoryResponse?): SaleHistoryParamResponse =
+        SaleHistoryParamResponse(
             productName = dataObject?.productName.orEmpty(),
             price = "Offered ${convertCurrency(dataObject?.price ?: 0)}",
             transactionDate = DateUtils.convertDateTime(
@@ -32,7 +32,7 @@ object ListHistoryMapper : ViewParamMapper<HistoryResponse, HistoryParamResponse
             status = isNotificationMessage(dataObject)
         )
 
-    private fun isNotificationMessage(dataObject: HistoryResponse?): Pair<Int, Int> {
+    private fun isNotificationMessage(dataObject: SaleHistoryResponse?): Pair<Int, Int> {
         return when (dataObject?.status) {
             Constant.DECLINED -> Pair(
                 Constant.SALE_HISTORY_STATUS,
@@ -48,9 +48,9 @@ object ListHistoryMapper : ViewParamMapper<HistoryResponse, HistoryParamResponse
 }
 
 object HistoryProductMapper :
-    ViewParamMapper<HistoryResponse.Product, HistoryParamResponse.Product> {
-    override fun toViewParam(dataObject: HistoryResponse.Product?): HistoryParamResponse.Product =
-        HistoryParamResponse.Product(
+    ViewParamMapper<SaleHistoryResponse.Product, SaleHistoryParamResponse.Product> {
+    override fun toViewParam(dataObject: SaleHistoryResponse.Product?): SaleHistoryParamResponse.Product =
+        SaleHistoryParamResponse.Product(
             id = dataObject?.id ?: 0,
             basePrice = StringUtils.strikeThrough(convertCurrency(dataObject?.basePrice ?: 0)),
             status = dataObject?.status.orEmpty()
