@@ -123,7 +123,7 @@
     #Sale - Tab Feature
     <string-array name="tab_feature_sale">
         <item>Product</item>
-        <item>Interested</item>
+        <item>Order</item>
         <item>Sold</item>
         <item>History</item>
     </string-array>
