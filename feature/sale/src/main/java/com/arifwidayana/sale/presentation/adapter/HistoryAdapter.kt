@@ -8,22 +8,22 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import com.arifwidayana.shared.data.network.model.response.sale.history.HistoryParamResponse
+import com.arifwidayana.shared.data.network.model.response.sale.history.SaleHistoryParamResponse
 import com.arifwidayana.shared.utils.Constant
 import com.arifwidayana.style.databinding.CardHistorySaleBinding
 
 class HistoryAdapter(
     private val context: Context,
     private val onClick: (Int) -> Unit
-) : ListAdapter<HistoryParamResponse, HistoryAdapter.NotificationHolder>(
+) : ListAdapter<SaleHistoryParamResponse, HistoryAdapter.HistoryHolder>(
     Differ()
 ) {
-    class NotificationHolder(
+    class HistoryHolder(
         private val binding: CardHistorySaleBinding,
         private val context: Context,
         private val onClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: HistoryParamResponse) {
+        fun bind(data: SaleHistoryParamResponse) {
             binding.apply {
                 data.let {
                     sivProductImage.load(it.imageUrl) {
@@ -44,28 +44,28 @@ class HistoryAdapter(
         }
     }
 
-    class Differ : DiffUtil.ItemCallback<HistoryParamResponse>() {
+    class Differ : DiffUtil.ItemCallback<SaleHistoryParamResponse>() {
         override fun areItemsTheSame(
-            oldItem: HistoryParamResponse,
-            newItem: HistoryParamResponse
+            oldItem: SaleHistoryParamResponse,
+            newItem: SaleHistoryParamResponse
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: HistoryParamResponse,
-            newItem: HistoryParamResponse
+            oldItem: SaleHistoryParamResponse,
+            newItem: SaleHistoryParamResponse
         ): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryHolder {
         val binding = CardHistorySaleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NotificationHolder(binding, context, onClick)
+        return HistoryHolder(binding, context, onClick)
     }
 
-    override fun onBindViewHolder(holder: NotificationHolder, position: Int) {
+    override fun onBindViewHolder(holder: HistoryHolder, position: Int) {
         return holder.bind(getItem(position))
     }
 }

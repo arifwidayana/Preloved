@@ -8,7 +8,7 @@ import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.sale.R
 import com.arifwidayana.sale.databinding.FragmentHistoryBinding
 import com.arifwidayana.sale.presentation.adapter.HistoryAdapter
-import com.arifwidayana.shared.data.network.model.response.sale.history.HistoryParamResponse
+import com.arifwidayana.shared.data.network.model.response.sale.history.SaleHistoryParamResponse
 import com.arifwidayana.shared.utils.ext.source
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -46,7 +46,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding, HistoryViewModel>(
         }
     }
 
-    private fun setStateAdapter(data: List<HistoryParamResponse>?) {
+    private fun setStateAdapter(data: List<SaleHistoryParamResponse>?) {
         val adapter = HistoryAdapter(requireContext()) {
             val parcel = Bundle().apply { putInt("id", it) }
             moveNav(R.id.action_saleFragment_to_bid_nav, parcel)
