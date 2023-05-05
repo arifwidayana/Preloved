@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.arifwidayana.sale.presentation.ui.history.HistoryFragment
-import com.arifwidayana.sale.presentation.ui.interest.InterestFragment
+import com.arifwidayana.sale.presentation.ui.order.OrderFragment
 import com.arifwidayana.sale.presentation.ui.product.ProductFragment
 import com.arifwidayana.sale.presentation.ui.sold.SoldFragment
 
@@ -15,7 +15,7 @@ class SaleAdapter(
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     private val listFragment = arrayListOf(
         ProductFragment(),
-        InterestFragment(),
+        OrderFragment(),
         SoldFragment(),
         HistoryFragment()
     )
