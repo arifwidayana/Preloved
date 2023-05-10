@@ -29,6 +29,10 @@ android {
             storePassword = System.getenv(SigningHelper.RELEASE_STORE_PASSWORD)
             keyAlias = System.getenv(SigningHelper.RELEASE_KEY_ALIAS)
             keyPassword = System.getenv(SigningHelper.RELEASE_KEY_PASSWORD)
+//            storeFile = file(SigningHelper.getValue(SigningHelper.RELEASE_STORE_FILE))
+//            storePassword = SigningHelper.getValue(SigningHelper.RELEASE_STORE_PASSWORD)
+//            keyAlias = SigningHelper.getValue(SigningHelper.RELEASE_KEY_ALIAS)
+//            keyPassword = SigningHelper.getValue(SigningHelper.RELEASE_KEY_PASSWORD)
         }
     }
 
