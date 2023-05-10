@@ -1,4 +1,5 @@
 name: build
+description: up project and deploy
 
 on:
   push:
