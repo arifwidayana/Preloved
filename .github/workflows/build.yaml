@@ -1,4 +1,4 @@
-name: Build
+name: build
 
 on:
   push:
@@ -15,21 +15,20 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: 11
-          cache: gradle
+      - name: Setup Project
+        uses: ./github/actions/setup
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Decode Core Properties
+        env:
+          ENCODED_STRING_CORE: ${{ secrets.CORE_PROPERTIES_B64 }}
+          CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING_CORE > core-properties-b64.txt
+          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -37,18 +36,18 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Upload build outputs (APKs)
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-outputs
-          path: app/build/outputs
-
-      - name: Upload build reports
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-reports
-          path: app/build/reports
+#      - name: Upload build outputs (APKs)
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: build-outputs
+#          path: app/build/outputs
+#
+#      - name: Upload build reports
+#        if: always()
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: build-reports
+#          path: app/build/reports
 
   androidTest:
     needs: build
@@ -59,14 +58,9 @@ jobs:
         api-level: [26, 30]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Setup Project
+        uses: ./github/actions/setup
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: 11
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
@@ -75,6 +69,15 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+
+      - name: Decode Core Properties
+        env:
+          ENCODED_STRING_CORE: ${{ secrets.CORE_PROPERTIES_B64 }}
+          CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING_CORE > core-properties-b64.txt
+          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
 #      - name: Run instrumentation tests
 #        uses: reactivecircus/android-emulator-runner@v2
@@ -92,3 +95,61 @@ jobs:
         with:
           name: test-reports-${{ matrix.api-level }}
           path: '*/build/reports/androidTests'
+
+  release_build:
+    runs on: ubuntu-latest
+
+    steps:
+      - name: Setup Project
+        uses: ./github/actions/setup
+
+      - name: Decode Core Properties
+        env:
+          ENCODED_STRING_CORE: ${{ secrets.CORE_PROPERTIES_B64 }}
+          CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING_CORE > core-properties-b64.txt
+          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING_KEYSTORE: ${{ secrets.RELEASE_STORE_FILE_B64 }}
+          RELEASE_KEY_FILE_PATH: ${{ secrets.RELEASE_KEY_FILE_PATH }}
+
+        run: |
+          echo $ENCODED_STRING_KEYSTORE > keystore-b64.txt
+          base64 -d keystore-b64.txt > $RELEASE_KEY_FILE_PATH
+
+      - name: Build Release apk
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.RELEASE_KEY_FILE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+        run: ./gradlew assembleRelease
+
+      - name: Build Release bundle
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.RELEASE_KEY_FILE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+        run: ./gradlew bundleRelease
+
+      - name: Upload Release Build to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
+          paths: |
+            app/build/outputs/apk/release/ 
+            app/build/outputs/bundle/release/
+
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+          prerelease: true
+          files: |
+            app/build/outputs/apk/release/app-release.apk
+            app/build/outputs/apk/release/output-release.apk
