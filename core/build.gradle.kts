@@ -21,20 +21,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    signingConfigs {
-        create("productionSigningKey") {
-            storeFile = file(SigningHelper.getValue(SigningHelper.RELEASE_STORE_FILE))
-            storePassword = SigningHelper.getValue(SigningHelper.RELEASE_STORE_PASSWORD)
-            keyAlias = SigningHelper.getValue(SigningHelper.RELEASE_KEY_ALIAS)
-            keyPassword = SigningHelper.getValue(SigningHelper.RELEASE_KEY_PASSWORD)
-        }
-    }
-
     buildTypes {
         named("debug") {
             isMinifyEnabled = false
             isJniDebuggable = true
-            signingConfig = signingConfigs.getByName("productionSigningKey")
         }
         named("release") {
             isMinifyEnabled = false
@@ -43,7 +33,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("productionSigningKey")
         }
     }
     compileOptions {
