@@ -26,9 +26,7 @@ class SaleFragment : BaseFragment<FragmentSaleBinding, SaleViewModel>(
     }
 
     private fun onView() {
-        viewModel.apply {
-            getUser()
-        }
+        viewModel.getUser()
         tabLayout()
     }
 
