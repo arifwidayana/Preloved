@@ -97,7 +97,7 @@ jobs:
           path: '*/build/reports/androidTests'
 
   release_build:
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Setup Project
