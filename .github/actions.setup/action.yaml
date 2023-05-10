@@ -1,5 +1,5 @@
 name: project-setup
-description: setup project, jdk, and gradle cache
+description: setup project, jdk, and gradle cache android
 
 runs:
   using: composite
