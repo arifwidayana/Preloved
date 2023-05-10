@@ -1,0 +1,59 @@
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
+object CoreHelper {
+    // CORE PROPERTIES
+    private const val CORE_PROPERTIES = "core.properties"
+
+    // DEFAULT URL
+    const val BASE_URL = "BASE_URL"
+
+    // AUTH
+    const val END_POINT_LOGIN = "END_POINT_LOGIN"
+    const val END_POINT_REGISTER = "END_POINT_REGISTER"
+    const val END_POINT_USER = "END_POINT_USER"
+    const val END_POINT_CHANGE_PASSWORD = "END_POINT_CHANGE_PASSWORD"
+
+    // SELLER - PRODUCT
+    const val END_POINT_SELLER_PRODUCT = "END_POINT_SELLER_PRODUCT"
+    const val END_POINT_DETAIL_SELLER_PRODUCT = "END_POINT_DETAIL_SELLER_PRODUCT"
+
+    // SELLER - ORDER
+    const val END_POINT_SELLER_ORDER = "END_POINT_SELLER_ORDER"
+    const val END_POINT_DETAIL_SELLER_ORDER = "END_POINT_DETAIL_SELLER_ORDER"
+
+    // SELLER - CATEGORY
+    const val END_POINT_SELLER_CATEGORY = "END_POINT_SELLER_CATEGORY"
+
+    // SELLER - BANNER
+    const val END_POINT_SELLER_BANNER = "END_POINT_SELLER_BANNER"
+
+    // BUYER - PRODUCT
+    const val END_POINT_BUYER_PRODUCT = "END_POINT_BUYER_PRODUCT"
+    const val END_POINT_DETAIL_BUYER_PRODUCT = "END_POINT_DETAIL_BUYER_PRODUCT"
+
+    // BUYER - ORDER
+    const val END_POINT_BUYER_ORDER = "END_POINT_BUYER_ORDER"
+    const val END_POINT_DETAIL_BUYER_ORDER = "END_POINT_DETAIL_BUYER_ORDER"
+
+    // BUYER - WISHLIST
+    const val END_POINT_BUYER_WISHLIST = "END_POINT_BUYER_WISHLIST"
+    const val END_POINT_DETAIL_BUYER_WISHLIST = "END_POINT_DETAIL_BUYER_WISHLIST"
+
+    // HISTORY
+    const val END_POINT_HISTORY = "END_POINT_HISTORY"
+    const val END_POINT_DETAIL_HISTORY = "END_POINT_DETAIL_HISTORY"
+
+    // NOTIFICATION
+    const val END_POINT_NOTIFICATION = "END_POINT_NOTIFICATION"
+    const val END_POINT_DETAIL_NOTIFICATION = "END_POINT_DETAIL_NOTIFICATION"
+
+    private val coreProperties by lazy {
+        Properties().apply { load(FileInputStream(File(CORE_PROPERTIES))) }
+    }
+
+    fun getValue(key: String): String {
+        return coreProperties.getProperty(key)
+    }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sale_nav"
+    app:startDestination="@id/saleFragment">
+
+    <fragment
+        android:id="@+id/saleFragment"
+        android:name="com.arifwidayana.sale.presentation.ui.sale.SaleFragment"
+        android:label="fragment_sale"
+        tools:layout="@layout/fragment_sale" >
+        <action
+            android:id="@+id/action_saleFragment_to_bid_nav"
+            app:destination="@id/bid_nav" />
+    </fragment>
+    <include app:graph="@navigation/bid_nav" />
+</navigation>

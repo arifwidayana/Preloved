@@ -15,7 +15,7 @@
         android:drawablePadding="8dp"
         android:textColor="@color/black"
         android:padding="8dp"
-        android:drawableStart="@drawable/ic_history"
+        android:drawableStart="@drawable/ic_history_search"
         android:drawableEnd="@drawable/ic_inside" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

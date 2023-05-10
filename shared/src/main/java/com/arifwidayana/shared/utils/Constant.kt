@@ -34,6 +34,7 @@ object Constant {
     const val PATTERN_FORMAT_DEFAULT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     const val PATTERN_FORMAT_1 = "dd-MM-yyyy HH:mm:ss"
     const val PATTERN_FORMAT_2 = "dd MMM yyyy, HH:mm 'WIB'"
+    const val PATTERN_FORMAT_3 = "dd MMM, HH:mm"
 
     // DEFAULT CURRENCY
     const val ZERO_VALUE = 0
@@ -73,6 +74,9 @@ object Constant {
     const val SELL_PRICE_FIELD = 2
     const val SELL_CATEGORY_FIELD = 3
     const val SELL_IMAGE_FIELD = 4
+
+    // SALE - HISTORY
+    const val SALE_HISTORY_STATUS = 0
 
     // NOTIFICATION
     const val NOTIFICATION_MESSAGE = 0
