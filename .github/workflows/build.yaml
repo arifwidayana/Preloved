@@ -32,7 +32,6 @@ jobs:
         run: |
           echo $ENCODED_STRING_CORE > core-properties-b64.txt
           base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
-#          echo $ENCODED_STRING_CORE | base64 -d > $CORE_PROPERTIES_PATH
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -68,21 +67,23 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/setup
 
-      - name: Decode Core Properties
-        env:
-          ENCODED_STRING_CORE: ${{ secrets.CORE_PROPERTIES_B64 }}
-          CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
-
-        run: |
-#          echo $ENCODED_STRING_CORE | base64 -d > $CORE_PROPERTIES_PATH
-          echo $ENCODED_STRING_CORE > core-properties-b64.txt
-          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
 #      - name: Build with Gradle
 #        run: ./gradlew build
 #
 #      - name: Setup Gradle
 #        uses: gradle/gradle-build-action@v2
+
+      - name: Decode Core Properties
+        env:
+          ENCODED_STRING_CORE: ${{ secrets.CORE_PROPERTIES_B64 }}
+          CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING_CORE > core-properties-b64.txt
+          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
 #      - name: Run instrumentation tests
 #        uses: reactivecircus/android-emulator-runner@v2
@@ -109,7 +110,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Project
-        uses: ./.github/actions/setup
+        uses: ./github/actions/setup
 
       - name: Decode Core Properties
         env:
@@ -117,7 +118,6 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
-#          echo $ENCODED_STRING_CORE | base64 -d > $CORE_PROPERTIES_PATH
           echo $ENCODED_STRING_CORE > core-properties-b64.txt
           base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
