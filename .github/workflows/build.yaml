@@ -30,8 +30,7 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
-          echo $ENCODED_STRING_CORE > core-properties-b64.txt
-          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+          echo "$ENCODED_STRING_CORE" | base64 -d > $CORE_PROPERTIES_PATH
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -82,8 +81,7 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
-          echo $ENCODED_STRING_CORE > core-properties-b64.txt
-          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+          echo "$ENCODED_STRING_CORE" | base64 -d > $CORE_PROPERTIES_PATH
 
 #      - name: Run instrumentation tests
 #        uses: reactivecircus/android-emulator-runner@v2
@@ -110,7 +108,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Project
-        uses: ./github/actions/setup
+        uses: ./.github/actions/setup
 
       - name: Decode Core Properties
         env:
@@ -118,8 +116,7 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
-          echo $ENCODED_STRING_CORE > core-properties-b64.txt
-          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+          echo "$ENCODED_STRING_CORE" | base64 -d > $CORE_PROPERTIES_PATH
 
       - name: Decode Keystore
         env:
@@ -127,8 +124,7 @@ jobs:
           RELEASE_KEY_FILE_PATH: ${{ secrets.RELEASE_KEY_FILE_PATH }}
 
         run: |
-          echo $ENCODED_STRING_KEYSTORE > keystore-b64.txt
-          base64 -d keystore-b64.txt > $RELEASE_KEY_FILE_PATH
+          echo "$ENCODED_STRING_KEYSTORE" | base64 -d > $RELEASE_KEY_FILE_PATH
 
       - name: Build Release apk
         env:
