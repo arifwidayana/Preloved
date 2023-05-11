@@ -30,6 +30,7 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
+          echo $ENCODED_STRING_CORE
           echo $ENCODED_STRING_CORE | base64 -d > $CORE_PROPERTIES_PATH
 
       - name: Build with Gradle
@@ -119,8 +120,10 @@ jobs:
           CORE_PROPERTIES_PATH: ${{ secrets.CORE_PROPERTIES_PATH }}
 
         run: |
-          echo $ENCODED_STRING_CORE > core-properties-b64.txt
-          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
+          echo $ENCODED_STRING_CORE
+          echo $ENCODED_STRING_CORE | base64 -d > $CORE_PROPERTIES_PATH
+#          echo $ENCODED_STRING_CORE > core-properties-b64.txt
+#          base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
       - name: Decode Keystore
         env:
