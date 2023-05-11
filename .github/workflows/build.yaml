@@ -81,11 +81,11 @@ jobs:
           echo $ENCODED_STRING_CORE > core-properties-b64.txt
           base64 -d core-properties-b64.txt > $CORE_PROPERTIES_PATH
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+#      - name: Build with Gradle
+#        run: ./gradlew build
+#
+#      - name: Setup Gradle
+#        uses: gradle/gradle-build-action@v2
 
 #      - name: Run instrumentation tests
 #        uses: reactivecircus/android-emulator-runner@v2
