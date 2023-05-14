@@ -1,10 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     dependencies {
-        classpath(Library.classpathToolsBuild)
-        classpath(Library.classpathGoogleAnalytics)
-        classpath(Library.classpathGoogleCrashlytics)
-        classpath(Library.classpathGoogleMonitoringPerformance)
+//        classpath(Library.classpathToolsBuild)
+//        classpath(Library.classpathGoogleAnalytics)
+//        classpath(Library.classpathGoogleCrashlytics)
+//        classpath(Library.classpathGoogleMonitoringPerformance)
     }
 }
 plugins {
