@@ -152,10 +152,10 @@ dependencies {
     api(Library.mock)
 
     // Firebase
-    api(platform(Library.firebaseBoM))
-    api(Library.googleAnalytics)
-    api(Library.googleCrashlytics)
-    api(Library.googleMonitoringPerformance)
+//    api(platform(Library.firebaseBoM))
+//    api(Library.googleAnalytics)
+//    api(Library.googleCrashlytics)
+//    api(Library.googleMonitoringPerformance)
 
     // Styling Module
     api(project(":style"))
