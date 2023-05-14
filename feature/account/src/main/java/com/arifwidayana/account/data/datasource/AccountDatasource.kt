@@ -7,10 +7,10 @@ import com.arifwidayana.shared.data.network.model.request.account.profile.Profil
 import com.arifwidayana.shared.data.network.model.response.account.UserResponse
 import com.arifwidayana.shared.data.network.model.response.account.order.OrderAccountResponse
 import com.arifwidayana.shared.data.network.model.response.account.wishlist.WishlistAccountResponse
-import java.io.File
+import okhttp3.RequestBody
 
 interface AccountDatasource {
-    suspend fun uploadImageProfile(image: File): UserResponse
+    suspend fun uploadImageProfile(requestBody: RequestBody): UserResponse
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): UserResponse
     suspend fun updatePassword(passwordRequest: PasswordRequest): BaseDefaultResponse
     suspend fun getOrder(): List<OrderAccountResponse>
@@ -20,8 +20,8 @@ interface AccountDatasource {
 class AccountDatasourceImpl(
     private val accountService: AccountService
 ) : AccountDatasource {
-    override suspend fun uploadImageProfile(image: File): UserResponse {
-        return accountService.uploadImageProfile(image)
+    override suspend fun uploadImageProfile(requestBody: RequestBody): UserResponse {
+        return accountService.uploadImageProfile(requestBody)
     }
 
     override suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): UserResponse {

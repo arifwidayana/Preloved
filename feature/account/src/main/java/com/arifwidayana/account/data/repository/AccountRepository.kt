@@ -11,7 +11,7 @@ import com.arifwidayana.shared.data.network.model.response.account.wishlist.Wish
 import com.arifwidayana.shared.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.io.File
+import okhttp3.RequestBody
 
 typealias UserDataResource = DataResource<UserResponse>
 typealias PasswordDataResource = DataResource<BaseDefaultResponse>
@@ -19,7 +19,7 @@ typealias OrderDataResource = DataResource<List<OrderAccountResponse>>
 typealias WishlistDataResource = DataResource<List<WishlistAccountResponse>>
 
 interface AccountRepository {
-    suspend fun uploadImageProfile(image: File): Flow<UserDataResource>
+    suspend fun uploadImageProfile(requestBody: RequestBody): Flow<UserDataResource>
     suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): Flow<UserDataResource>
     suspend fun updatePassword(passwordRequest: PasswordRequest): Flow<PasswordDataResource>
     suspend fun getOrder(): Flow<OrderDataResource>
@@ -29,8 +29,8 @@ interface AccountRepository {
 class AccountRepositoryImpl(
     private val accountDatasource: AccountDatasource
 ) : AccountRepository, Repository() {
-    override suspend fun uploadImageProfile(image: File): Flow<UserDataResource> = flow {
-        emit(safeNetworkCall { accountDatasource.uploadImageProfile(image) })
+    override suspend fun uploadImageProfile(requestBody: RequestBody): Flow<UserDataResource> = flow {
+        emit(safeNetworkCall { accountDatasource.uploadImageProfile(requestBody) })
     }
 
     override suspend fun updateProfileUser(profileUserRequest: ProfileUserRequest): Flow<UserDataResource> = flow {
