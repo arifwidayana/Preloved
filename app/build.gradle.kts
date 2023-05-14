@@ -23,18 +23,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        create("productionSigningKey") {
-            storeFile = file(SigningHelper.RELEASE_STORE_FILE)
-            storePassword = System.getenv(SigningHelper.RELEASE_STORE_PASSWORD)
-            keyAlias = System.getenv(SigningHelper.RELEASE_KEY_ALIAS)
-            keyPassword = System.getenv(SigningHelper.RELEASE_KEY_PASSWORD)
+//    signingConfigs {
+//        create("productionSigningKey") {
+//            storeFile = file(SigningHelper.RELEASE_STORE_FILE)
+//            storePassword = System.getenv(SigningHelper.RELEASE_STORE_PASSWORD)
+//            keyAlias = System.getenv(SigningHelper.RELEASE_KEY_ALIAS)
+//            keyPassword = System.getenv(SigningHelper.RELEASE_KEY_PASSWORD)
 //            storeFile = file(SigningHelper.getValue(SigningHelper.RELEASE_STORE_FILE))
 //            storePassword = SigningHelper.getValue(SigningHelper.RELEASE_STORE_PASSWORD)
 //            keyAlias = SigningHelper.getValue(SigningHelper.RELEASE_KEY_ALIAS)
 //            keyPassword = SigningHelper.getValue(SigningHelper.RELEASE_KEY_PASSWORD)
-        }
-    }
+//        }
+//    }
 
     buildTypes {
         release {
@@ -43,7 +43,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("productionSigningKey")
+//            signingConfig = signingConfigs.getByName("productionSigningKey")
         }
     }
     compileOptions {
