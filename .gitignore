@@ -3,4 +3,4 @@
 /build
 /local.properties
 /key.properties
-/core.properties
+#/core.properties
