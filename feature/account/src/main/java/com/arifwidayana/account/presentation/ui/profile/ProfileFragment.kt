@@ -1,6 +1,11 @@
 package com.arifwidayana.account.presentation.ui.profile
 
+import android.app.Activity
+import android.os.Environment
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import coil.size.Scale
 import com.arifwidayana.account.databinding.FragmentProfileBinding
@@ -11,8 +16,12 @@ import com.arifwidayana.shared.data.network.model.response.account.UserParamResp
 import com.arifwidayana.shared.utils.Constant
 import com.arifwidayana.shared.utils.ext.changed
 import com.arifwidayana.shared.utils.ext.source
+import com.arifwidayana.shared.utils.ext.uriToFile
 import com.arifwidayana.style.R
+import com.github.dhaval2404.imagepicker.ImagePicker
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import java.io.File
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
     FragmentProfileBinding::inflate
@@ -34,6 +43,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
             btnBack.setOnClickListener {
                 moveNavigateUp()
             }
+            sivUploadImage.setOnClickListener {
+                pickImage()
+            }
             btnSave.setOnClickListener {
                 viewModel.updateProfile(
                     ProfileUserParamRequest(
@@ -48,36 +60,56 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
     }
 
     override fun observeData() {
-        lifecycleScope.apply {
-            launchWhenStarted {
-                viewModel.getUserResult.collect {
-                    it.source(
-                        doOnSuccess = { result ->
-                            setStateView(result.payload)
-                        },
-                        doOnError = { error ->
-                            showMessageSnackBar(true, exception = error.exception)
-                        }
-                    )
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.getUserResult.collect {
+                        it.source(
+                            doOnSuccess = { result ->
+                                setStateView(result.payload)
+                            },
+                            doOnError = { error ->
+                                showMessageSnackBar(true, exception = error.exception)
+                            }
+                        )
+                    }
+                }
+                launch {
+                    viewModel.uploadImageResult.collect {
+                        it.source(
+                            doOnSuccess = { result ->
+                                setStateImage(result.payload)
+                            },
+                            doOnError = { error ->
+                                showMessageSnackBar(true, exception = error.exception)
+                            }
+                        )
+                    }
+                }
+                launch {
+                    viewModel.updateProfileResult.collect {
+                        it.source(
+                            doOnSuccess = { result ->
+                                result.payload?.let { message ->
+                                    showMessageSnackBar(true, getString(message))
+                                }
+                            },
+                            doOnError = { error ->
+                                when (error.exception) {
+                                    is FieldErrorException -> handleStateErrorField(error.exception as FieldErrorException)
+                                    else -> showMessageSnackBar(true, exception = error.exception)
+                                }
+                            }
+                        )
+                    }
                 }
             }
-            launchWhenStarted {
-                viewModel.updateProfileResult.collect {
-                    it.source(
-                        doOnSuccess = { result ->
-                            result.payload?.let { message ->
-                                showMessageSnackBar(true, getString(message))
-                            }
-                        },
-                        doOnError = { error ->
-                            when (error.exception) {
-                                is FieldErrorException -> handleStateErrorField(error.exception as FieldErrorException)
-                                else -> showMessageSnackBar(true, exception = error.exception)
-                            }
-                        }
-                    )
-                }
-            }
+        }
+    }
+
+    private fun setStateImage(data: String?) {
+        binding.sivProfile.load(data) {
+            scale(Scale.FILL)
         }
     }
 
@@ -132,4 +164,44 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
             }
         }
     }
+
+    private fun pickImage() {
+        requireContext().getExternalFilesDir(Environment.DIRECTORY_DCIM)?.let {
+            ImagePicker.with(this@ProfileFragment)
+                .crop()
+                .saveDir(File(requireContext().externalCacheDir, "image"))
+                .galleryMimeTypes(
+                    mimeTypes = arrayOf(
+                        "image/png",
+                        "image/jpg",
+                        "image/jpeg"
+                    )
+                )
+                .compress(1024)
+                .maxResultSize(1080, 1080)
+                .createIntent { intent ->
+                    startForProfileImageResult.launch(intent)
+                }
+        }
+    }
+
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            when (result.resultCode) {
+                Activity.RESULT_OK -> {
+                    result.data?.data?.let {
+                        viewModel.uploadImage(uriToFile(requireContext(), it))
+                    }
+                }
+                ImagePicker.RESULT_ERROR -> {
+                    showMessageToast(true, ImagePicker.getError(result.data))
+                }
+                else -> {
+                    showMessageToast(
+                        false,
+                        getString(R.string.task_cancelled)
+                    )
+                }
+            }
+        }
 }
