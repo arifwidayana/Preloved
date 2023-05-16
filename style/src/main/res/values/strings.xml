@@ -114,6 +114,8 @@
     <string name="add_4">Add \n Product (4/5)</string>
     <string name="add_5">Add \n Product (5/5)</string>
     <string name="max_upload">Max Upload 5 Product</string>
+    <string name="info_bidder">Info Bidder</string>
+    <string name="decline">Decline</string>
 
     #Sale - History
     <string name="status_sale_history_accepted">Product Offer Accepted</string>
