@@ -19,16 +19,17 @@ object ListSaleOrderMapper : ViewParamMapper<SaleOrderResponse, SaleOrderParamRe
         SaleOrderParamResponse(
             id = dataObject?.id ?: 0,
             productId = dataObject?.productId ?: 0,
+            userOfferName = StringUtils.firstCharUpperCase(dataObject?.user?.fullName.orEmpty()),
+            userOfferImageUrl = dataObject?.user?.imageUrl.orEmpty(),
+            userOfferLocation = StringUtils.firstCharUpperCase(dataObject?.user?.city.orEmpty()),
             price = "Offer Price in ${convertCurrency(dataObject?.price ?: 0)}",
             transactionDate = DateUtils.convertDateTime(
                 time = dataObject?.transactionDate,
                 pattern = Constant.PATTERN_FORMAT_2
             ),
-            productName = StringUtils.firstCharUpperCase(
-                words = dataObject?.productName.orEmpty()
-            ),
+            productName = StringUtils.firstCharUpperCase(dataObject?.productName.orEmpty()),
             basePrice = StringUtils.strikeThrough(convertCurrency(dataObject?.basePrice ?: 0)),
-            imageProduct = dataObject?.imageProduct.orEmpty(),
+            imageProductUrl = dataObject?.imageProduct.orEmpty(),
             status = "Product Offer"
         )
 }

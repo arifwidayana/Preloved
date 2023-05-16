@@ -78,6 +78,8 @@ data class SaleOrderResponse(
         @SerializedName("address")
         val address: String?,
         @SerializedName("city")
-        val city: String?
+        val city: String?,
+        @SerializedName("image_url")
+        val imageUrl: String?
     )
 }
