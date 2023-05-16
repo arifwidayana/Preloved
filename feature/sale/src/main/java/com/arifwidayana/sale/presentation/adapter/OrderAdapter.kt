@@ -21,9 +21,7 @@ class OrderAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: SaleOrderParamResponse) {
             binding.apply {
-                sivProductImage.load(data.imageProduct) {
-                    scale(Scale.FILL)
-                }
+                sivProductImage.load(data.imageProductUrl) { scale(Scale.FILL) }
                 tvStatusProduct.text = data.status
                 tvTransactionDate.text = data.transactionDate
                 tvProductName.text = data.productName

@@ -7,6 +7,7 @@ import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.sale.databinding.FragmentOrderBinding
 import com.arifwidayana.sale.presentation.adapter.OrderAdapter
 import com.arifwidayana.shared.data.network.model.response.sale.order.SaleOrderParamResponse
+import com.arifwidayana.shared.utils.Navigation
 import com.arifwidayana.shared.utils.ext.source
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -45,10 +46,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding, OrderViewModel>(
     }
 
     private fun setStateAdapter(data: List<SaleOrderParamResponse>?) {
-        val adapter = OrderAdapter() {
-//            val parcel = Bundle().apply { putInt("id", it) }
-//            moveNav(R.id.action_saleFragment_to_bid_nav, parcel)
-        }
+        val adapter = OrderAdapter { moveNav(Navigation.BIDDER_URI + it) }
         adapter.submitList(data)
         binding.rvSellerOrder.adapter = adapter
     }
