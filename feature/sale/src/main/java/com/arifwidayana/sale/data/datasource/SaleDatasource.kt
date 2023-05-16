@@ -9,6 +9,7 @@ interface SaleDatasource {
     suspend fun historyTransaction(): List<SaleHistoryResponse>
     suspend fun getSellerProduct(): List<SaleProductResponse>
     suspend fun getSellerOrder(): List<SaleOrderResponse>
+    suspend fun getProductOffer(idOffer: Int): SaleOrderResponse
 }
 
 class SaleDatasourceImpl(
@@ -24,5 +25,9 @@ class SaleDatasourceImpl(
 
     override suspend fun getSellerOrder(): List<SaleOrderResponse> {
         return saleService.getSellerOrder()
+    }
+
+    override suspend fun getProductOffer(idOffer: Int): SaleOrderResponse {
+        return saleService.getProductOffer(idOffer)
     }
 }

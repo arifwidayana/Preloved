@@ -6,6 +6,7 @@ import com.arifwidayana.shared.data.network.model.response.sale.order.SaleOrderR
 import com.arifwidayana.shared.data.network.model.response.sale.product.SaleProductResponse
 import com.arifwidayana.shared.utils.Constant
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SaleService {
@@ -14,6 +15,9 @@ interface SaleService {
 
     @GET(BuildConfig.END_POINT_SELLER_ORDER)
     suspend fun getSellerOrder(@Query("status") status: String = Constant.PENDING): List<SaleOrderResponse>
+
+    @GET(BuildConfig.END_POINT_DETAIL_SELLER_ORDER)
+    suspend fun getProductOffer(@Path(Constant.ID_PATH) idOffer: Int): SaleOrderResponse
 
     @GET(BuildConfig.END_POINT_HISTORY)
     suspend fun historyTransaction(): List<SaleHistoryResponse>

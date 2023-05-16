@@ -12,11 +12,13 @@ import kotlinx.coroutines.flow.flow
 typealias HistoryDataResource = DataResource<List<SaleHistoryResponse>>
 typealias ProductDataResource = DataResource<List<SaleProductResponse>>
 typealias OrderDataResource = DataResource<List<SaleOrderResponse>>
+typealias OfferDataResource = DataResource<SaleOrderResponse>
 
 interface SaleRepository {
     suspend fun historyTransaction(): Flow<HistoryDataResource>
     suspend fun getSellerProduct(): Flow<ProductDataResource>
     suspend fun getSellerOrder(): Flow<OrderDataResource>
+    suspend fun getProductOffer(idOffer: Int): Flow<OfferDataResource>
 }
 
 class SaleRepositoryImpl(
@@ -32,5 +34,9 @@ class SaleRepositoryImpl(
 
     override suspend fun getSellerOrder(): Flow<OrderDataResource> = flow {
         emit(safeNetworkCall { saleDatasource.getSellerOrder() })
+    }
+
+    override suspend fun getProductOffer(idOffer: Int): Flow<OfferDataResource> = flow {
+        emit(safeNetworkCall { saleDatasource.getProductOffer(idOffer) })
     }
 }
