@@ -11,4 +11,5 @@ object Navigation {
     const val ACCOUNT_URI = "Preloved://accountFragment"
     const val ORDER_URI = "Preloved://orderFragment"
     const val PROFILE_URI = "Preloved://profileFragment"
+    const val BIDDER_URI = "Preloved://bidderFragment/"
 }

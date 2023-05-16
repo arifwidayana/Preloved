@@ -15,4 +15,17 @@
             app:destination="@id/bid_nav" />
     </fragment>
     <include app:graph="@navigation/bid_nav" />
+    <fragment
+        android:id="@+id/bidderFragment"
+        android:name="com.arifwidayana.sale.presentation.ui.bidder.BidderFragment"
+        android:label="fragment_bidder"
+        tools:layout="@layout/fragment_bidder">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="Preloved://bidderFragment/{id}" />
+    </fragment>
 </navigation>
