@@ -25,7 +25,7 @@ object NotificationResponseMapper : ViewParamMapper<NotifyMap, NotifyParamMap> {
         NotifyParamMap(
             id = dataObject?.id ?: 0,
             productId = dataObject?.productId ?: 0,
-            productName = dataObject?.productName.orEmpty(),
+            productName = StringUtils.firstCharUpperCase(dataObject?.productName.orEmpty()),
             basePrice = NotifyMapper.isBasePrice(dataObject),
             bidPrice = "${StringUtils.firstCharUpperCase(dataObject?.status.orEmpty())} ${convertCurrency(dataObject?.bidPrice ?: 0)}",
             imageUrl = dataObject?.imageUrl.orEmpty(),
