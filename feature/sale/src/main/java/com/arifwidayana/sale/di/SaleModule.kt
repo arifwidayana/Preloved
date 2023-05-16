@@ -8,8 +8,10 @@ import com.arifwidayana.sale.data.repository.SaleRepositoryImpl
 import com.arifwidayana.sale.data.service.SaleService
 import com.arifwidayana.sale.domain.HistoryUseCase
 import com.arifwidayana.sale.domain.OrderUseCase
+import com.arifwidayana.sale.domain.ProductOfferUseCase
 import com.arifwidayana.sale.domain.ProductUseCase
 import com.arifwidayana.sale.domain.SoldUseCase
+import com.arifwidayana.sale.presentation.ui.bidder.BidderViewModel
 import com.arifwidayana.sale.presentation.ui.history.HistoryViewModel
 import com.arifwidayana.sale.presentation.ui.order.OrderViewModel
 import com.arifwidayana.sale.presentation.ui.product.ProductViewModel
@@ -35,6 +37,7 @@ object SaleModule : FeatureModule {
         single { ProductUseCase(get(), Dispatchers.IO) }
         single { SoldUseCase(get(), Dispatchers.IO) }
         single { OrderUseCase(get(), Dispatchers.IO) }
+        single { ProductOfferUseCase(get(), Dispatchers.IO) }
     }
 
     override val networks: Module = module {
@@ -47,6 +50,7 @@ object SaleModule : FeatureModule {
         viewModelOf(::OrderViewModel)
         viewModelOf(::SoldViewModel)
         viewModelOf(::HistoryViewModel)
+        viewModelOf(::BidderViewModel)
     }
 
     override fun getModules(): List<Module> =
