@@ -1,4 +1,4 @@
-package com.arifwidayana.sale.presentation.ui.bidder
+package com.arifwidayana.sale.presentation.ui.bid.bidder
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

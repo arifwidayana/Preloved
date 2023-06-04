@@ -1,4 +1,4 @@
-package com.arifwidayana.sale.presentation.ui.bidder
+package com.arifwidayana.sale.presentation.ui.bid.bidder
 
 import com.arifwidayana.core.wrapper.ViewResource
 import com.arifwidayana.shared.data.network.model.response.sale.order.SaleOrderParamResponse

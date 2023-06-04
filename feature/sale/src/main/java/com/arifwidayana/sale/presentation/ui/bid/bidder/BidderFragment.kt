@@ -1,4 +1,4 @@
-package com.arifwidayana.sale.presentation.ui.bidder
+package com.arifwidayana.sale.presentation.ui.bid.bidder
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +8,8 @@ import coil.load
 import coil.size.Scale
 import com.arifwidayana.core.base.BaseFragment
 import com.arifwidayana.sale.databinding.FragmentBidderBinding
+import com.arifwidayana.sale.presentation.ui.bid.chat.ChatFragment
+import com.arifwidayana.sale.presentation.ui.bid.status.StatusFragment
 import com.arifwidayana.shared.data.network.model.response.sale.order.SaleOrderParamResponse
 import com.arifwidayana.shared.utils.ext.source
 import kotlinx.coroutines.launch
@@ -17,6 +19,7 @@ class BidderFragment : BaseFragment<FragmentBidderBinding, BidderViewModel>(
     FragmentBidderBinding::inflate
 ) {
     private val args by navArgs<BidderFragmentArgs>()
+    private lateinit var dataProduct: SaleOrderParamResponse
     override val viewModel: BidderViewModel by inject()
 
     override fun initView() {
@@ -33,9 +36,11 @@ class BidderFragment : BaseFragment<FragmentBidderBinding, BidderViewModel>(
             sivBack.setOnClickListener {
                 moveNavigateUp()
             }
-            btnDecline.setOnClickListener {
+            btnChatBuyer.setOnClickListener {
+                ChatFragment(dataProduct).show(childFragmentManager, null)
             }
-            btnAccept.setOnClickListener {
+            btnChangeStatus.setOnClickListener {
+                StatusFragment(dataProduct).show(childFragmentManager, null)
             }
         }
     }
@@ -64,6 +69,7 @@ class BidderFragment : BaseFragment<FragmentBidderBinding, BidderViewModel>(
     private fun setStateView(data: SaleOrderParamResponse?) {
         binding.apply {
             data?.let {
+                dataProduct = it
                 sivProfileUser.load(it.userOfferImageUrl) { scale(Scale.FILL) }
                 sivProductImage.load(it.imageProductUrl) { scale(Scale.FILL) }
                 tvNameUser.text = it.userOfferName
