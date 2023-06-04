@@ -21,6 +21,7 @@ object ListSaleOrderMapper : ViewParamMapper<SaleOrderResponse, SaleOrderParamRe
             productId = dataObject?.productId ?: 0,
             userOfferName = StringUtils.firstCharUpperCase(dataObject?.user?.fullName.orEmpty()),
             userOfferImageUrl = dataObject?.user?.imageUrl.orEmpty(),
+            userPhoneNumber = dataObject?.user?.phoneNumber.orEmpty(),
             userOfferLocation = StringUtils.firstCharUpperCase(dataObject?.user?.city.orEmpty()),
             price = "Offer Price in ${convertCurrency(dataObject?.price ?: 0)}",
             transactionDate = DateUtils.convertDateTime(

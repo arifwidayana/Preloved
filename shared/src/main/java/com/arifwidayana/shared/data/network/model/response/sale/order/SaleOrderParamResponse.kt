@@ -7,6 +7,7 @@ data class SaleOrderParamResponse(
     val productId: Int,
     val userOfferName: String,
     val userOfferImageUrl: String,
+    val userPhoneNumber: String,
     val userOfferLocation: String,
     val price: String,
     val transactionDate: String,
