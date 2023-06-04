@@ -17,7 +17,7 @@
     <include app:graph="@navigation/bid_nav" />
     <fragment
         android:id="@+id/bidderFragment"
-        android:name="com.arifwidayana.sale.presentation.ui.bidder.BidderFragment"
+        android:name="com.arifwidayana.sale.presentation.ui.bid.bidder.BidderFragment"
         android:label="fragment_bidder"
         tools:layout="@layout/fragment_bidder">
         <argument
