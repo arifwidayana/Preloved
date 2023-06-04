@@ -106,16 +106,13 @@
     <string name="no_products">No Product Show, Add First</string>
     <string name="no_product_sold">No Product Sold, Be Patient !</string>
     <string name="no_product_interested">No Product Interested, Be Patient!</string>
-    <string name="add_n_product">Add \n Product</string>
-    <string name="add_0">Add \n Product (0/5)</string>
-    <string name="add_1">Add \n Product (1/5)</string>
-    <string name="add_2">Add \n Product (2/5)</string>
-    <string name="add_3">Add \n Product (3/5)</string>
-    <string name="add_4">Add \n Product (4/5)</string>
-    <string name="add_5">Add \n Product (5/5)</string>
     <string name="max_upload">Max Upload 5 Product</string>
     <string name="info_bidder">Info Bidder</string>
     <string name="decline">Decline</string>
+    <string name="chat_buyer">Chat Buyer</string>
+    <string name="change_status_product">Change Status Product</string>
+    <string name="yeay_you_succeed_got_fit_price">Yeay, you succeed got fit price</string>
+    <string name="immediately_contact">Immediately contact the buyer via whatsapp for further transactions</string>
 
     #Sale - History
     <string name="status_sale_history_accepted">Product Offer Accepted</string>
@@ -129,6 +126,14 @@
         <item>Sold</item>
         <item>History</item>
     </string-array>
+
+    #Sale - Bid
+    <string name="update_status">Update your product sales status</string>
+    <string name="calling_via_whatsapp">Calling via Whatsapp</string>
+    <string name="change_status">Change Status</string>
+    <string name="accepted_product">You have agreed to sell this product to the buyer</string>
+    <string name="transaction_cancelled">Transaction cancelled</string>
+    <string name="declined_product">You cancel the transaction of this product with the buyer</string>
 
     #Account
     <string name="account">Account</string>
