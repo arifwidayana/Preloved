@@ -85,4 +85,11 @@ object Constant {
     // DELAY
     const val DELAY_AUTO_SLIDE = 3000L
     const val LAST_AUTO_SLIDE = 0L
+
+    val LIST_ICON = arrayOf(
+        com.arifwidayana.style.R.drawable.ic_box,
+        com.arifwidayana.style.R.drawable.ic_love,
+        com.arifwidayana.style.R.drawable.ic_dollar,
+        com.arifwidayana.style.R.drawable.ic_history_transaction
+    )
 }
