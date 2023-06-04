@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.bidder.BidderFragment">
+    tools:context=".presentation.ui.bid.bidder.BidderFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/material_toolbar"
@@ -192,31 +192,25 @@
         app:layout_constraintTop_toBottomOf="@id/container_offer">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_decline"
-            android:layout_width="0dp"
+            android:id="@+id/btn_chat_buyer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
             android:backgroundTint="@color/gray"
             android:elevation="1dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/decline"
+            android:text="@string/chat_buyer"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toStartOf="@id/btn_accept"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_accept"
-            android:layout_width="0dp"
+            android:id="@+id/btn_change_status"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:elevation="1dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/accept"
+            android:textSize="@dimen/sub_content"
+            android:text="@string/change_status_product"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_decline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btn_chat_buyer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
