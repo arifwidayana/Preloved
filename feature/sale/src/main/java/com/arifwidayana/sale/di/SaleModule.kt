@@ -6,12 +6,14 @@ import com.arifwidayana.sale.data.datasource.SaleDatasourceImpl
 import com.arifwidayana.sale.data.repository.SaleRepository
 import com.arifwidayana.sale.data.repository.SaleRepositoryImpl
 import com.arifwidayana.sale.data.service.SaleService
+import com.arifwidayana.sale.domain.BidderUseCase
 import com.arifwidayana.sale.domain.HistoryUseCase
 import com.arifwidayana.sale.domain.OrderUseCase
 import com.arifwidayana.sale.domain.ProductOfferUseCase
 import com.arifwidayana.sale.domain.ProductUseCase
 import com.arifwidayana.sale.domain.SoldUseCase
-import com.arifwidayana.sale.presentation.ui.bidder.BidderViewModel
+import com.arifwidayana.sale.presentation.ui.bid.bidder.BidderViewModel
+import com.arifwidayana.sale.presentation.ui.bid.status.StatusViewModel
 import com.arifwidayana.sale.presentation.ui.history.HistoryViewModel
 import com.arifwidayana.sale.presentation.ui.order.OrderViewModel
 import com.arifwidayana.sale.presentation.ui.product.ProductViewModel
@@ -33,6 +35,7 @@ object SaleModule : FeatureModule {
     }
 
     override val useCases: Module = module {
+        single { BidderUseCase(get(), Dispatchers.IO) }
         single { HistoryUseCase(get(), Dispatchers.IO) }
         single { ProductUseCase(get(), Dispatchers.IO) }
         single { SoldUseCase(get(), Dispatchers.IO) }
@@ -51,6 +54,7 @@ object SaleModule : FeatureModule {
         viewModelOf(::SoldViewModel)
         viewModelOf(::HistoryViewModel)
         viewModelOf(::BidderViewModel)
+        viewModelOf(::StatusViewModel)
     }
 
     override fun getModules(): List<Module> =
