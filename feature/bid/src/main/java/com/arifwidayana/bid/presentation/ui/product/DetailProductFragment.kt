@@ -140,13 +140,8 @@ class DetailProductFragment : BaseFragment<FragmentDetailProductBinding, DetailP
                 btnBid.apply {
                     text = it.status
                     isEnabled = it.state
-                    if (it.state) setBackgroundButton(R.color.gray) else setBackgroundButton(R.color.primary)
                 }
             }
         }
-    }
-
-    private fun setBackgroundButton(color: Int) {
-        binding.btnBid.setBackgroundResource(color)
     }
 }

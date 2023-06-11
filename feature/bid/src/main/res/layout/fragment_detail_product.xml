@@ -208,7 +208,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/shape_transparent"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/bottom_container_update_product">
 
         <com.google.android.material.button.MaterialButton
@@ -221,6 +221,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:theme="@style/Theme.Preloved"
             app:layout_constraintEnd_toStartOf="@id/btn_wishlist"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
