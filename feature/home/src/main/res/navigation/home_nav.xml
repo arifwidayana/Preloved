@@ -14,17 +14,12 @@
             android:id="@+id/deepLink"
             app:uri="Preloved://homeFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_bid_nav"
-            app:destination="@id/bid_nav" />
-        <action
             android:id="@+id/action_homeFragment_to_login_nav"
             app:destination="@id/login_nav" />
         <action
             android:id="@+id/action_homeFragment_to_searchKeywordFragment"
             app:destination="@id/searchKeywordFragment" />
     </fragment>
-    <include app:graph="@navigation/bid_nav" />
-    <include app:graph="@navigation/login_nav" />
     <fragment
         android:id="@+id/searchProductFragment"
         android:name="com.arifwidayana.home.presentation.ui.search.product.SearchProductFragment"
@@ -33,9 +28,6 @@
         <argument
             android:name="search"
             app:argType="string" />
-        <action
-            android:id="@+id/action_searchProductFragment_to_bid_nav"
-            app:destination="@id/bid_nav" />
     </fragment>
     <fragment
         android:id="@+id/searchKeywordFragment"
@@ -48,4 +40,5 @@
             app:popUpTo="@id/searchKeywordFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <include app:graph="@navigation/login_nav" />
 </navigation>

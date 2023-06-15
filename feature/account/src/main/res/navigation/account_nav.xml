@@ -36,9 +36,6 @@
         android:name="com.arifwidayana.account.presentation.ui.order.OrderFragment"
         android:label="fragment_order"
         tools:layout="@layout/fragment_order">
-        <action
-            android:id="@+id/action_orderFragment_to_bid_nav"
-            app:destination="@id/bid_nav" />
         <deepLink
             android:id="@+id/deepLink2"
             app:uri="Preloved://orderFragment" />
@@ -61,11 +58,6 @@
         android:id="@+id/wishlistFragment"
         android:name="com.arifwidayana.account.presentation.ui.wishlist.WishlistFragment"
         android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist">
-        <action
-            android:id="@+id/action_wishlistFragment_to_bid_nav"
-            app:destination="@id/bid_nav" />
-    </fragment>
-    <include app:graph="@navigation/bid_nav" />
+        tools:layout="@layout/fragment_wishlist" />
     <include app:graph="@navigation/login_nav" />
 </navigation>

@@ -9,14 +9,5 @@
         android:id="@+id/notificationFragment"
         android:name="com.arifwidayana.notification.presentation.ui.NotificationFragment"
         android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" >
-        <action
-            android:id="@+id/action_notificationFragment_to_account_nav"
-            app:destination="@id/account_nav" />
-        <action
-            android:id="@+id/action_notificationFragment_to_bid_nav"
-            app:destination="@id/bid_nav" />
-    </fragment>
-    <include app:graph="@navigation/bid_nav" />
-    <include app:graph="@navigation/account_nav" />
+        tools:layout="@layout/fragment_notification" />
 </navigation>
