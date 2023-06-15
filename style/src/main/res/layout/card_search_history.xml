@@ -14,7 +14,8 @@
         tools:text="@tools:sample/lorem"
         android:drawablePadding="8dp"
         android:textColor="@color/black"
-        android:padding="8dp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
         android:drawableStart="@drawable/ic_history_search"
         android:drawableEnd="@drawable/ic_inside" />
 

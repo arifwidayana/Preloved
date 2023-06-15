@@ -15,12 +15,13 @@
             android:layout_height="match_parent"
             android:paddingBottom="150dp">
 
-            <ImageButton
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ib_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 android:background="@drawable/circle_shape"
                 android:elevation="4dp"
                 android:padding="4dp"
@@ -226,7 +227,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/btn_wishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
