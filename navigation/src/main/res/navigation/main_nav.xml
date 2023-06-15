@@ -12,4 +12,5 @@
     <include app:graph="@navigation/notification_nav" />
     <include app:graph="@navigation/sell_nav" />
     <include app:graph="@navigation/sale_nav" />
+    <include app:graph="@navigation/bid_nav" />
 </navigation>
