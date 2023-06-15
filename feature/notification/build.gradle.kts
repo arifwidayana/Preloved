@@ -74,6 +74,4 @@ dependencies {
     androidTestImplementation(Library.androidEspressoCore)
 
     implementation(project(":shared"))
-    implementation(project(":feature:bid"))
-    implementation(project(":feature:account"))
 }

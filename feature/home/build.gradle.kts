@@ -75,5 +75,4 @@ dependencies {
 
     implementation(project(":shared"))
     implementation(project(":feature:auth:login"))
-    implementation(project(":feature:bid"))
 }
