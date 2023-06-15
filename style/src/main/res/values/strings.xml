@@ -55,6 +55,10 @@
     <string name="no_notification">There Are No Notification</string>
     <string name="offer_decline">Offer Decline</string>
 
+    #Notification - Create
+    <string name="product_added">Product Added</string>
+    <string name="message_product_added">Product Successfully Added</string>
+
     #Notification - Bid
     <string name="product_bid">Product Bid</string>
     <string name="message_product_null">Product has been deleted</string>
@@ -62,19 +66,18 @@
     <string name="message_product_bid_buyer">You has been bid product</string>
     <string name="message_product_bid_seller">Someone bid on your product</string>
 
-    #Notification - Declined
-    <string name="product_declined">Product Declined</string>
-    <string name="message_product_declined_seller">You decline this offer</string>
-    <string name="message_product_declined_buyer">Bid offer was declined by the Seller</string>
-
     #Notification - Accepted
     <string name="product_accepted">Product Accepted</string>
     <string name="message_product_accepted_seller">You accept this offer</string>
     <string name="message_product_accepted_buyer">Bid offer was accepted by the Seller</string>
 
-    #Notification - Create
-    <string name="product_added">Product Added</string>
-    <string name="message_product_added">Product Successfully Added</string>
+    #Notification - Declined
+    <string name="product_declined">Product Declined</string>
+    <string name="message_product_declined_seller">You decline this offer</string>
+    <string name="message_product_declined_buyer">Bid offer was declined by the Seller</string>
+
+    #Notification - Sold
+    <string name="product_sold">Product Sold</string>
 
     #Sell
     <string name="sell">Sell</string>
